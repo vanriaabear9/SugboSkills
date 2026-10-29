@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#25503E">
-  <title>SugboSkills | Skills in Action. Futures in Motion.</title>
+  <meta name="theme-color" content="#174d38">
+  <meta name="description" content="Discover digital talent and new opportunities with SugboSkills, a freelancing marketplace for Filipino students and young professionals.">
+  <title>SugboSkills | Your Skills. Your Opportunities.</title>
   <style>
     :root {
       color-scheme: light;
@@ -174,56 +175,388 @@
       .grid.freelancers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .tracker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
+    :root {
+      --green: #174d38;
+      --orange: #e8b66d;
+      --ink: #172a21;
+      --muted: #64736a;
+      --surface: #f5f8f5;
+      --line: #e1e9e3;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(27, 63, 45, .08);
+    }
+    body { background: #fff; font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--ink); }
+    .site-header { padding: .8rem max(1.25rem, calc((100% - 1160px) / 2)); background: #fff; color: var(--ink); }
+    .brand-row { min-height: 54px; }
+    .brand-lockup { display: inline-flex; align-items: center; gap: .75rem; color: inherit; text-decoration: none; }
+    .brand-mark { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 14px; background: var(--green); color: #fff; font-size: 1.4rem; font-weight: 800; box-shadow: 0 7px 16px rgba(23, 77, 56, .18); }
+    .brand-lockup > span:last-child { display: grid; gap: .08rem; }
+    .brand { display: block; color: var(--green); font-size: 1.18rem; font-weight: 800; letter-spacing: -.025em; }
+    .tagline { display: block; margin: 0; color: var(--muted); font-size: .79rem; }
+    .prototype-banner { display: inline-flex; align-items: center; gap: .5rem; margin: 0; padding: .42rem .75rem; border: 1px solid #e8eee8; border-radius: 999px; background: #f7faf7; color: #56675c; font-size: .76rem; font-weight: 700; }
+    .prototype-banner > span { width: 7px; height: 7px; border-radius: 50%; background: #74a783; box-shadow: 0 0 0 3px #e1efe4; }
+    nav { display: none; flex-wrap: wrap; padding: .7rem max(1.25rem, calc((100% - 1160px) / 2)); border-top: 1px solid #f0f3f0; border-bottom: 1px solid var(--line); }
+    body.dashboard-view nav { display: flex; }
+    .nav-button { padding: .45rem .8rem; color: var(--green); font-size: .87rem; text-decoration: none; transition: background .18s ease, color .18s ease, border-color .18s ease; }
+    .nav-button:hover, .nav-button[aria-current="page"] { border-color: #d7e6da; background: #eaf3ec; color: #123d2b; }
+    main { max-width: 1160px; padding: 2rem 1.25rem 4rem; }
+    .screen.active { animation: screen-enter .3s ease both; }
+    @keyframes screen-enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    h1, h2, h3, h4 { color: var(--green); letter-spacing: -.025em; }
+    h1 { font-size: clamp(2.35rem, 5vw, 4.1rem); line-height: 1.08; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); }
+    .welcome-hero { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; min-height: 440px; overflow: hidden; align-items: center; padding: clamp(2rem, 5vw, 4.35rem); border: 1px solid #e7eee8; border-radius: 28px; background: linear-gradient(112deg, #f3f8f3 0%, #f8faf6 51%, #edf5ed 100%); }
+    .hero-copy { position: relative; z-index: 1; max-width: 600px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .45rem; color: #43835d; font-size: .77rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-copy h1 { margin: 1rem 0 .95rem; }
+    .hero-copy h1 span { color: #4b9163; }
+    .hero-subtitle { max-width: 570px; margin: 0 0 .75rem; color: #344a3c; font-size: clamp(1.1rem, 2vw, 1.28rem); line-height: 1.55; }
+    .hero-description { max-width: 570px; color: var(--muted); }
+    .button { min-height: 48px; border-radius: 10px; background: var(--green); box-shadow: 0 7px 15px rgba(23, 77, 56, .13); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); background: #103c2a; box-shadow: 0 10px 20px rgba(23, 77, 56, .19); }
+    .button.secondary { background: #e8b66d; color: #39290e; }
+    .button.secondary:hover { background: #dfaa5b; }
+    .hero-button { gap: .85rem; margin-top: .55rem; padding: .8rem 1.1rem; }
+    .hero-button span { font-size: 1.1rem; }
+    .hero-proof { display: flex; align-items: center; gap: .55rem; margin-top: 1.4rem; color: #587060; font-size: .83rem; font-weight: 600; }
+    .proof-icon { display: grid; width: 20px; height: 20px; place-items: center; border-radius: 50%; background: #dceee0; color: var(--green); font-size: .75rem; }
+    .hero-art { position: relative; display: grid; min-height: 330px; place-items: center; }
+    .art-orbit { position: absolute; width: 300px; height: 300px; border: 1px solid rgba(58, 123, 80, .13); border-radius: 50%; }
+    .orbit-one { transform: scale(1.12); }
+    .orbit-two { width: 225px; height: 225px; border-style: dashed; }
+    .art-window { position: relative; z-index: 1; width: min(295px, 75vw); overflow: hidden; border: 1px solid rgba(255,255,255,.9); border-radius: 20px; background: #fff; box-shadow: 0 24px 60px rgba(35, 83, 53, .2); transform: rotate(-4deg); }
+    .window-top { display: flex; align-items: center; gap: 5px; height: 36px; padding: 0 12px; border-bottom: 1px solid #edf1ed; }
+    .window-top i { width: 7px; height: 7px; border-radius: 50%; background: #d9e5db; }
+    .window-top span { margin-left: auto; color: #72907a; font-size: .57rem; font-weight: 800; letter-spacing: .11em; }
+    .window-content { position: relative; min-height: 205px; padding: 20px; background: linear-gradient(145deg, #f8faf7, #edf5ed); }
+    .art-avatar { display: grid; width: 68px; height: 68px; place-items: center; border-radius: 20px; background: linear-gradient(145deg, #31744e, #8ab47e); color: #fff; font-size: 2rem; font-weight: 800; }
+    .art-lines { position: absolute; top: 37px; left: 103px; display: grid; gap: 8px; }
+    .art-lines b, .art-lines i { display: block; height: 8px; border-radius: 8px; background: #bed3c0; }
+    .art-lines b { width: 110px; background: #527a5d; }
+    .art-lines i { width: 74px; }
+    .art-tag { position: absolute; top: 31px; right: 18px; color: #397b4e; font-size: .58rem; font-weight: 900; line-height: 1.25; letter-spacing: .1em; }
+    .art-chart { display: flex; height: 63px; align-items: end; gap: 9px; margin-top: 18px; padding: 0 5px 5px; border-bottom: 1px solid #d5e4d7; }
+    .art-chart span { flex: 1; border-radius: 6px 6px 2px 2px; background: linear-gradient(#98c38d, #4b9362); }
+    .art-chart span:nth-child(1) { height: 35%; }.art-chart span:nth-child(2) { height: 54%; }.art-chart span:nth-child(3) { height: 45%; }.art-chart span:nth-child(4) { height: 78%; }.art-chart span:nth-child(5) { height: 100%; }
+    .art-note { position: absolute; right: 18px; bottom: 11px; color: #597362; font-size: .65rem; font-weight: 700; }
+    .art-note span { color: #42865a; font-size: .9rem; }
+    .art-spark { position: absolute; z-index: 2; color: #d39b4e; }
+    .spark-one { top: 15%; left: 12%; font-size: 1.6rem; }
+    .spark-two { right: 5%; bottom: 18%; font-size: 1.7rem; }
+    .floating-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: .65rem; padding: .7rem .8rem; border: 1px solid rgba(222, 234, 224, .9); border-radius: 12px; background: rgba(255,255,255,.95); box-shadow: 0 12px 30px rgba(31, 74, 47, .12); }
+    .floating-card > span { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; background: #e9f4e9; color: #4b8e5e; font-weight: 800; }
+    .floating-card div { display: grid; gap: 2px; }
+    .floating-card b { color: #294635; font-size: .73rem; }
+    .floating-card small { color: #758279; font-size: .61rem; }
+    .float-project { top: 14%; right: 0; }
+    .float-growth { bottom: 10%; left: 0; }
+    .welcome-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 1rem 0 3.5rem; padding: 1.1rem 1rem; border: 1px solid #edf1ed; border-radius: 15px; background: #fff; }
+    .welcome-stats div { display: grid; gap: .15rem; padding: .15rem 1rem; border-right: 1px solid #e9eee9; }
+    .welcome-stats div:last-child { border: 0; }
+    .welcome-stats strong { color: var(--green); font-size: .93rem; }
+    .welcome-stats span { color: var(--muted); font-size: .79rem; }
+    .role-section { scroll-margin-top: 24px; }
+    .role-heading { margin-bottom: 1.35rem; text-align: center; }
+    .role-heading h2 { margin: .55rem 0 .4rem; font-size: clamp(1.75rem, 3vw, 2.25rem); }
+    .role-heading p { color: var(--muted); }
+    .role-grid { gap: 1.15rem; }
+    .role-card { display: flex; min-height: 300px; flex-direction: column; align-items: flex-start; padding: 1.5rem; border: 1px solid #e6ece7; border-radius: 18px; background: #fff; box-shadow: 0 8px 26px rgba(28, 63, 43, .045); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .role-card:hover { transform: translateY(-5px); border-color: #c9ddcd; box-shadow: var(--shadow); }
+    .role-card:focus-visible { outline: 3px solid #d59a4c; outline-offset: 4px; }
+    .role-icon { display: grid; width: 52px; height: 52px; place-items: center; margin-bottom: 1.2rem; border-radius: 15px; }
+    .role-icon svg { width: 25px; height: 25px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .freelancer-icon { background: #e8f3e8; color: #347b4a; }
+    .client-icon { background: #edf1fa; color: #5571a0; }
+    .admin-icon { background: #f8f0df; color: #a17b36; }
+    .role-kicker { color: #8a968e; font-size: .65rem; font-weight: 800; letter-spacing: .1em; }
+    .role-card h3 { margin: .35rem 0 .5rem; font-size: 1.17rem; }
+    .role-card p { margin: 0 0 1.25rem; color: var(--muted); font-size: .91rem; }
+    .role-button { width: 100%; justify-content: space-between; gap: .5rem; margin-top: auto; font-size: .88rem; }
+    .role-button span { font-size: 1.1rem; transition: transform .18s ease; }
+    .role-button:hover span { transform: translateX(3px); }
+    .dashboard-view main { min-height: calc(100vh - 190px); }
+    .dashboard-panel { margin-bottom: 1.4rem; padding: clamp(1.35rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(120deg, #f2f7f2, #fff); }
+    .dashboard-panel h2 { margin: .55rem 0; }
+    .dashboard-panel p { color: var(--muted); }
+    .dashboard-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+    .card, .role-card { box-shadow: 0 8px 26px rgba(28, 63, 43, .045); }
+    .card { border-radius: 15px; }
+    .text-link { color: #347b4a; font-size: .87rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .text-link:hover { color: #174d38; }
+    .admin-tools { margin-top: 1rem; }
+    .admin-metrics .card h3 { margin: .55rem 0 .25rem; font-size: 1.65rem; }
+    .admin-metrics .card p { margin-bottom: 0; color: var(--muted); font-size: .86rem; }
+    .status-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #5da36d; vertical-align: 2px; }
+    footer { display: flex; max-width: 1160px; justify-content: space-between; gap: 1rem; margin: 0 auto; padding: 1.4rem 1.25rem 2rem; border-top: 1px solid #e9eee9; color: var(--muted); font-size: .82rem; }
+    .footer-brand { color: var(--green); font-weight: 800; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #d59a4c; outline-offset: 3px; }
+    .freelancer-workspace { display:grid; grid-template-columns:220px minmax(0,1fr); gap:1.25rem; align-items:start; min-width:0; }
+    .freelancer-sidebar { position:sticky; top:1rem; display:flex; min-width:0; min-height:650px; flex-direction:column; padding:.9rem .7rem; border:1px solid var(--line); border-radius:15px; background:#fff; box-shadow:0 8px 26px rgba(28,63,43,.05); }
+    .sidebar-brand { display:flex; align-items:center; gap:.6rem; padding:.35rem .4rem .9rem; border-bottom:1px solid #eef1ee; }
+    .sidebar-brand-mark { display:grid; width:35px; height:35px; place-items:center; border-radius:11px; background:var(--green); color:#fff; font-weight:800; }
+    .sidebar-brand strong { color:var(--green); font-size:.9rem; }.sidebar-brand small { display:block; color:var(--muted); font-size:.66rem; }
+    .sidebar-label { margin:.9rem .45rem .4rem; color:#98a198; font-size:.62rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .freelancer-menu { display:grid; gap:.2rem; }
+    .freelancer-menu button { display:flex; align-items:center; gap:.65rem; width:100%; border:0; border-radius:8px; padding:.62rem .65rem; background:transparent; color:#58675d; text-align:left; font-size:.78rem; font-weight:600; }
+    .freelancer-menu button:hover { background:#f5f8f5; color:var(--green); }
+    .freelancer-menu button[aria-current="page"] { background:#eaf3ec; color:var(--green); font-weight:750; }
+    .freelancer-menu button span { display:inline-grid; width:19px; place-items:center; font-size:.95rem; }
+    .sidebar-bottom { margin-top:auto; }
+    .sidebar-back { width:100%; margin-bottom:.75rem; border:1px solid var(--line); background:#fff; color:#526258; font-size:.72rem; }
+    .sidebar-back:hover { background:#f5f8f5; color:var(--green); }
+    .sidebar-user { display:flex; align-items:center; gap:.55rem; padding:.7rem .3rem .1rem; border-top:1px solid #eef1ee; }
+    .sidebar-user strong { display:block; max-width:135px; overflow:hidden; color:#2a3c30; font-size:.75rem; text-overflow:ellipsis; white-space:nowrap; }
+    .sidebar-user small { color:#62816a; font-size:.66rem; }
+    .avatar { display:grid; width:36px; height:36px; flex:0 0 auto; place-items:center; border-radius:50%; background:#e5f0e6; color:var(--green); font-weight:800; }
+    .freelancer-main { min-width:0; }
+    .freelancer-topbar { display:flex; min-height:50px; align-items:center; justify-content:flex-end; gap:.75rem; margin-bottom:1rem; }
+    .demo-chip { border:1px solid #e4ebe5; border-radius:999px; padding:.33rem .6rem; background:#fff; color:#647469; font-size:.65rem; font-weight:750; letter-spacing:.04em; }
+    .account-switcher { display:flex; align-items:center; gap:.4rem; color:#647469; font-size:.65rem; font-weight:700; }
+    .account-switcher select { max-width:155px; min-height:34px; border:1px solid var(--line); border-radius:8px; padding:.35rem .5rem; background:#fff; color:#334738; font-size:.68rem; }
+    .notification-button { position:relative; display:grid; width:36px; height:36px; place-items:center; border:1px solid var(--line); border-radius:10px; background:#fff; color:#43564a; }
+    .notification-button span { position:absolute; top:6px; right:6px; width:7px; height:7px; border:1px solid #fff; border-radius:50%; background:#de9d57; }
+    .profile-top-button { display:flex; align-items:center; gap:.45rem; border:0; background:transparent; color:var(--ink); text-align:left; }
+    .profile-top-button strong { display:block; font-size:.73rem; }.profile-top-button small { display:block; color:var(--muted); font-size:.65rem; }
+    .page-heading-row { display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:.8rem; margin-bottom:1rem; }
+    .page-heading-row h1 { margin:.12rem 0 .3rem; color:#183f2c; font-size:clamp(1.45rem,3vw,1.9rem); letter-spacing:-.03em; }
+    .page-heading-row p { margin:0; color:var(--muted); font-size:.82rem; }
+    .section-label { margin:1.25rem 0 .7rem; color:#23392b; font-size:.95rem; }
+    .metric-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.7rem; }
+    .metric-card, .freelancer-panel { min-width:0; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:0 7px 22px rgba(28,63,43,.045); }
+    .metric-card { padding:.85rem; }
+    .metric-caption { display:flex; align-items:center; justify-content:space-between; gap:.3rem; color:var(--muted); font-size:.68rem; font-weight:650; }
+    .metric-icon { display:grid; width:27px; height:27px; place-items:center; border-radius:8px; background:#edf5ee; color:var(--green); }
+    .metric-value { margin:.48rem 0 .1rem; color:#1d3828; font-size:1.4rem; font-weight:800; letter-spacing:-.03em; }
+    .metric-foot, .muted-small { color:#89948c; font-size:.64rem; }
+    .content-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(240px,.9fr); gap:.85rem; align-items:start; }
+    .freelancer-panel { padding:.9rem; }
+    .panel-heading { display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-bottom:.75rem; }
+    .panel-heading h2, .panel-heading h3 { margin:0; color:#273b2d; font-size:.9rem; }
+    .quiet-link { border:0; padding:.2rem; background:transparent; color:#37774b; font-size:.69rem; font-weight:700; cursor:pointer; }
+    .gig-list { display:grid; gap:.65rem; }
+    .freelancer-gig { padding:.78rem; border:1px solid #e9eee9; border-radius:10px; background:#fff; }
+    .freelancer-gig:hover { border-color:#cbdccc; }
+    .gig-top { display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem; }
+    .gig-top h3 { margin:0 0 .22rem; color:#25392b; font-size:.82rem; line-height:1.35; }
+    .gig-client { color:#849087; font-size:.66rem; }
+    .verified-mark { color:#358151; font-size:.66rem; font-weight:700; }
+    .gig-budget { flex:0 0 auto; color:var(--green); font-size:.69rem; font-weight:800; }
+    .gig-description { margin:.45rem 0; color:#68766d; font-size:.7rem; line-height:1.45; }
+    .tag-list { display:flex; flex-wrap:wrap; gap:.3rem; }
+    .skill-tag { display:inline-flex; border-radius:999px; padding:.22rem .42rem; background:#f0f5f0; color:#54705b; font-size:.6rem; font-weight:650; }
+    .gig-meta { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.55rem; color:#808d83; font-size:.64rem; }
+    .gig-actions { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.6rem; }
+    .gig-actions .button, .small-button { min-height:32px; padding:.35rem .58rem; font-size:.68rem; }
+    .freelancer-panel .application-row { display:flex; align-items:center; justify-content:space-between; gap:.4rem; padding:.62rem 0; border-bottom:1px solid #eff2ef; }
+    .application-row:last-child { border-bottom:0; }
+    .application-row strong { display:block; color:#344639; font-size:.7rem; }
+    .application-row small { color:#879188; font-size:.62rem; }
+    .status-pill { display:inline-flex; border-radius:999px; padding:.22rem .45rem; background:#f1f3f1; color:#68736b; font-size:.6rem; font-weight:750; white-space:nowrap; }
+    .status-pill.pending { background:#fff3dc; color:#94661f; }.status-pill.accepted,.status-pill.completed { background:#e7f4e9; color:#31734a; }.status-pill.rejected,.status-pill.withdrawn { background:#fbeceb; color:#a5524d; }
+    .activity-item { display:grid; grid-template-columns:22px 1fr; gap:.5rem; padding:.55rem 0; border-bottom:1px solid #eff2ef; color:#55645a; font-size:.69rem; }
+    .activity-item:last-child { border:0; }
+    .toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:.55rem; margin-bottom:.8rem; }
+    .toolbar .field { flex:1 1 135px; margin:0; }
+    .toolbar .search-field { flex-basis:190px; }
+    .field label { margin-bottom:.25rem; color:#526257; font-size:.67rem; }
+    .field input,.field select,.field textarea { min-height:37px; border:1px solid #dfe6e0; border-radius:8px; padding:.5rem .6rem; font-size:.75rem; }
+    .field textarea { min-height:90px; resize:vertical; }
+    .empty-panel { padding:1.5rem .9rem; border:1px dashed #dbe5dc; border-radius:10px; color:var(--muted); text-align:center; font-size:.76rem; }
+    .detail-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.5rem; }
+    .detail-cell { padding:.58rem; border-radius:8px; background:#f5f8f5; }
+    .detail-cell small { display:block; color:#879188; font-size:.61rem; }
+    .detail-cell strong { display:block; margin-top:.15rem; color:#3a4d3e; font-size:.71rem; }
+    .tracker-stages { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.3rem; margin:.75rem 0; }
+    .tracker-stage { padding:.38rem .2rem; border-radius:6px; background:#f2f4f2; color:#89948c; text-align:center; font-size:.56rem; line-height:1.3; }
+    .tracker-stage.done { background:#e7f3e8; color:#34734a; }.tracker-stage.current { outline:1px solid #79a987; color:#205d37; font-weight:750; }
+    .portfolio-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; }
+    .portfolio-art { display:grid; min-height:84px; place-items:center; border-radius:9px 9px 0 0; background:linear-gradient(135deg,#eaf3eb,#d9e8dc); color:#417d50; font-size:1.45rem; font-weight:800; }
+    .portfolio-body { padding:.7rem; }.portfolio-body h3 { margin:.4rem 0; color:#314334; font-size:.78rem; }.portfolio-body p { color:#748077; font-size:.67rem; }
+    .profile-hero { display:flex; align-items:center; gap:.8rem; }.profile-hero .avatar { width:58px; height:58px; font-size:1.15rem; }
+    .profile-hero h2 { margin:0 0 .2rem; color:#294031; font-size:1rem; }.profile-hero p { margin:0; color:var(--muted); font-size:.73rem; }
+    .review-score { display:flex; align-items:center; gap:.6rem; }.review-score strong { color:#21432d; font-size:1.8rem; }.stars { color:#d49a3d; letter-spacing:.08em; }
+    .rating-bar { display:grid; grid-template-columns:30px 1fr 20px; align-items:center; gap:.4rem; margin:.45rem 0; color:#768178; font-size:.64rem; }
+    .rating-track { height:6px; overflow:hidden; border-radius:8px; background:#edf0ed; }.rating-track span { display:block; height:100%; background:#dba74f; }
+    .conversation-layout { display:grid; min-height:420px; grid-template-columns:220px minmax(0,1fr); overflow:hidden; border:1px solid var(--line); border-radius:12px; background:#fff; }
+    .conversation-list { border-right:1px solid var(--line); }.conversation-list h3 { margin:0; padding:.8rem; border-bottom:1px solid #edf1ed; font-size:.8rem; }
+    .conversation-button { display:flex; width:100%; align-items:center; gap:.5rem; padding:.65rem; border:0; border-bottom:1px solid #f0f2f0; background:#fff; text-align:left; cursor:pointer; }
+    .conversation-button:hover,.conversation-button[aria-current="true"] { background:#f3f8f3; }
+    .conversation-button strong { display:block; color:#394b3d; font-size:.68rem; }.conversation-button small { display:block; max-width:130px; overflow:hidden; color:#859087; font-size:.6rem; text-overflow:ellipsis; white-space:nowrap; }
+    .conversation-view { display:flex; min-width:0; flex-direction:column; }.conversation-title { padding:.8rem; border-bottom:1px solid #edf1ed; color:#334738; font-size:.74rem; font-weight:750; }
+    .message-list { display:flex; flex:1; flex-direction:column; gap:.55rem; overflow-y:auto; max-height:330px; padding:.8rem; }
+    .message-bubble { max-width:80%; align-self:flex-start; padding:.55rem .65rem; border-radius:11px 11px 11px 3px; background:#f0f4f0; color:#45554a; font-size:.69rem; }
+    .message-bubble.mine { align-self:flex-end; border-radius:11px 11px 3px 11px; background:#e5f1e7; color:#285838; }
+    .message-bubble small { display:block; margin-top:.2rem; color:#86938a; font-size:.55rem; text-align:right; }
+    .message-form { display:flex; gap:.4rem; padding:.6rem; border-top:1px solid #edf1ed; }.message-form input { min-width:0; flex:1; border:1px solid #dfe6e0; border-radius:8px; padding:.45rem .6rem; }
+    dialog { width:min(560px,calc(100% - 2rem)); max-height:88vh; overflow-y:auto; border:1px solid var(--line); border-radius:15px; padding:1.1rem; background:#fff; color:var(--ink); box-shadow:0 22px 70px rgba(16,43,26,.23); }
+    dialog::backdrop { background:rgba(15,34,22,.45); backdrop-filter:blur(2px); }
+    .dialog-heading { display:flex; justify-content:space-between; gap:1rem; align-items:flex-start; margin-bottom:.85rem; }.dialog-heading h2 { margin:.1rem 0; color:#25422e; font-size:1.1rem; }
+    .dialog-close { width:30px; height:30px; border:0; border-radius:7px; background:#f2f5f2; color:#637067; font-size:1rem; }
+    .dialog-form { display:grid; gap:.7rem; }.dialog-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.45rem; margin-top:.2rem; }
+    .dialog-actions .button { min-height:36px; padding:.45rem .7rem; font-size:.72rem; }
+    .freelancer-toast { position:fixed; right:1rem; bottom:1rem; z-index:20; max-width:min(390px,calc(100% - 2rem)); padding:.7rem .9rem; border:1px solid #d7e5d9; border-radius:9px; background:#fff; color:#315d3b; box-shadow:0 10px 30px rgba(18,53,29,.15); font-size:.76rem; }
+    .freelancer-toast.error { border-color:#efc9c4; color:#8b3d35; }
+    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; clip-path:inset(50%); }
+    .freelancer-workspace [hidden] { display:none !important; }
+    @media (max-width:900px) { .freelancer-workspace { grid-template-columns:190px minmax(0,1fr); gap:.85rem; }.metric-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.content-grid { grid-template-columns:1fr; }.portfolio-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:650px) {
+      .freelancer-workspace { grid-template-columns:minmax(0,1fr); }
+      .freelancer-sidebar { position:static; min-height:0; padding:.6rem; }
+      .sidebar-brand,.sidebar-label { display:none; }
+      .freelancer-menu { display:flex; min-width:0; max-width:100%; gap:.2rem; overflow-x:auto; }
+      .freelancer-menu button { width:auto; flex:0 0 auto; gap:.35rem; padding:.5rem .55rem; font-size:.67rem; white-space:nowrap; }
+      .sidebar-bottom { display:flex; align-items:center; justify-content:space-between; gap:.4rem; margin-top:.5rem; padding-top:.5rem; border-top:1px solid #eef1ee; }
+      .sidebar-back { width:auto; margin:0; padding:.42rem .5rem; font-size:.64rem; }
+      .sidebar-user { gap:.35rem; padding:0; border:0; }.sidebar-user .avatar { width:30px; height:30px; }.sidebar-user strong { max-width:90px; font-size:.67rem; }
+      .freelancer-topbar { min-height:42px; margin-bottom:.7rem; }.profile-top-button > span:last-child { display:none; }
+      .account-switcher { gap:.25rem; font-size:.6rem; }.account-switcher select { max-width:120px; min-height:32px; padding:.3rem; font-size:.62rem; }
+      .conversation-layout { grid-template-columns:1fr; }.conversation-list { display:flex; overflow-x:auto; border-right:0; border-bottom:1px solid var(--line); }.conversation-list h3 { display:none; }
+      .conversation-button { width:150px; flex:0 0 auto; border-right:1px solid #f0f2f0; border-bottom:0; }
+      .portfolio-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:420px) { .metric-card { padding:.7rem; }.metric-value { font-size:1.2rem; }.tracker-stages { grid-template-columns:repeat(3,minmax(0,1fr)); }.portfolio-grid { grid-template-columns:1fr; } }
+    @media (max-width:800px) {
+      .welcome-hero { grid-template-columns: 1fr .8fr; min-height: 400px; padding: 2rem; }
+      .hero-art { transform: scale(.86); }
+      .float-project { right: -12px; }
+      .float-growth { left: -12px; }
+      .role-card { padding: 1.2rem; }
+    }
+    @media (max-width: 650px) {
+      .site-header { padding: .75rem 1rem; }
+      .prototype-banner { font-size: .68rem; }
+      main { padding: 1.25rem 1rem 3rem; }
+      .welcome-hero { grid-template-columns: 1fr; gap: .5rem; padding: 1.55rem; border-radius: 21px; }
+      .hero-copy h1 { font-size: clamp(2.3rem, 11vw, 3.2rem); }
+      .hero-art { min-height: 275px; margin: -.1rem 0 -.3rem; transform: scale(.88); }
+      .art-orbit { width: 255px; height: 255px; }
+      .orbit-two { width: 195px; height: 195px; }
+      .welcome-stats { grid-template-columns: 1fr; gap: .75rem; margin: .85rem 0 2.5rem; padding: 1rem; }
+      .welcome-stats div { padding: 0 0 .7rem; border-right: 0; border-bottom: 1px solid #e9eee9; }
+      .welcome-stats div:last-child { padding-bottom: 0; }
+      .role-grid { grid-template-columns: 1fr; }
+      .role-card { min-height: 265px; }
+      footer { flex-direction: column; gap: .35rem; padding: 1.2rem 1rem 1.6rem; }
+      body.dashboard-view nav { padding: .65rem 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="brand-row">
-      <div>
-        <p class="brand"><strong>SugboSkills</strong></p>
-        <p class="tagline">Skills in Action. Futures in Motion.</p>
-      </div>
+      <a class="brand-lockup" href="#/" aria-label="SugboSkills home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>
+          <span class="brand">SugboSkills</span>
+          <span class="tagline">Your Skills. Your Opportunities.</span>
+        </span>
+      </a>
+      <span class="prototype-banner"><span aria-hidden="true"></span> Prototype Mode</span>
     </div>
-    <div class="prototype-banner">Prototype for testing. No real payments or bookings.</div>
   </header>
-  <nav aria-label="Main navigation">
-    <button class="nav-button" type="button" data-screen="home" aria-current="page">Home</button>
-    <button class="nav-button" type="button" data-screen="freelancers">Freelancers</button>
-    <button class="nav-button" type="button" data-screen="packages">Packages</button>
-    <button class="nav-button" type="button" data-screen="schedule">Batch schedule</button>
-    <button class="nav-button" type="button" data-screen="booking">Book a project</button>
-    <button class="nav-button" type="button" data-screen="tracker">Order tracker</button>
-    <button class="nav-button" type="button" data-screen="dashboard">Student side</button>
+  <nav id="main-navigation" aria-label="Dashboard navigation">
+    <a class="nav-button" href="#/">Welcome</a>
+    <a class="nav-button" href="#/dashboard/freelancer">Freelancer</a>
+    <a class="nav-button" href="#/dashboard/client">Client</a>
+    <a class="nav-button" href="#/dashboard/admin">Admin</a>
+    <a class="nav-button" href="#/freelancers">Explore talent</a>
+    <a class="nav-button" href="#/packages">Packages</a>
+    <a class="nav-button" href="#/schedule">Schedule</a>
+    <a class="nav-button" href="#/booking">Book a project</a>
+    <a class="nav-button" href="#/tracker">Order tracker</a>
   </nav>
 
   <main>
     <section class="screen active" id="home" aria-labelledby="home-title">
-      <div class="hero">
-        <h1 id="home-title">Affordable student talent, checked by SugboSkills</h1>
-        <p class="intro">Get practical creative and technical help from CTU Main student freelancers, with every project reviewed by SugboSkills before delivery.</p>
-        <ul class="trust-list">
-          <li>Verified students</li>
-          <li>Company-reviewed work</li>
-          <li>Pay after approval</li>
-        </ul>
-        <button class="button secondary" type="button" data-go="booking">Book a project</button>
+      <div class="welcome-hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span aria-hidden="true">✦</span> A community built on talent</span>
+          <h1 id="home-title">Welcome to <span>SugboSkills</span></h1>
+          <p class="hero-subtitle">Discover opportunities, showcase your skills, and connect with clients who value your talent.</p>
+          <p class="hero-description">A home for Filipino students and young professionals to offer non-academic digital services, find great collaborators, and turn their skills into real-world experience.</p>
+          <a class="button hero-button" href="#choose-dashboard">Explore your next opportunity <span aria-hidden="true">↓</span></a>
+          <div class="hero-proof"><span class="proof-icon" aria-hidden="true">✓</span> Made for the next generation of Filipino digital talent</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-spark spark-one">✦</div>
+          <div class="art-spark spark-two">✳</div>
+          <div class="art-window">
+            <div class="window-top"><i></i><i></i><i></i><span>sugboskills</span></div>
+            <div class="window-content">
+              <div class="art-avatar">S</div>
+              <div class="art-lines"><b></b><i></i></div>
+              <div class="art-tag">CREATIVE<br>THINKER</div>
+              <div class="art-chart"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="art-note"><span>↗</span> Skills in motion</div>
+            </div>
+          </div>
+          <div class="floating-card float-project"><span>✦</span><div><b>New opportunity</b><small>Your next idea starts here</small></div></div>
+          <div class="floating-card float-growth"><span>↗</span><div><b>Room to grow</b><small>Build your future, one skill at a time</small></div></div>
+        </div>
       </div>
+      <div class="welcome-stats" aria-label="Platform highlights">
+        <div><strong>Local talent</strong><span>Rooted in the Philippines</span></div>
+        <div><strong>Digital services</strong><span>Creative and technical skills</span></div>
+        <div><strong>Real opportunity</strong><span>Made for people building what's next</span></div>
+      </div>
+      <section class="role-section" id="choose-dashboard" aria-labelledby="roles-title">
+        <div class="role-heading">
+          <span class="eyebrow">Get started in one click</span>
+          <h2 id="roles-title">Choose Your Dashboard</h2>
+          <p>Pick a space to explore. No account or password needed in this prototype.</p>
+        </div>
+        <div class="grid three role-grid">
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/freelancer" aria-label="Freelancer Dashboard">
+            <div class="role-icon freelancer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4M8 9h8M8 13h5"></path></svg>
+            </div>
+            <span class="role-kicker">FOR INDEPENDENT CREATORS</span>
+            <h3>Freelancer Dashboard</h3>
+            <p>Find gigs, showcase your portfolio, and grow your freelance career.</p>
+            <a class="button role-button" href="#/dashboard/freelancer">Continue as Freelancer <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/client" aria-label="Client Dashboard">
+            <div class="role-icon client-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="role-kicker">FOR PEOPLE WITH PROJECTS</span>
+            <h3>Client Dashboard</h3>
+            <p>Post projects, discover skilled freelancers, and manage your hires.</p>
+            <a class="button role-button" href="#/dashboard/client">Continue as Client <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/admin" aria-label="Admin Dashboard">
+            <div class="role-icon admin-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <span class="role-kicker">FOR PLATFORM OPERATORS</span>
+            <h3>Admin Dashboard</h3>
+            <p>Manage users, monitor platform activities, and maintain a safe marketplace.</p>
+            <a class="button role-button" href="#/dashboard/admin">Continue as Admin <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
     </section>
 
     <section class="screen" id="freelancers" aria-labelledby="freelancers-title">
       <div class="section-heading">
         <div>
           <h2 id="freelancers-title">Meet the student freelancers</h2>
-          <p class="intro">Sample profiles for prototype testing. All names are placeholders.</p>
+          <p class="intro">Browse student freelancers by skill and experience level.</p>
         </div>
         <div class="filter-row">
           <label for="skill-filter">Filter by skill</label>
           <select id="skill-filter">
             <option value="all">All skills</option>
-            <option value="Graphic design">Graphic design</option>
-            <option value="Video editing">Video editing</option>
-            <option value="Web development">Web development</option>
-            <option value="CAD">CAD</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Video Editing">Video Editing</option>
+            <option value="Photo Editing">Photo Editing</option>
+            <option value="Web Design and Development">Web Design and Development</option>
+            <option value="CAD and 3d Modelling">CAD and 3d Modelling</option>
           </select>
         </div>
       </div>
@@ -247,9 +580,11 @@
         <table>
           <thead><tr><th scope="col">Day</th><th scope="col">Skill group receiving orders</th></tr></thead>
           <tbody>
-            <tr><td>Monday-Tuesday</td><td>Graphic design</td></tr>
-            <tr><td>Wednesday</td><td>Video editing</td></tr>
-            <tr><td>Thursday-Friday</td><td>Web development and CAD</td></tr>
+            <tr><td>Monday</td><td>Graphic Design</td></tr>
+            <tr><td>Tuesday</td><td>Photo Editing</td></tr>
+            <tr><td>Wednesday</td><td>Video Editing</td></tr>
+            <tr><td>Thursday</td><td>Web Design and Development</td></tr>
+            <tr><td>Friday</td><td>CAD and 3d Modelling</td></tr>
           </tbody>
         </table>
       </div>
@@ -321,36 +656,132 @@
     </section>
 
     <section class="screen" id="dashboard" aria-labelledby="dashboard-title">
-      <h2 id="dashboard-title">Freelancer dashboard</h2>
-      <p class="intro">Sample student-side view. Availability and jobs are mock data.</p>
-      <div class="dashboard-grid">
-        <div class="card">
-          <h3>Availability</h3>
-          <label><input id="unavailable-toggle" type="checkbox"> Mark unavailable for exam week</label>
-          <ul class="day-list" id="availability-list"></ul>
+      <div class="freelancer-workspace">
+        <aside class="freelancer-sidebar" aria-label="Freelancer dashboard sidebar">
+          <div class="sidebar-brand"><span class="sidebar-brand-mark" aria-hidden="true">S</span><span><strong>SugboSkills</strong><small>Freelancer workspace</small></span></div>
+          <p class="sidebar-label">Workspace</p>
+          <nav class="freelancer-menu" aria-label="Freelancer dashboard">
+            <button type="button" data-freelancer-page="overview" aria-current="page"><span aria-hidden="true">⌂</span>Overview</button>
+            <button type="button" data-freelancer-page="gigs"><span aria-hidden="true">⌕</span>Find Gigs</button>
+            <button type="button" data-freelancer-page="applications"><span aria-hidden="true">▤</span>My Applications</button>
+            <button type="button" data-freelancer-page="my-gigs"><span aria-hidden="true">◷</span>My Gigs</button>
+            <button type="button" data-freelancer-page="portfolio"><span aria-hidden="true">▧</span>My Portfolio</button>
+            <button type="button" data-freelancer-page="reviews"><span aria-hidden="true">☆</span>Ratings &amp; Reviews</button>
+            <button type="button" data-freelancer-page="messages"><span aria-hidden="true">✉</span>Messages</button>
+            <button type="button" data-freelancer-page="profile"><span aria-hidden="true">◉</span>My Profile</button>
+          </nav>
+          <div class="sidebar-bottom">
+            <button class="button sidebar-back" type="button" data-go="home">← Back to Welcome Page</button>
+            <div class="sidebar-user"><span class="avatar" data-profile-avatar>AR</span><span><strong data-profile-name>Alex Rivera</strong><small>● Freelancer</small></span></div>
+          </div>
+        </aside>
+        <section class="freelancer-main" aria-label="Freelancer dashboard content">
+          <div class="freelancer-topbar">
+            <span class="demo-chip">DEMO DATA</span>
+            <label class="account-switcher" for="freelancer-account">Demo account
+              <select id="freelancer-account" aria-label="Switch demo freelancer account">
+                <option value="alex-rivera">Alex Rivera · Graphic Design</option>
+                <option value="john-perez">John Perez · Video Editing</option>
+              </select>
+            </label>
+            <button class="notification-button" type="button" data-dashboard-action="notifications" aria-label="View notifications"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="17" height="17"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path></svg><span aria-hidden="true"></span></button>
+            <button class="profile-top-button" type="button" data-freelancer-page="profile"><span class="avatar" data-profile-avatar>AR</span><span><strong data-profile-name>Alex Rivera</strong><small>Freelancer</small></span></button>
+          </div>
+          <div id="freelancer-page-content"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="screen" id="client-dashboard" aria-labelledby="client-dashboard-title">
+      <div class="dashboard-panel">
+        <span class="eyebrow">YOUR CLIENT SPACE</span>
+        <h2 id="client-dashboard-title">Great work starts with the right people.</h2>
+        <p>Find local digital talent, choose a service package, and keep your project moving from one convenient place.</p>
+        <div class="dashboard-actions">
+          <a class="button" href="#/freelancers">Discover freelancers</a>
+          <a class="button secondary" href="#/booking">Start a project</a>
         </div>
-        <div class="card">
-          <h3>Active jobs <span class="sample-label">(max 2)</span></h3>
-          <ul id="active-jobs"></ul>
-          <p id="job-cap-note" class="sample-label"></p>
-        </div>
-        <div class="card">
-          <h3>Portfolio</h3>
-          <ul id="portfolio-list"></ul>
-          <p id="portfolio-empty" class="empty-state">No new client-approved sample work has been added.</p>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <span class="badge">01 · DISCOVER</span>
+          <h3>Find your people</h3>
+          <p>Explore student and early-career talent across five digital skill areas.</p>
+          <a class="text-link" href="#/freelancers">Browse the freelancer roster →</a>
+        </article>
+        <article class="card">
+          <span class="badge">02 · PLAN</span>
+          <h3>Choose a service</h3>
+          <p>Review sample packages and find a starting point for your next idea.</p>
+          <a class="text-link" href="#/packages">View service packages →</a>
+        </article>
+        <article class="card">
+          <span class="badge">03 · GET MOVING</span>
+          <h3>Share your brief</h3>
+          <p>Tell us what you need in the project booking prototype. Nothing is submitted or saved.</p>
+          <a class="text-link" href="#/booking">Create a project brief →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="screen" id="admin-dashboard" aria-labelledby="admin-dashboard-title">
+      <div class="dashboard-panel">
+        <span class="eyebrow">MARKETPLACE OPERATIONS</span>
+        <h2 id="admin-dashboard-title">Admin Dashboard</h2>
+        <p>A prototype overview for keeping the SugboSkills community organized, visible, and safe.</p>
+      </div>
+      <div class="grid three admin-metrics">
+        <article class="card"><span class="sample-label">FREELANCER PROFILES</span><h3>20</h3><p>Across 5 digital skill groups</p></article>
+        <article class="card"><span class="sample-label">SKILL CATEGORIES</span><h3>5</h3><p>Creative and technical services</p></article>
+        <article class="card"><span class="sample-label">PLATFORM STATUS</span><h3><span class="status-dot"></span> Prototype</h3><p>Demo data only; no live accounts</p></article>
+      </div>
+      <div class="card admin-tools">
+        <h3>Marketplace tools</h3>
+        <p>Review the current demo roster, explore the service workflow, or check the sample order tracker.</p>
+        <div class="dashboard-actions">
+          <a class="button" href="#/freelancers">Review freelancer roster</a>
+          <a class="button secondary" href="#/schedule">View batch schedule</a>
+          <a class="button" href="#/tracker">Open order tracker</a>
         </div>
       </div>
     </section>
   </main>
+  <footer>
+    <div><span class="footer-brand">SugboSkills</span><br>Your Skills. Your Opportunities.</div>
+    <div>Demonstration prototype · No accounts, bookings, or payments are processed.</div>
+  </footer>
+  <dialog id="freelancer-dialog" aria-labelledby="dialog-title"></dialog>
+  <div id="freelancer-toast" class="freelancer-toast" role="status" aria-live="polite" hidden></div>
 
   <script>
+    const skills = [
+      "Graphic Design",
+      "Video Editing",
+      "Photo Editing",
+      "Web Design and Development",
+      "CAD and 3d Modelling"
+    ];
     const freelancers = [
-      { name: "Sample A", skill: "Graphic design", level: "Advanced", verified: "Skill test passed and sample work reviewed", intake: "Monday" },
-      { name: "Sample B", skill: "Video editing", level: "Beginner", verified: "Editing task completed and sample work reviewed", intake: "Wednesday" },
-      { name: "Sample C", skill: "Web development", level: "Advanced", verified: "Code exercise passed and sample site reviewed", intake: "Thursday" },
-      { name: "Sample D", skill: "CAD", level: "Beginner", verified: "CAD task completed and drawing reviewed", intake: "Friday" },
-      { name: "Sample E", skill: "Graphic design", level: "Beginner", verified: "Skill test passed and sample work reviewed", intake: "Tuesday" },
-      { name: "Sample F", skill: "Web development", level: "Beginner", verified: "Code exercise passed and sample site reviewed", intake: "Friday" }
+      { name: "Barbie Igot", skill: "Graphic Design", level: "Advanced" },
+      { name: "Cryzza Belotindos", skill: "Graphic Design", level: "Advanced" },
+      { name: "Valir Dela Cruz", skill: "Graphic Design", level: "Intermediate" },
+      { name: "Joshua Reyes", skill: "Graphic Design", level: "Intermediate" },
+      { name: "Dane Aying", skill: "Video Editing", level: "Advanced" },
+      { name: "Romel Namocatcat", skill: "Video Editing", level: "Advanced" },
+      { name: "Shaina Chua", skill: "Video Editing", level: "Intermediate" },
+      { name: "Meghan Red", skill: "Video Editing", level: "Intermediate" },
+      { name: "Archiel Gilhang", skill: "Photo Editing", level: "Advanced" },
+      { name: "Daniel Rosialda", skill: "Photo Editing", level: "Advanced" },
+      { name: "Thompson Flores", skill: "Photo Editing", level: "Intermediate" },
+      { name: "Rey Garcia", skill: "Photo Editing", level: "Intermediate" },
+      { name: "Vincent Augusto", skill: "Web Design and Development", level: "Advanced" },
+      { name: "Michael Tagaan", skill: "Web Design and Development", level: "Advanced" },
+      { name: "Lester Lumactud", skill: "Web Design and Development", level: "Intermediate" },
+      { name: "Kyr Nadela", skill: "Web Design and Development", level: "Intermediate" },
+      { name: "Mikae Molina", skill: "CAD and 3d Modelling", level: "Advanced" },
+      { name: "Justin Aldevera", skill: "CAD and 3d Modelling", level: "Advanced" },
+      { name: "May Lopez", skill: "CAD and 3d Modelling", level: "Intermediate" },
+      { name: "Jhon Castro", skill: "CAD and 3d Modelling", level: "Intermediate" }
     ];
 
     const packages = [
@@ -381,17 +812,43 @@
     let order = null;
     let currentStep = -1;
     let portfolioAdded = false;
-    const navButtons = document.querySelectorAll(".nav-button");
+    const routes = {
+      "/": "home",
+      "/dashboard/freelancer": "dashboard",
+      "/dashboard/client": "client-dashboard",
+      "/dashboard/admin": "admin-dashboard",
+      "/freelancers": "freelancers",
+      "/packages": "packages",
+      "/schedule": "schedule",
+      "/booking": "booking",
+      "/tracker": "tracker"
+    };
+    const screenRoutes = Object.fromEntries(Object.entries(routes).map(([route, screen]) => [screen, route]));
+
+    function renderRoute() {
+      const route = window.location.hash.startsWith("#/") ? window.location.hash.slice(1) : "/";
+      const screenId = routes[route] || "home";
+      document.querySelectorAll(".screen").forEach((section) => {
+        section.classList.toggle("active", section.id === screenId);
+      });
+      document.body.classList.toggle("dashboard-view", route !== "/");
+      document.querySelectorAll("#main-navigation a").forEach((link) => {
+        if (link.getAttribute("href") === `#${route}`) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      if (window.location.hash.startsWith("#/")) window.scrollTo(0, 0);
+      const title = document.querySelector(`#${screenId} h1, #${screenId} h2`);
+      document.title = title ? `${title.textContent.trim()} | SugboSkills` : "SugboSkills | Your Skills. Your Opportunities.";
+    }
 
     function showScreen(id) {
-      document.querySelectorAll(".screen").forEach((section) => {
-        section.classList.toggle("active", section.id === id);
-      });
-      navButtons.forEach((button) => {
-        if (button.dataset.screen === id) button.setAttribute("aria-current", "page");
-        else button.removeAttribute("aria-current");
-      });
-      window.scrollTo(0, 0);
+      const route = screenRoutes[id];
+      if (!route) throw new Error(`Unknown SugboSkills screen: ${id}`);
+      if (window.location.hash === `#${route}`) renderRoute();
+      else {
+        window.location.hash = route;
+        renderRoute();
+      }
     }
 
     function renderFreelancers(filter = "all") {
@@ -399,11 +856,8 @@
       const visible = freelancers.filter((freelancer) => filter === "all" || freelancer.skill === filter);
       list.innerHTML = visible.map((freelancer) => `
         <article class="card">
-          <h3>${freelancer.name} <span class="sample-label">(Sample)</span></h3>
+          <h3>${freelancer.name}</h3>
           <p><strong>${freelancer.skill}</strong> · ${freelancer.level}</p>
-          <p><span class="badge">Verified by SugboSkills</span></p>
-          <p>${freelancer.verified}</p>
-          <p><strong>Next available intake:</strong> ${freelancer.intake}</p>
         </article>
       `).join("");
     }
@@ -425,20 +879,7 @@
     }
 
     function renderDashboard() {
-      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-      const unavailable = document.getElementById("unavailable-toggle").checked;
-      document.getElementById("availability-list").innerHTML = days.map((day) =>
-        `<li class="${unavailable ? "unavailable" : ""}">${day}: ${unavailable ? "Unavailable (exam week)" : "Available"}</li>`
-      ).join("");
-      const jobs = ["Sample job: Social media design"];
-      if (order && currentStep >= 1 && currentStep < 5) jobs.push(`Sample client order: ${order.package.name}`);
-      document.getElementById("active-jobs").innerHTML = jobs.map((job) => `<li>${job}</li>`).join("");
-      document.getElementById("job-cap-note").textContent = `${jobs.length} of 2 active job slots shown in this sample.`;
-      const portfolio = document.getElementById("portfolio-list");
-      portfolio.innerHTML = portfolioAdded
-        ? `<li>Sample client project: ${order.package.name} (client permission received in prototype)</li>`
-        : "";
-      document.getElementById("portfolio-empty").hidden = portfolioAdded;
+      renderFreelancerPage();
     }
 
     function renderTracker() {
@@ -459,8 +900,486 @@
         : `Step ${currentStep + 1} of ${steps.length}. Select “Simulate next step” to continue.`;
     }
 
-    navButtons.forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.screen)));
+    const freelancerStorageKey = "sugboSkills.freelancerDashboard.v1";
+    function dateAfterDays(days) {
+      const date = new Date();
+      date.setDate(date.getDate() + days);
+      return [date.getFullYear(),String(date.getMonth()+1).padStart(2,"0"),String(date.getDate()).padStart(2,"0")].join("-");
+    }
+    const demoGigs = [
+      { id:"gig-brand-kit", title:"Brand identity kit for a neighborhood cafe", client:"Harbor & Hearth Cafe", verified:true, category:"Graphic Design", description:"Create a warm, memorable visual identity for an independent Cebu cafe preparing to refresh its storefront and social channels.", fullDescription:"The cafe needs a small-business brand identity that feels welcoming and locally inspired. Deliverables include a primary logo, a compact color palette, typography recommendations, and two social post templates. Work will be reviewed in a shared prototype brief.", skills:["Logo Design","Branding","Illustrator"], budget:900, deadline:dateAfterDays(14), applicants:8, experience:"Intermediate" },
+      { id:"gig-product-video", title:"Short product video edits for local skincare line", client:"Luntian Botanicals", verified:true, category:"Video Editing", description:"Edit three short vertical product clips for the brand's social media launch.", fullDescription:"Edit three vertical videos (15–30 seconds each) from supplied footage. Add captions, clean cuts, light color correction, and royalty-free music direction. This is a commercial marketing project; no academic work is involved.", skills:["Video Editing","Captions","Color Correction"], budget:900, deadline:dateAfterDays(18), applicants:12, experience:"Intermediate" },
+      { id:"gig-web-refresh", title:"Responsive website refresh for a travel studio", client:"Isla Trail Co.", verified:false, category:"Web Design and Development", description:"Refresh a small travel studio's service pages and mobile booking inquiry experience.", fullDescription:"Design and implement a responsive three-page marketing website refresh with an accessible inquiry form prototype. Existing copy and photos will be provided. No live payments or booking integrations are expected.", skills:["Web Design","HTML/CSS","Responsive Design"], budget:2500, deadline:dateAfterDays(24), applicants:5, experience:"Advanced" },
+      { id:"gig-social-calendar", title:"Social media graphics for a neighborhood bakery", client:"Pan de Sugbo", verified:true, category:"Graphic Design", description:"Create a month of branded social post templates for a local bakery.", fullDescription:"Create a set of branded social post templates and a visual direction for a four-week bakery promotion. The project is for a commercial business's marketing channels.", skills:["Graphic Design","Social Media Design","Canva"], budget:700, deadline:dateAfterDays(10), applicants:16, experience:"Intermediate" },
+      { id:"gig-photo-menu", title:"Photo editing for a restaurant menu", client:"Sari-Sari Kitchen", verified:true, category:"Photo Editing", description:"Edit a set of food images for a restaurant's digital menu.", fullDescription:"Process 12 supplied food images for online menu use. Deliver consistent color, square and landscape crops, and final web-ready exports.", skills:["Photo Editing","Color Correction","Lightroom"], budget:850, deadline:dateAfterDays(21), applicants:7, experience:"Intermediate" },
+      { id:"gig-marketing-ads", title:"Campaign graphics for a community market", client:"Sunday Local Market", verified:true, category:"Graphic Design", description:"Create a set of branded digital campaign graphics for a local weekend market.", fullDescription:"Create campaign concepts and a set of digital graphics for a local weekend market. Provide export sizes and a short handoff note for the organizers.", skills:["Graphic Design","Social Media Design","Illustrator"], budget:2200, deadline:dateAfterDays(30), applicants:9, experience:"Advanced" },
+      { id:"gig-photo-edit", title:"Photo editing for a boutique clothing catalog", client:"Atelier Isla", verified:true, category:"Photo Editing", description:"Retouch a small batch of product photos for a boutique's online catalog.", fullDescription:"Edit 20 supplied product images with consistent exposure, color balance, and clean backgrounds. Deliver web-ready files and retain the original framing.", skills:["Photo Editing","Color Correction","Lightroom"], budget:750, deadline:dateAfterDays(19), applicants:11, experience:"Intermediate" },
+      { id:"gig-video-reel", title:"Edit short reels for a local travel company", client:"Lakbay Sugbo", verified:true, category:"Video Editing", description:"Turn supplied travel footage into three polished short-form reels.", fullDescription:"Edit three vertical reels from supplied travel footage. Add captions, clean cuts, pacing, basic color correction, and music suggestions. This is commercial promotional content, not academic work.", skills:["Video Editing","Short-form Video","Captions"], budget:800, deadline:dateAfterDays(8), applicants:7, experience:"Intermediate" },
+      { id:"gig-video-event", title:"Event highlight video for a community market", client:"Sunday Local Market", verified:true, category:"Video Editing", description:"Create a concise highlight video from event footage for the market's social channels.", fullDescription:"Assemble a 60–90 second event highlight from supplied footage, with a clear story, titles, audio cleanup, and social-ready exports.", skills:["Video Editing","Storytelling","Audio Editing"], budget:2500, deadline:dateAfterDays(22), applicants:5, experience:"Advanced" },
+      { id:"gig-cad-model", title:"3D model and product render for a furniture maker", client:"Kahoy Studio", verified:false, category:"CAD and 3d Modeling", description:"Create a clean 3D model and product render from the maker's reference sketches.", fullDescription:"Model one small furniture product from provided measurements and sketches. Deliver editable project files and two polished product renders for the maker's online catalog.", skills:["CAD and 3D Modeling","3D Rendering","Product Visualization"], budget:2800, deadline:dateAfterDays(26), applicants:3, experience:"Advanced" }
+    ];
+    demoGigs.forEach((gig,index) => { gig.postedAt = dateAfterDays(-index); });
+    const platformSkills = ["Graphic Design","Video Editing","Photo Editing","Web Design and Development","CAD and 3d Modeling"];
+    const freelancerAccounts = {
+      "alex-rivera":{ id:"alex-rivera", name:"Alex Rivera", platformSkill:"Graphic Design", experience:"Intermediate", demoEarnings:600 },
+      "john-perez":{ id:"john-perez", name:"John Perez", platformSkill:"Video Editing", experience:"Intermediate", demoEarnings:0 }
+    };
+    const defaultFreelancerState = {
+      profile:{ name:"Alex Rivera", headline:"Graphic designer & visual storyteller", bio:"I help small businesses bring their ideas to life through thoughtful visual design. I enjoy clear collaboration and practical, polished deliverables.", skills:["Branding","Social Media Design","Illustrator"], experience:"Intermediate", available:true, email:"alex.rivera.demo@example.test", verified:true },
+      applications:[
+        { id:"app-brand", gigId:"gig-brand-kit", status:"accepted", date:"2026-06-02", rate:900, proposal:"I can build a flexible identity system that works across your cafe signage and social channels.", completion:"10 days" },
+        { id:"app-social", gigId:"gig-social-calendar", status:"pending", date:"2026-06-11", rate:700, proposal:"I have experience creating practical content calendars for small local brands.", completion:"7 days" },
+        { id:"app-ads", gigId:"gig-marketing-ads", status:"rejected", date:"2026-05-26", rate:2200, proposal:"I can create a consistent campaign graphics set with clear reusable layouts.", completion:"8 days" }
+      ],
+      projects:[
+        { id:"project-brand", gigId:"gig-brand-kit", applicationId:"app-brand", title:"Brand identity kit for a neighborhood cafe", client:"Harbor & Hearth Cafe", deadline:dateAfterDays(14), budget:900, stage:1, status:"ongoing" },
+        { id:"project-summer", gigId:null, applicationId:null, title:"Summer menu social campaign", client:"Sari-Sari Kitchen", deadline:"2026-05-20", budget:600, stage:4, status:"completed" }
+      ],
+      portfolio:[
+        { id:"portfolio-sample", projectId:null, title:"Local coffee shop visual refresh", description:"A self-directed concept exploring a friendly visual system for an independent cafe.", category:"Graphic Design", image:"✦" },
+        { id:"portfolio-verified", projectId:"project-summer", title:"Summer menu social campaign", description:"Social campaign assets delivered and accepted in this SugboSkills demo.", category:"Graphic Design", image:"◈" }
+      ],
+      messages:[
+        { id:"conversation-harbor", client:"Harbor & Hearth Cafe", initials:"HH", messages:[{ text:"Hi Alex! We are excited to see the first direction for the cafe identity.", date:"Jun 10 · 10:20 AM", mine:false },{ text:"Thanks! I am exploring a warm palette and a few flexible logo options.", date:"Jun 10 · 11:05 AM", mine:true }] },
+        { id:"conversation-luntian", client:"Luntian Botanicals", initials:"LB", messages:[{ text:"Could you share your availability for a short product edit project?", date:"Jun 9 · 3:40 PM", mine:false }] },
+        { id:"conversation-sari", client:"Sari-Sari Kitchen", initials:"SK", messages:[{ text:"The menu graphics look great. Thank you for the thoughtful handoff!", date:"May 20 · 4:15 PM", mine:false }] }
+      ]
+    };
+    const johnFreelancerState = structuredClone(defaultFreelancerState);
+    johnFreelancerState.profile = { name:"John Perez",headline:"Video editor & visual storyteller",bio:"I turn raw footage into clear, engaging videos for local brands and community projects.",skills:["Short-form Video","Captions","Color Correction"],experience:"Intermediate",available:true,email:"john.perez.demo@example.test",verified:true };
+    johnFreelancerState.applications = [
+      { id:"john-app-video",gigId:"gig-product-video",status:"accepted",date:"2026-06-08",rate:900,proposal:"I can shape your product footage into concise, polished launch videos.",completion:"8 days" },
+      { id:"john-app-reel",gigId:"gig-video-reel",status:"pending",date:"2026-06-12",rate:800,proposal:"I have a strong short-form editing workflow and can deliver consistent captioned reels.",completion:"6 days" }
+    ];
+    johnFreelancerState.projects = [
+      { id:"john-project-video",gigId:"gig-product-video",applicationId:"john-app-video",title:"Short product video edits for local skincare line",client:"Luntian Botanicals",deadline:dateAfterDays(18),budget:900,stage:1,status:"ongoing" }
+    ];
+    johnFreelancerState.portfolio = [
+      { id:"john-portfolio-sample",projectId:null,title:"Cebu weekend travel reel",description:"A self-directed short-form edit featuring local travel footage, pacing, and captions.",category:"Video Editing",image:"▶" }
+    ];
+    johnFreelancerState.messages = [
+      { id:"john-conversation-luntian",client:"Luntian Botanicals",initials:"LB",messages:[{text:"Hi John, we have shared the product footage and launch notes.",date:"Jun 10 · 9:15 AM",mine:false},{text:"Thanks! I will send the first edit direction for review soon.",date:"Jun 10 · 10:00 AM",mine:true}] },
+      { id:"john-conversation-lakbay",client:"Lakbay Sugbo",initials:"LS",messages:[{text:"Are you available for the three-reel project this month?",date:"Jun 9 · 2:30 PM",mine:false}] }
+    ];
+    let activeFreelancerAccountId = "alex-rivera";
+    try {
+      const savedAccountId = localStorage.getItem(`${freelancerStorageKey}.active`);
+      if (savedAccountId && freelancerAccounts[savedAccountId]) activeFreelancerAccountId = savedAccountId;
+    } catch (error) {
+      console.error("Could not read the selected demo freelancer account.", error);
+    }
+    let freelancerState = loadFreelancerState(activeFreelancerAccountId);
+    let activeFreelancerPage = "overview";
+    let activeConversationId = freelancerState.messages[0]?.id || "";
+
+    function currentFreelancerAccount() { return freelancerAccounts[activeFreelancerAccountId]; }
+    function defaultStateForAccount(accountId) { return structuredClone(accountId === "john-perez" ? johnFreelancerState : defaultFreelancerState); }
+    function pricingRange(experience) {
+      return experience === "Advanced" ? { min:1500, max:3000 } : { min:500, max:1000 };
+    }
+    function gigRate(gig, accountId = activeFreelancerAccountId) {
+      const account = freelancerAccounts[accountId];
+      if (!account) return gig.budget;
+      if (account.experience === "Advanced") {
+        const intermediateRate = gig.experience === "Advanced"
+          ? 500 + Math.round((Math.max(1500,Math.min(3000,gig.budget)) - 1500) / 1500 * 500)
+          : Math.max(500,Math.min(1000,gig.budget));
+        return 1500 + Math.round((intermediateRate - 500) / 500 * 1500);
+      }
+      if (gig.experience === "Advanced") {
+        return 500 + Math.round((Math.max(1500,Math.min(3000,gig.budget)) - 1500) / 1500 * 500);
+      }
+      return Math.max(500,Math.min(1000,gig.budget));
+    }
+    function normalizeSavedPricing(state, accountId) {
+      const range = pricingRange(freelancerAccounts[accountId].experience);
+      state.applications.forEach((application) => {
+        const gig = gigFor(application.gigId);
+        if (!gig) return;
+        if (!Number.isFinite(application.rate) || application.rate < range.min || application.rate > range.max) application.rate = gigRate(gig,accountId);
+      });
+      state.projects.forEach((project) => {
+        const gig = gigFor(project.gigId);
+        if (gig) {
+          if (!Number.isFinite(project.budget) || project.budget < range.min || project.budget > range.max) {
+            const application = state.applications.find((item) => item.id === project.applicationId);
+            project.budget = application?.rate || gigRate(gig,accountId);
+          }
+        } else if (accountId === "alex-rivera" && project.id === "project-summer") {
+          project.budget = 600;
+        }
+      });
+      return state;
+    }
+    function loadFreelancerState(accountId) {
+      try {
+        const accountKey = `${freelancerStorageKey}.${accountId}`;
+        const saved = localStorage.getItem(accountKey) || (accountId === "alex-rivera" ? localStorage.getItem(freelancerStorageKey) : null);
+        if (!saved) return defaultStateForAccount(accountId);
+        const parsed = JSON.parse(saved);
+        if (!parsed || typeof parsed !== "object" || !parsed.profile || !Array.isArray(parsed.applications) || !Array.isArray(parsed.projects) || !Array.isArray(parsed.portfolio) || !Array.isArray(parsed.messages)) throw new Error("Stored freelancer dashboard data is invalid.");
+        const defaults = defaultStateForAccount(accountId);
+        return normalizeSavedPricing({ ...defaults, ...parsed, profile:{ ...defaults.profile, ...parsed.profile } }, accountId);
+      } catch (error) {
+        console.error("Could not load saved freelancer dashboard data.", error);
+        window.addEventListener("DOMContentLoaded", () => showFreelancerToast("Saved demo data could not be read. Showing this account's sample data.", true), { once:true });
+        return defaultStateForAccount(accountId);
+      }
+    }
+    function persistFreelancerState(successMessage = "") {
+      try {
+        localStorage.setItem(`${freelancerStorageKey}.${activeFreelancerAccountId}`, JSON.stringify(freelancerState));
+        if (successMessage) showFreelancerToast(successMessage);
+        return true;
+      } catch (error) {
+        console.error("Could not save freelancer dashboard data.", error);
+        showFreelancerToast("Your browser could not save this update. It will be lost when the demo closes.", true);
+        return false;
+      }
+    }
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[character]);
+    }
+    function money(value) { return `₱${Number(value || 0).toLocaleString("en-PH")}`; }
+    function initials(name) { return String(name || "").split(/\s+/).filter(Boolean).slice(0,2).map((part) => part[0].toUpperCase()).join("") || "SS"; }
+    function showFreelancerToast(message, isError = false) {
+      const toast = document.getElementById("freelancer-toast");
+      toast.textContent = message;
+      toast.classList.toggle("error", isError);
+      toast.hidden = false;
+      window.clearTimeout(showFreelancerToast.timer);
+      showFreelancerToast.timer = window.setTimeout(() => { toast.hidden = true; }, 3600);
+    }
+    function setDashboardProfile() {
+      document.querySelectorAll("[data-profile-avatar]").forEach((node) => { node.textContent = initials(freelancerState.profile.name); });
+      document.querySelectorAll("[data-profile-name]").forEach((node) => { node.textContent = freelancerState.profile.name; });
+      const accountPicker = document.getElementById("freelancer-account");
+      if (accountPicker) {
+        accountPicker.value = activeFreelancerAccountId;
+        Object.values(freelancerAccounts).forEach((account) => {
+          const option = accountPicker.querySelector(`option[value="${account.id}"]`);
+          if (option) option.textContent = `${account.name} · ${account.platformSkill}`;
+        });
+      }
+    }
+    function gigFor(gigId) { return demoGigs.find((gig) => gig.id === gigId); }
+    function applicationFor(gigId) { return freelancerState.applications.find((application) => application.gigId === gigId); }
+    function statusPill(status) { return `<span class="status-pill ${escapeHTML(status)}">${escapeHTML(status[0].toUpperCase() + status.slice(1))}</span>`; }
+    function gigCard(gig, compact = false) {
+      const applied = Boolean(applicationFor(gig.id));
+      return `<article class="freelancer-gig">
+        <div class="gig-top"><div><h3>${escapeHTML(gig.title)}</h3><span class="gig-client">${escapeHTML(gig.client)} ${gig.verified ? '<span class="verified-mark">✓ Verified</span>' : ""}</span></div><span class="gig-budget">${money(gigRate(gig))}</span></div>
+        <p class="gig-description">${escapeHTML(gig.description)}</p><div class="tag-list">${gig.skills.map((skill) => `<span class="skill-tag">${escapeHTML(skill)}</span>`).join("")}</div>
+        <div class="gig-meta"><span>${escapeHTML(gig.category)}</span><span>Due ${escapeHTML(gig.deadline)}</span><span>${gig.applicants + (applied ? 1 : 0)} applicants</span></div>
+        ${compact ? `<div class="gig-actions"><button class="button secondary" type="button" data-gig-details="${escapeHTML(gig.id)}">View details</button><button class="button" type="button" data-apply-gig="${escapeHTML(gig.id)}" ${applied ? "disabled" : ""}>${applied ? "Applied" : "Apply now"}</button></div>` : ""}
+      </article>`;
+    }
+    function pageHeader(title, subtitle, action = "") {
+      return `<div class="page-heading-row"><div><h1>${title}</h1><p>${subtitle}</p></div>${action}</div>`;
+    }
+    function renderOverview() {
+      const activeApps = freelancerState.applications.filter((application) => application.status === "pending").length;
+      const ongoing = freelancerState.projects.filter((project) => project.status === "ongoing").length;
+      const completed = freelancerState.projects.filter((project) => project.status === "completed").length;
+      const earned = currentFreelancerAccount().demoEarnings;
+      const recommended = demoGigs.filter((gig) => gig.category === currentFreelancerAccount().platformSkill);
+      const shownGigs = recommended.slice(0,3);
+      const recentApplications = freelancerState.applications.slice().sort((a,b) => b.date.localeCompare(a.date)).slice(0,4);
+      return `${pageHeader(`Good day, ${escapeHTML(freelancerState.profile.name.split(" ")[0])}!`,"Here is an overview of your freelance activities.")}
+        <div class="metric-grid">
+          ${[["Active Applications",activeApps,"▤","Awaiting a client response"],["Ongoing Gigs",ongoing,"◷","Accepted projects in progress"],["Completed Gigs",completed,"✓","Demo project completions"],["Total Earnings",money(earned),"₱","Fixed sample total · no payment processed"]].map(([label,value,icon,foot]) => `<article class="metric-card"><div class="metric-caption">${label}<span class="metric-icon">${icon}</span></div><div class="metric-value">${value}</div><div class="metric-foot">${foot}</div></article>`).join("")}
+        </div>
+        <div class="content-grid"><section><div class="panel-heading section-label"><h2>Recommended gigs</h2><button class="quiet-link" type="button" data-freelancer-page="gigs">Explore all gigs →</button></div><div class="gig-list">${shownGigs.map((gig) => gigCard(gig,true)).join("")}</div>
+        <div class="panel-heading section-label"><h2>Recent applications</h2><button class="quiet-link" type="button" data-freelancer-page="applications">View all →</button></div><div class="freelancer-panel">${recentApplications.length ? recentApplications.map((application) => { const gig=gigFor(application.gigId); return `<div class="application-row"><div><strong>${escapeHTML(gig?.title || "Unavailable gig")}</strong><small>${escapeHTML(gig?.client || "")} · ${escapeHTML(application.date)}</small></div>${statusPill(application.status)}</div>`; }).join("") : '<div class="empty-panel">No applications yet. Find a gig that fits your skills.</div>'}</div></section>
+        <aside><div class="freelancer-panel"><div class="panel-heading"><h2>Recent activity</h2></div>${recentApplications.slice(0,3).map((application) => `<div class="activity-item"><span aria-hidden="true">•</span><span>Your application for <strong>${escapeHTML(gigFor(application.gigId)?.title || "a gig")}</strong> is ${escapeHTML(application.status)}.<br><small>${escapeHTML(application.date)}</small></span></div>`).join("")}${freelancerState.projects.slice(0,2).map((project) => `<div class="activity-item"><span aria-hidden="true">↗</span><span><strong>${escapeHTML(project.title)}</strong> · ${project.status === "completed" ? "completed" : `progress: ${["Not Started","In Progress","Submitted for Review","Revision Requested","Completed"][project.stage]}`}<br><small>Demo project update</small></span></div>`).join("")}</div><div class="freelancer-panel" style="margin-top:.8rem"><div class="panel-heading"><h2>Prototype reminder</h2></div><p class="muted-small">All projects, clients, ratings, and earnings shown here are sample data. No payments are processed.</p></div></aside></div>`;
+    }
+    function renderGigs() {
+      const fixedSkill = currentFreelancerAccount().platformSkill;
+      return `${pageHeader("Find gigs",`Showing sample gigs for your fixed skill: ${escapeHTML(fixedSkill)}.`)}
+        <div class="freelancer-panel"><div class="toolbar">
+          <div class="field search-field"><label for="gig-search">Search gigs</label><input id="gig-search" type="search" placeholder="Title, description, or skill"></div>
+          <div class="field"><label for="gig-category">Your fixed skill</label><select id="gig-category" disabled><option>${escapeHTML(fixedSkill)}</option></select></div>
+          <div class="field"><label for="gig-budget">Rate</label><select id="gig-budget"><option value="">Any rate</option><option value="500-1000">₱500–₱1,000 · Intermediate</option><option value="1500-3000">₱1,500–₱3,000 · Advanced</option></select></div>
+          <div class="field"><label for="gig-experience">Experience</label><select id="gig-experience"><option value="">Any level</option><option>Intermediate</option><option>Advanced</option></select></div>
+          <div class="field"><label for="gig-deadline">Deadline</label><select id="gig-deadline"><option value="">Any deadline</option><option value="14">Within 14 days</option><option value="30">Within 30 days</option></select></div>
+          <div class="field"><label for="gig-sort">Sort by</label><select id="gig-sort"><option value="relevance">Relevance</option><option value="newest">Newest</option><option value="budget">Budget: high to low</option></select></div>
+        </div><div class="gig-list" id="gig-results">${demoGigs.filter((gig) => gig.category === fixedSkill).map((gig) => gigCard(gig,true)).join("")}</div></div>`;
+    }
+    function renderGigResults() {
+      const container = document.getElementById("gig-results");
+      if (!container) return;
+      const query = document.getElementById("gig-search").value.trim().toLowerCase();
+      const category = currentFreelancerAccount().platformSkill;
+      const budget = document.getElementById("gig-budget").value;
+      const experience = document.getElementById("gig-experience").value;
+      const days = Number(document.getElementById("gig-deadline").value || 0);
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() + days);
+      cutoff.setHours(23,59,59,999);
+      const visible = demoGigs.filter((gig) => {
+        const text = [gig.title,gig.description,gig.category,...gig.skills].join(" ").toLowerCase();
+        const [minimum,maximum] = budget ? budget.split("-").map(Number) : [0,Infinity];
+        const rate = gigRate(gig);
+        const meetsBudget = rate >= minimum && rate <= maximum;
+        const deadline = new Date(`${gig.deadline}T23:59:59`);
+        return gig.category === category && (!query || text.includes(query)) && meetsBudget && (!experience || gig.experience === experience) && (!days || deadline <= cutoff);
+      });
+      const sort = document.getElementById("gig-sort").value;
+      if (sort === "budget") visible.sort((a,b) => gigRate(b) - gigRate(a));
+      if (sort === "newest") visible.sort((a,b) => b.postedAt.localeCompare(a.postedAt));
+      container.innerHTML = visible.length ? visible.map((gig) => gigCard(gig,true)).join("") : '<div class="empty-panel">No gigs match these filters. Try broadening your search.</div>';
+    }
+    function renderApplications() {
+      const apps = freelancerState.applications.slice().sort((a,b) => b.date.localeCompare(a.date));
+      return `${pageHeader("My Applications","Review your proposals and follow their sample statuses.")}
+        <div class="freelancer-panel"><div class="toolbar"><div class="field search-field"><label for="application-search">Search applications</label><input id="application-search" type="search" placeholder="Search title or client"></div><div class="field"><label for="application-status">Status</label><select id="application-status"><option value="">All statuses</option>${["pending","accepted","rejected","withdrawn"].map((status) => `<option value="${status}">${status[0].toUpperCase()+status.slice(1)}</option>`).join("")}</select></div></div><div class="gig-list" id="application-results">${apps.length ? apps.map((application) => applicationCard(application)).join("") : '<div class="empty-panel">You have not applied to any gigs yet.</div>'}</div><div id="application-filter-empty" class="empty-panel" hidden>No applications match this search and status.</div></div>`;
+    }
+    function applicationCard(application) {
+      const gig = gigFor(application.gigId);
+      return `<article class="freelancer-gig application-card" data-status="${escapeHTML(application.status)}" data-search="${escapeHTML(`${gig?.title || ""} ${gig?.client || ""}`.toLowerCase())}"><div class="gig-top"><div><h3>${escapeHTML(gig?.title || "Unavailable gig")}</h3><span class="gig-client">${escapeHTML(gig?.client || "Sample client")} · Applied ${escapeHTML(application.date)}</span></div>${statusPill(application.status)}</div><div class="gig-meta"><span>Proposed rate: ${money(application.rate)}</span>${application.completion ? `<span>Expected: ${escapeHTML(application.completion)}</span>` : ""}</div><div class="gig-actions"><button class="button secondary" type="button" data-application-details="${escapeHTML(application.id)}">View application</button>${application.status === "pending" ? `<button class="button secondary" type="button" data-accept-application="${escapeHTML(application.id)}">Simulate acceptance</button><button class="button secondary" type="button" data-withdraw-application="${escapeHTML(application.id)}">Withdraw</button>` : ""}</div></article>`;
+    }
+    function renderMyGigs() {
+      const ongoing = freelancerState.projects.filter((project) => project.status === "ongoing");
+      const completed = freelancerState.projects.filter((project) => project.status === "completed");
+      const renderProject = (project) => `<article class="freelancer-gig"><div class="gig-top"><div><h3>${escapeHTML(project.title)}</h3><span class="gig-client">${escapeHTML(project.client)}</span></div>${statusPill(project.status)}</div><div class="gig-meta"><span>Deadline: ${escapeHTML(project.deadline)}</span><span>Agreed sample budget: ${money(project.budget)}</span></div>${project.status === "ongoing" ? `<div class="tracker-stages">${["Not Started","In Progress","Submitted for Review","Revision Requested","Completed"].map((stage,index) => `<div class="tracker-stage ${index < project.stage ? "done" : ""} ${index === project.stage ? "current" : ""}">${stage}</div>`).join("")}</div><div class="toolbar"><div class="field"><label for="project-stage-${escapeHTML(project.id)}">Update progress</label><select id="project-stage-${escapeHTML(project.id)}" data-project-stage="${escapeHTML(project.id)}"><option value="0" ${project.stage===0?"selected":""}>Not Started</option><option value="1" ${project.stage===1?"selected":""}>In Progress</option><option value="2" ${project.stage===2?"selected":""}>Submitted for Review</option><option value="3" ${project.stage===3?"selected":""}>Revision Requested</option></select></div><button class="button secondary small-button" type="button" data-project-details="${escapeHTML(project.id)}">View details</button>${project.stage === 2 ? `<button class="button small-button" type="button" data-accept-project="${escapeHTML(project.id)}">Simulate client acceptance</button>` : ""}</div>` : `<p class="gig-description">Completed in this prototype; sample earnings are not real payments.</p><div class="gig-actions"><button class="button secondary small-button" type="button" data-project-details="${escapeHTML(project.id)}">View details</button>${project.gigId && !freelancerState.portfolio.some((entry) => entry.projectId === project.id) ? `<button class="button small-button" type="button" data-add-verified="${escapeHTML(project.id)}">Add verified portfolio entry</button>` : ""}</div>`}</article>`;
+      return `${pageHeader("My Gigs","Track accepted projects and update demo progress.")}
+        <div class="panel-heading section-label"><h2>Ongoing</h2><span class="muted-small">${ongoing.length} projects</span></div><div class="gig-list">${ongoing.length ? ongoing.map(renderProject).join("") : '<div class="empty-panel">No ongoing projects in this demo.</div>'}</div>
+        <div class="panel-heading section-label"><h2>Completed</h2><span class="muted-small">${completed.length} projects</span></div><div class="gig-list">${completed.length ? completed.map(renderProject).join("") : '<div class="empty-panel">Completed projects will appear here.</div>'}</div>`;
+    }
+    function renderPortfolio() {
+      const cards = freelancerState.portfolio.map((entry) => {
+        const verified = entry.projectId && freelancerState.projects.some((project) => project.id === entry.projectId && project.status === "completed");
+        return `<article class="freelancer-panel" style="padding:0;overflow:hidden"><div class="portfolio-art" aria-hidden="true">${escapeHTML(entry.image || "✦")}</div><div class="portfolio-body"><span class="skill-tag">${verified ? "Verified Completed Gig" : "Freelancer sample work"}</span><h3>${escapeHTML(entry.title)}</h3><p>${escapeHTML(entry.description)}</p><span class="muted-small">${escapeHTML(entry.category)}</span><div class="gig-actions"><button class="button secondary small-button" type="button" data-edit-portfolio="${escapeHTML(entry.id)}">Edit</button><button class="button secondary small-button" type="button" data-delete-portfolio="${escapeHTML(entry.id)}">Delete</button></div></div></article>`;
+      }).join("");
+      return `${pageHeader("My Portfolio","Showcase sample work and projects completed in SugboSkills.",'<button class="button small-button" type="button" data-add-portfolio>Add portfolio entry</button>')}
+        <div class="freelancer-panel"><div class="profile-hero"><span class="avatar">${escapeHTML(initials(freelancerState.profile.name))}</span><div><h2>${escapeHTML(freelancerState.profile.headline)}</h2><p>${escapeHTML(freelancerState.profile.bio)}</p><div class="tag-list" style="margin-top:.5rem"><span class="skill-tag">${escapeHTML(currentFreelancerAccount().platformSkill)}</span>${freelancerState.profile.skills.map((skill) => `<span class="skill-tag">${escapeHTML(skill)}</span>`).join("")}</div></div></div></div>
+        <div class="portfolio-grid" style="margin-top:.8rem">${cards || '<div class="empty-panel">Your portfolio is empty. Add a sample entry or a completed gig.</div>'}</div>`;
+    }
+    function renderReviews() {
+      const reviews = [{ client:"Sari-Sari Kitchen", project:"Completed sample project", date:"May 20, 2026", rating:5, text:`Thoughtful work and a smooth handoff. ${freelancerState.profile.name} understood the brief right away.` },{ client:"Harbor & Hearth Cafe", project:"Client project (demo review)", date:"Jun 8, 2026", rating:5, text:"Great communication and a clear creative direction. We are looking forward to the next project milestone." },{ client:"Studio Amihan", project:"Launch assets (sample)", date:"Apr 14, 2026", rating:4, text:"Reliable, creative, and open to feedback throughout the project." }];
+      return `${pageHeader("Ratings & Reviews","Example feedback for demonstration only; these are not verified client reviews.")}
+        <div class="content-grid"><section class="freelancer-panel"><div class="review-score"><strong>4.7</strong><div><div class="stars" aria-label="Average rating 4.7 out of 5">★★★★★</div><small class="muted-small">3 sample reviews</small></div></div><div style="margin-top:.9rem">${[5,4,3,2,1].map((stars,index) => `<div class="rating-bar"><span>${stars} star</span><div class="rating-track"><span style="width:${[67,33,0,0,0][index]}%"></span></div><span>${[2,1,0,0,0][index]}</span></div>`).join("")}</div></section><aside class="freelancer-panel"><p class="muted-small">Review breakdown</p><p><strong>Communication</strong> · 5.0</p><p><strong>Quality</strong> · 4.7</p><p><strong>Timeliness</strong> · 4.3</p></aside></div>
+        <div class="gig-list" style="margin-top:.8rem">${reviews.map((review) => `<article class="freelancer-panel"><div class="gig-top"><div><strong>${escapeHTML(review.client)}</strong><div class="muted-small">${escapeHTML(review.project)} · ${escapeHTML(review.date)}</div></div><span class="stars" aria-label="${review.rating} out of 5 stars">${"★".repeat(review.rating)}${"☆".repeat(5-review.rating)}</span></div><p class="gig-description">${escapeHTML(review.text)}</p><span class="skill-tag">Demonstration feedback</span></article>`).join("")}</div>`;
+    }
+    function renderMessages() {
+      const conversations = freelancerState.messages;
+      if (!conversations.some((conversation) => conversation.id === activeConversationId)) activeConversationId = conversations[0]?.id || "";
+      const active = conversations.find((conversation) => conversation.id === activeConversationId);
+      return `${pageHeader("Messages","Demo conversations with sample clients; messages are saved in this browser.")}
+        <div class="conversation-layout"><aside class="conversation-list"><h3>Conversations</h3>${conversations.map((conversation) => `<button type="button" class="conversation-button" data-conversation-id="${escapeHTML(conversation.id)}" aria-current="${conversation.id===activeConversationId}"><span class="avatar">${escapeHTML(conversation.initials)}</span><span><strong>${escapeHTML(conversation.client)}</strong><small>${escapeHTML(conversation.messages.at(-1)?.text || "Start a conversation")}</small></span></button>`).join("")}</aside><section class="conversation-view" aria-label="Conversation with ${escapeHTML(active?.client || "client")}"><div class="conversation-title">${escapeHTML(active?.client || "Choose a conversation")}</div><div class="message-list" id="message-list">${active ? active.messages.map((message) => `<div class="message-bubble ${message.mine?"mine":""}">${escapeHTML(message.text)}<small>${escapeHTML(message.date)} · Demo</small></div>`).join("") : '<div class="empty-panel">No conversations yet.</div>'}</div>${active ? `<form class="message-form" data-message-form="${escapeHTML(active.id)}"><label class="sr-only" for="message-input">Write a message</label><input id="message-input" name="message" maxlength="500" required placeholder="Write a message…"><button class="button small-button" type="submit">Send</button></form>` : ""}</section></div>`;
+    }
+    function renderProfile() {
+      const profile = freelancerState.profile;
+      return `${pageHeader("My Profile","Your profile details are sample data for this prototype.",'<button class="button small-button" type="button" data-edit-profile>Edit profile</button>')}
+        <div class="freelancer-panel"><div class="profile-hero"><span class="avatar">${escapeHTML(initials(profile.name))}</span><div><h2>${escapeHTML(profile.name)}</h2><p>${escapeHTML(profile.headline)}</p><span class="verified-mark">Demo school email ${profile.verified ? "verified" : "not verified"}</span></div></div><p class="gig-description" style="margin-top:.8rem">${escapeHTML(profile.bio)}</p><div class="detail-list"><div class="detail-cell"><small>Fixed platform skill</small><strong>${escapeHTML(currentFreelancerAccount().platformSkill)}</strong></div><div class="detail-cell"><small>Experience level</small><strong>${escapeHTML(currentFreelancerAccount().experience)}</strong></div><div class="detail-cell"><small>Availability</small><strong>${profile.available ? "Available for projects" : "Not currently available"}</strong></div><div class="detail-cell"><small>Demo school email</small><strong>${escapeHTML(profile.email)}</strong></div><div class="detail-cell"><small>Verification</small><strong>Demonstration status only</strong></div></div><h3 class="section-label">Additional skills</h3><div class="tag-list"><span class="skill-tag">${escapeHTML(currentFreelancerAccount().platformSkill)}</span>${profile.skills.map((skill) => `<span class="skill-tag">${escapeHTML(skill)}</span>`).join("")}</div></div>
+        <div class="panel-heading section-label"><h2>Portfolio preview</h2><button class="quiet-link" type="button" data-freelancer-page="portfolio">Manage portfolio →</button></div><div class="portfolio-grid">${freelancerState.portfolio.slice(0,3).map((entry) => { const verified=entry.projectId && freelancerState.projects.some((project) => project.id===entry.projectId && project.status==="completed"); return `<div class="freelancer-panel"><span class="skill-tag">${verified ? "Verified Completed Gig" : "Freelancer sample work"}</span><h3>${escapeHTML(entry.title)}</h3><p class="muted-small">${escapeHTML(entry.category)}</p></div>`; }).join("")}</div>`;
+    }
+    function renderFreelancerPage() {
+      setDashboardProfile();
+      const container = document.getElementById("freelancer-page-content");
+      if (!container) return;
+      const pages = { overview:renderOverview, gigs:renderGigs, applications:renderApplications, "my-gigs":renderMyGigs, portfolio:renderPortfolio, reviews:renderReviews, messages:renderMessages, profile:renderProfile };
+      container.innerHTML = (pages[activeFreelancerPage] || renderOverview)();
+      const heading = container.querySelector("h1");
+      if (heading) document.title = `${heading.textContent.trim()} | SugboSkills`;
+      document.querySelectorAll("[data-freelancer-page]").forEach((button) => {
+        if (button.dataset.freelancerPage) button.setAttribute("aria-current", button.dataset.freelancerPage === activeFreelancerPage ? "page" : "false");
+      });
+      if (activeFreelancerPage === "gigs") renderGigResults();
+    }
+    function showFreelancerPage(page) {
+      activeFreelancerPage = page;
+      renderFreelancerPage();
+      document.querySelector(".freelancer-main").scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+    function openFreelancerDialog(title, body) {
+      const dialog = document.getElementById("freelancer-dialog");
+      dialog.innerHTML = `<div class="dialog-heading"><h2 id="dialog-title">${title}</h2><button type="button" class="dialog-close" data-close-dialog aria-label="Close dialog">×</button></div>${body}`;
+      if (!dialog.open) dialog.showModal();
+    }
+    function showGigDetails(gig) {
+      const account = currentFreelancerAccount();
+      const range = pricingRange(account.experience);
+      openFreelancerDialog(escapeHTML(gig.title),`<p class="gig-client">${escapeHTML(gig.client)} ${gig.verified ? '<span class="verified-mark">✓ Verified sample client</span>' : ""}</p><p class="gig-description">${escapeHTML(gig.fullDescription)}</p><div class="detail-list"><div class="detail-cell"><small>Category</small><strong>${escapeHTML(gig.category)}</strong></div><div class="detail-cell"><small>${escapeHTML(account.experience)} freelancer rate</small><strong>${money(gigRate(gig))} (${money(range.min)}–${money(range.max)} range)</strong></div><div class="detail-cell"><small>Deadline</small><strong>${escapeHTML(gig.deadline)}</strong></div><div class="detail-cell"><small>Requested experience</small><strong>${escapeHTML(gig.experience)}</strong></div></div><h3 class="section-label">Requirements</h3><div class="tag-list">${gig.skills.map((skill) => `<span class="skill-tag">${escapeHTML(skill)}</span>`).join("")}</div><p class="muted-small" style="margin-top:.8rem">Prototype project only. This is not a real job offer or payment.</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Close</button><button class="button" type="button" data-apply-gig="${escapeHTML(gig.id)}" ${applicationFor(gig.id)?"disabled":""}>${applicationFor(gig.id)?"Already applied":"Apply now"}</button></div>`);
+    }
+    function openApplyDialog(gig) {
+      if (applicationFor(gig.id)) { showFreelancerToast("You have already applied to this sample gig.",true); return; }
+      const account = currentFreelancerAccount();
+      const range = pricingRange(account.experience);
+      openFreelancerDialog(`Apply: ${escapeHTML(gig.title)}`,`<p class="gig-client">Sample client: ${escapeHTML(gig.client)} · ${escapeHTML(account.experience)} rate ${money(range.min)}–${money(range.max)}</p><form class="dialog-form" data-application-form="${escapeHTML(gig.id)}"><div class="field"><label for="proposal">Short proposal</label><textarea id="proposal" name="proposal" maxlength="1000" required placeholder="Introduce your approach and relevant experience"></textarea></div><div class="field"><label for="expected-time">Expected completion time (optional)</label><input id="expected-time" name="completion" maxlength="60" placeholder="e.g. 7–10 days"></div><div class="field"><label for="proposed-rate">Proposed rate (PHP)</label><input id="proposed-rate" name="rate" type="number" min="${range.min}" max="${range.max}" value="${gigRate(gig)}" required></div><p class="muted-small">Rates are limited by the freelancer experience tier: ${money(range.min)}–${money(range.max)}. No client is contacted and no payment is made.</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Cancel</button><button class="button" type="submit">Submit application</button></div></form>`);
+    }
+    function showApplicationDetails(application) {
+      const gig = gigFor(application.gigId);
+      openFreelancerDialog("Application details",`<div class="detail-list"><div class="detail-cell"><small>Gig</small><strong>${escapeHTML(gig?.title || "Unavailable gig")}</strong></div><div class="detail-cell"><small>Client</small><strong>${escapeHTML(gig?.client || "Sample client")}</strong></div><div class="detail-cell"><small>Applied</small><strong>${escapeHTML(application.date)}</strong></div><div class="detail-cell"><small>Status</small><strong>${escapeHTML(application.status)}</strong></div><div class="detail-cell"><small>Proposed rate</small><strong>${money(application.rate)}</strong></div><div class="detail-cell"><small>Expected time</small><strong>${escapeHTML(application.completion || "Not specified")}</strong></div></div><h3 class="section-label">Proposal</h3><p class="gig-description">${escapeHTML(application.proposal)}</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Close</button></div>`);
+    }
+    function openPortfolioForm(entry = null) {
+      const existing = entry || { id:"",title:"",description:"",category:currentFreelancerAccount().platformSkill,image:"✦" };
+      openFreelancerDialog(entry ? "Edit portfolio entry" : "Add portfolio entry",`<form class="dialog-form" data-portfolio-form="${escapeHTML(existing.id)}"><div class="field"><label for="portfolio-title">Project title</label><input id="portfolio-title" name="title" maxlength="90" value="${escapeHTML(existing.title)}" required></div><div class="field"><label for="portfolio-description">Description</label><textarea id="portfolio-description" name="description" maxlength="500" required>${escapeHTML(existing.description)}</textarea></div><div class="field"><label for="portfolio-category">Category</label><select id="portfolio-category" name="category">${platformSkills.map((category) => `<option ${category===existing.category?"selected":""}>${escapeHTML(category)}</option>`).join("")}</select></div><div class="field"><label for="portfolio-image">Thumbnail symbol (optional)</label><input id="portfolio-image" name="image" maxlength="8" value="${escapeHTML(existing.image || "")}"></div>${entry?.projectId ? '<p class="muted-small">This entry is linked to a completed demo project; its verified label is based on that project record.</p>' : '<p class="muted-small">Manually added entries are labeled sample work, not verified completed gigs.</p>'}<div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Cancel</button><button class="button" type="submit">Save entry</button></div></form>`);
+    }
+    function openProfileForm() {
+      const profile = freelancerState.profile;
+      openFreelancerDialog("Edit freelancer profile",`<form class="dialog-form" data-profile-form><div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" maxlength="80" value="${escapeHTML(profile.name)}" required></div><div class="field"><label for="profile-headline">Professional headline</label><input id="profile-headline" name="headline" maxlength="120" value="${escapeHTML(profile.headline)}" required></div><div class="field"><label for="profile-bio">Short biography</label><textarea id="profile-bio" name="bio" maxlength="500" required>${escapeHTML(profile.bio)}</textarea></div><div class="field"><label for="profile-skills">Additional skills (comma separated)</label><input id="profile-skills" name="skills" maxlength="300" value="${escapeHTML(profile.skills.join(", "))}"></div><div class="field"><label>Fixed platform skill</label><input value="${escapeHTML(currentFreelancerAccount().platformSkill)}" disabled></div><div class="field"><label>Fixed experience tier</label><input value="${escapeHTML(currentFreelancerAccount().experience)}" disabled></div><div class="field"><label><input type="checkbox" name="available" ${profile.available?"checked":""}> Available for projects</label></div><div class="field"><label for="profile-email">Demo school email</label><input id="profile-email" name="email" type="email" maxlength="120" value="${escapeHTML(profile.email)}" required></div><p class="muted-small">The platform skill and experience tier are fixed for this demo account. Do not enter sensitive student identification information.</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Cancel</button><button class="button" type="submit">Save profile</button></div></form>`);
+    }
+    document.getElementById("freelancer-dialog").addEventListener("click", (event) => {
+      if (event.target === event.currentTarget || event.target.closest("[data-close-dialog]")) event.currentTarget.close();
+      const applyButton = event.target.closest("[data-apply-gig]");
+      if (applyButton) {
+        const gig = gigFor(applyButton.dataset.applyGig);
+        if (gig) openApplyDialog(gig);
+      }
+    });
+    document.getElementById("freelancer-page-content").addEventListener("click", (event) => {
+      const target = event.target.closest("button");
+      if (!target) return;
+      if (target.dataset.freelancerPage) { showFreelancerPage(target.dataset.freelancerPage); return; }
+      if (target.hasAttribute("data-add-portfolio")) { openPortfolioForm(); return; }
+      if (target.hasAttribute("data-edit-profile")) { openProfileForm(); return; }
+      if (target.dataset.gigDetails) { const gig=gigFor(target.dataset.gigDetails); if (gig) showGigDetails(gig); return; }
+      if (target.dataset.applyGig) { const gig=gigFor(target.dataset.applyGig); if (gig) openApplyDialog(gig); return; }
+      if (target.dataset.applicationDetails) { const app=freelancerState.applications.find((item) => item.id===target.dataset.applicationDetails); if (app) showApplicationDetails(app); return; }
+      if (target.dataset.acceptApplication) {
+        const app=freelancerState.applications.find((item) => item.id===target.dataset.acceptApplication);
+        const gig=app && gigFor(app.gigId);
+        if (app?.status === "pending" && gig && window.confirm("Simulate this sample client accepting your application?")) {
+          app.status="accepted";
+          freelancerState.projects.push({ id:`project-${Date.now()}`,gigId:gig.id,applicationId:app.id,title:gig.title,client:gig.client,deadline:gig.deadline,budget:app.rate,stage:0,status:"ongoing" });
+          persistFreelancerState("Demo application accepted and added to My Gigs."); renderFreelancerPage();
+        }
+        return;
+      }
+      if (target.dataset.withdrawApplication) {
+        const app=freelancerState.applications.find((item) => item.id===target.dataset.withdrawApplication);
+        if (app?.status === "pending" && window.confirm("Withdraw this pending application?")) { app.status="withdrawn"; persistFreelancerState("Application withdrawn in this demo."); renderFreelancerPage(); }
+        return;
+      }
+      if (target.dataset.projectDetails) {
+        const project=freelancerState.projects.find((item) => item.id===target.dataset.projectDetails);
+        if (project) openFreelancerDialog(escapeHTML(project.title),`<div class="detail-list"><div class="detail-cell"><small>Client</small><strong>${escapeHTML(project.client)}</strong></div><div class="detail-cell"><small>Deadline</small><strong>${escapeHTML(project.deadline)}</strong></div><div class="detail-cell"><small>Sample agreed budget</small><strong>${money(project.budget)}</strong></div><div class="detail-cell"><small>Status</small><strong>${escapeHTML(project.status)}</strong></div></div><p class="muted-small" style="margin-top:.8rem">Prototype project details only; no payment has been made.</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Close</button></div>`);
+        return;
+      }
+      if (target.dataset.acceptProject) {
+        const project=freelancerState.projects.find((item) => item.id===target.dataset.acceptProject);
+        if (project && project.status==="ongoing" && project.stage===2 && window.confirm("Simulate the client accepting this deliverable? This will complete the sample project.")) {
+          project.stage=4; project.status="completed"; persistFreelancerState("Demo project marked completed. It is now eligible for a verified portfolio entry."); renderFreelancerPage();
+        }
+        return;
+      }
+      if (target.dataset.addVerified) {
+        const project=freelancerState.projects.find((item) => item.id===target.dataset.addVerified && item.status==="completed");
+        if (!project || freelancerState.portfolio.some((entry) => entry.projectId===project.id)) return;
+        const gig=gigFor(project.gigId);
+        freelancerState.portfolio.push({ id:`portfolio-${Date.now()}`,projectId:project.id,title:project.title,description:`Completed deliverables for ${project.client} in this SugboSkills demonstration.`,category:gig?.category || "Digital services",image:"✓" });
+        persistFreelancerState("Verified demo project added to your portfolio."); renderFreelancerPage();
+        return;
+      }
+      if (target.dataset.editPortfolio) { const entry=freelancerState.portfolio.find((item) => item.id===target.dataset.editPortfolio); if (entry) openPortfolioForm(entry); return; }
+      if (target.dataset.deletePortfolio) {
+        const entry=freelancerState.portfolio.find((item) => item.id===target.dataset.deletePortfolio);
+        if (entry && window.confirm(`Delete “${entry.title}” from your portfolio?`)) { freelancerState.portfolio=freelancerState.portfolio.filter((item) => item.id!==entry.id); persistFreelancerState("Portfolio entry deleted."); renderFreelancerPage(); }
+        return;
+      }
+      if (target.dataset.conversationId) { activeConversationId=target.dataset.conversationId; renderFreelancerPage(); return; }
+    });
+    document.getElementById("freelancer-page-content").addEventListener("input", (event) => {
+      if (event.target.matches("#gig-search")) renderGigResults();
+      if (event.target.matches("#application-search")) filterApplicationResults();
+    });
+    document.getElementById("freelancer-page-content").addEventListener("change", (event) => {
+      if (event.target.matches("#gig-category,#gig-budget,#gig-experience,#gig-deadline,#gig-sort")) renderGigResults();
+      if (event.target.matches("#application-status")) filterApplicationResults();
+      if (event.target.matches("[data-project-stage]")) {
+        const project=freelancerState.projects.find((item) => item.id===event.target.dataset.projectStage);
+        const next=Number(event.target.value);
+        if (!project || ![0,1,2,3].includes(next)) { renderFreelancerPage(); return; }
+        if (next===2 && !window.confirm("Confirm that you have submitted this work for client review?")) { renderFreelancerPage(); return; }
+        project.stage=next; persistFreelancerState(next===2 ? "Work marked submitted for review in the demo." : "Project progress updated."); renderFreelancerPage();
+      }
+    });
+    function filterApplicationResults() {
+      const query=(document.getElementById("application-search")?.value || "").trim().toLowerCase();
+      const status=document.getElementById("application-status")?.value || "";
+      const cards = [...document.querySelectorAll(".application-card")];
+      cards.forEach((card) => {
+        card.hidden=(!card.dataset.search.includes(query) && query !== "") || (status !== "" && card.dataset.status !== status);
+      });
+      const empty = document.getElementById("application-filter-empty");
+      if (empty) empty.hidden = cards.length === 0 || cards.some((card) => !card.hidden);
+    }
+    document.addEventListener("submit", (event) => {
+      const form=event.target;
+      if (!form.matches("form")) return;
+      event.preventDefault();
+      const data=new FormData(form);
+      if (form.matches("[data-application-form]")) {
+        const gig=gigFor(form.dataset.applicationForm);
+        if (!gig || applicationFor(gig.id)) { showFreelancerToast("This gig is unavailable or you have already applied.",true); return; }
+        const rate=Number(data.get("rate"));
+        const range=pricingRange(currentFreelancerAccount().experience);
+        if (!Number.isFinite(rate) || rate < range.min || rate > range.max) { showFreelancerToast(`Enter a rate between ${money(range.min)} and ${money(range.max)}.`,true); return; }
+        freelancerState.applications.push({ id:`app-${Date.now()}`,gigId:gig.id,status:"pending",date:dateAfterDays(0),rate,proposal:String(data.get("proposal")).trim(),completion:String(data.get("completion")).trim() });
+        persistFreelancerState("Application added to My Applications. Demo only; no client was contacted."); document.getElementById("freelancer-dialog").close(); showFreelancerPage("applications");
+        return;
+      }
+      if (form.matches("[data-portfolio-form]")) {
+        const id=form.dataset.portfolioForm;
+        const existing=freelancerState.portfolio.find((entry) => entry.id===id);
+        const values={ title:String(data.get("title")).trim(),description:String(data.get("description")).trim(),category:String(data.get("category")),image:String(data.get("image")).trim() || "✦" };
+        if (existing) Object.assign(existing,values);
+        else freelancerState.portfolio.push({ id:`portfolio-${Date.now()}`,projectId:null,...values });
+        persistFreelancerState(existing ? "Portfolio entry updated." : "Sample portfolio entry added."); document.getElementById("freelancer-dialog").close(); renderFreelancerPage();
+        return;
+      }
+      if (form.matches("[data-profile-form]")) {
+        freelancerState.profile={ ...freelancerState.profile,name:String(data.get("name")).trim(),headline:String(data.get("headline")).trim(),bio:String(data.get("bio")).trim(),skills:String(data.get("skills")).split(",").map((value) => value.trim()).filter(Boolean),available:data.has("available"),email:String(data.get("email")).trim() };
+        persistFreelancerState("Profile updated across your dashboard."); document.getElementById("freelancer-dialog").close(); renderFreelancerPage();
+        return;
+      }
+      if (form.matches("[data-message-form]")) {
+        const conversation=freelancerState.messages.find((item) => item.id===form.dataset.messageForm);
+        const message=String(data.get("message")).trim();
+        if (!conversation || !message) return;
+        conversation.messages.push({ text:message,date:new Date().toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}),mine:true });
+        activeConversationId=conversation.id; persistFreelancerState(); renderFreelancerPage();
+        document.getElementById("message-input")?.focus();
+      }
+    });
+    document.getElementById("freelancer-page-content").addEventListener("keydown", (event) => {
+      if (event.target.matches("#gig-search") && event.key === "Escape") { event.target.value=""; renderGigResults(); }
+    });
+    document.getElementById("freelancer-account").addEventListener("change", (event) => {
+      const nextAccountId = event.target.value;
+      if (!freelancerAccounts[nextAccountId] || nextAccountId === activeFreelancerAccountId) return;
+      persistFreelancerState();
+      activeFreelancerAccountId = nextAccountId;
+      try {
+        localStorage.setItem(`${freelancerStorageKey}.active`, activeFreelancerAccountId);
+      } catch (error) {
+        console.error("Could not save the selected demo freelancer account.", error);
+        showFreelancerToast("The account switch worked, but your selection could not be saved.", true);
+      }
+      freelancerState = loadFreelancerState(activeFreelancerAccountId);
+      activeConversationId = freelancerState.messages[0]?.id || "";
+      renderFreelancerPage();
+      showFreelancerToast(`Switched to ${currentFreelancerAccount().name}. The gig feed is limited to ${currentFreelancerAccount().platformSkill}.`);
+    });
+    document.querySelector('[data-dashboard-action="notifications"]').addEventListener("click", () => {
+      const pending=freelancerState.applications.filter((application) => application.status==="pending").length;
+      openFreelancerDialog("Notifications",`<div class="activity-item"><span>•</span><span>You have <strong>${pending} pending application${pending===1?"":"s"}</strong> awaiting a demo client response.</span></div><div class="activity-item"><span>↗</span><span>Your sample project activity is available under My Gigs.</span></div><p class="muted-small">Notifications are simulated for this prototype.</p><div class="dialog-actions"><button class="button secondary" type="button" data-close-dialog>Close</button></div>`);
+    });
+    document.querySelectorAll('[data-freelancer-page]').forEach((button) => button.addEventListener("click", () => showFreelancerPage(button.dataset.freelancerPage)));
+
     document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.go)));
+    document.querySelectorAll("[data-role-route]").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+        window.location.hash = card.dataset.roleRoute.slice(1);
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.target !== card || (event.key !== "Enter" && event.key !== " ")) return;
+        event.preventDefault();
+        window.location.hash = card.dataset.roleRoute.slice(1);
+      });
+    });
     document.getElementById("skill-filter").addEventListener("change", (event) => renderFreelancers(event.target.value));
     document.getElementById("package-list").addEventListener("click", (event) => {
       const button = event.target.closest("[data-select-package]");
@@ -515,12 +1434,13 @@
       renderTracker();
       renderDashboard();
     });
-    document.getElementById("unavailable-toggle").addEventListener("change", renderDashboard);
+    window.addEventListener("hashchange", renderRoute);
 
     renderFreelancers();
     renderPackages();
     renderDashboard();
     renderTracker();
+    renderRoute();
   </script>
 </body>
 </html>
