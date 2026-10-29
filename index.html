@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#25503E">
+  <title>SugboSkills | Skills in Action. Futures in Motion.</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --green: #25503E;
+      --orange: #FF8C00;
+      --ink: #1d2923;
+      --muted: #59665f;
+      --surface: #f3f5f4;
+      --line: #dce3df;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .site-header {
+      background: var(--green);
+      color: var(--white);
+      padding: 1rem max(1rem, calc((100% - 1100px) / 2));
+    }
+    .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { margin: 0; font-size: 1.35rem; letter-spacing: .01em; }
+    .tagline { margin: .15rem 0 0; color: #e4eee8; font-size: .9rem; }
+    .prototype-banner {
+      margin: 1rem auto 0;
+      padding: .55rem .8rem;
+      max-width: 1100px;
+      border-radius: 8px;
+      background: #fff1dc;
+      color: #533000;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    nav {
+      display: flex;
+      gap: .5rem;
+      overflow-x: auto;
+      padding: .9rem max(1rem, calc((100% - 1100px) / 2));
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-button {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .55rem .9rem;
+      background: var(--white);
+      color: var(--green);
+      font-weight: 700;
+    }
+    .nav-button[aria-current="page"] { background: var(--green); color: var(--white); }
+    main { max-width: 1100px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+    .screen { display: none; }
+    .screen.active { display: block; }
+    h1, h2, h3 { line-height: 1.2; color: var(--green); }
+    h1 { margin: .2rem 0 .7rem; font-size: clamp(1.8rem, 6vw, 2.7rem); }
+    h2 { margin: 0 0 .6rem; font-size: 1.65rem; }
+    h3 { margin: 0 0 .45rem; font-size: 1.15rem; }
+    p { margin: .35rem 0 1rem; }
+    .intro { max-width: 680px; color: var(--muted); font-size: 1.08rem; }
+    .hero {
+      padding: clamp(1.25rem, 5vw, 3rem);
+      border-radius: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    .trust-list { display: grid; gap: .65rem; margin: 1.4rem 0; padding: 0; list-style: none; }
+    .trust-list li { font-weight: 700; }
+    .trust-list li::before { content: "✓"; color: var(--green); margin-right: .55rem; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 46px;
+      border: 0;
+      border-radius: 9px;
+      padding: .7rem 1rem;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .button:hover { background: #183c2d; }
+    .button.secondary { background: var(--orange); color: #251600; }
+    .button:disabled { cursor: not-allowed; opacity: .5; }
+    .section-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: .8rem; margin-bottom: 1rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    .card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--white);
+    }
+    .card p:last-child { margin-bottom: 0; }
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: .25rem .6rem;
+      background: #e4f0e9;
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+    .sample-label { color: var(--muted); font-size: .85rem; }
+    .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+    label { display: block; margin-bottom: .35rem; font-weight: 700; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #aebbb4;
+      border-radius: 8px;
+      padding: .7rem;
+      background: var(--white);
+      color: var(--ink);
+    }
+    input[type="checkbox"], input[type="radio"] { width: auto; margin-right: .45rem; }
+    .filter-row select { width: auto; min-width: 190px; }
+    .form-grid { display: grid; gap: 1rem; }
+    .field { margin-bottom: 1rem; }
+    textarea { min-height: 110px; resize: vertical; }
+    .schedule-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--white); }
+    table { width: 100%; border-collapse: collapse; min-width: 520px; }
+    th, td { padding: .85rem; text-align: left; border-bottom: 1px solid var(--line); }
+    th { background: #eaf0ec; color: var(--green); }
+    tr:last-child td { border-bottom: 0; }
+    .note { padding: .85rem 1rem; border-left: 4px solid var(--orange); background: #fff7eb; border-radius: 0 8px 8px 0; }
+    .agreement { margin-top: 1.25rem; }
+    .summary-list { display: grid; grid-template-columns: 1fr; gap: .65rem; margin: .8rem 0 1rem; }
+    .summary-item { padding: .7rem; border-radius: 8px; background: var(--surface); }
+    .agreement-choice { display: grid; gap: .5rem; margin: 1rem 0; }
+    .agreement-choice label { font-weight: 400; }
+    .tracker { display: grid; gap: .6rem; margin: 1.25rem 0; padding: 0; list-style: none; }
+    .tracker li { position: relative; padding: .75rem .8rem .75rem 2.8rem; border: 1px solid var(--line); border-radius: 9px; background: var(--white); color: var(--muted); }
+    .tracker li::before {
+      position: absolute; left: .85rem; top: .65rem; content: "○"; font-size: 1.25rem; color: #78857e;
+    }
+    .tracker li.done { border-color: #9cbeaa; background: #edf5f0; color: var(--green); }
+    .tracker li.done::before { content: "✓"; color: var(--green); font-weight: 700; }
+    .tracker li.current { border: 2px solid var(--orange); color: var(--ink); font-weight: 700; }
+    .status-line { padding: .9rem; border-radius: 9px; background: #eaf0ec; font-weight: 700; }
+    .dashboard-grid { display: grid; gap: 1rem; }
+    .day-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; padding: 0; list-style: none; }
+    .day-list li { padding: .55rem; border-radius: 7px; background: var(--surface); }
+    .day-list li.unavailable { color: #7a3928; background: #fcece7; text-decoration: line-through; }
+    .empty-state { color: var(--muted); }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    [hidden] { display: none !important; }
+    @media (min-width: 650px) {
+      main { padding-top: 2rem; }
+      .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .form-grid .wide { grid-column: 1 / -1; }
+      .summary-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tracker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .trust-list { grid-template-columns: repeat(3, max-content); gap: 1.3rem; }
+    }
+    @media (min-width: 900px) {
+      .grid.freelancers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .tracker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-row">
+      <div>
+        <p class="brand"><strong>SugboSkills</strong></p>
+        <p class="tagline">Skills in Action. Futures in Motion.</p>
+      </div>
+    </div>
+    <div class="prototype-banner">Prototype for testing. No real payments or bookings.</div>
+  </header>
+  <nav aria-label="Main navigation">
+    <button class="nav-button" type="button" data-screen="home" aria-current="page">Home</button>
+    <button class="nav-button" type="button" data-screen="freelancers">Freelancers</button>
+    <button class="nav-button" type="button" data-screen="packages">Packages</button>
+    <button class="nav-button" type="button" data-screen="schedule">Batch schedule</button>
+    <button class="nav-button" type="button" data-screen="booking">Book a project</button>
+    <button class="nav-button" type="button" data-screen="tracker">Order tracker</button>
+    <button class="nav-button" type="button" data-screen="dashboard">Student side</button>
+  </nav>
+
+  <main>
+    <section class="screen active" id="home" aria-labelledby="home-title">
+      <div class="hero">
+        <h1 id="home-title">Affordable student talent, checked by SugboSkills</h1>
+        <p class="intro">Get practical creative and technical help from CTU Main student freelancers, with every project reviewed by SugboSkills before delivery.</p>
+        <ul class="trust-list">
+          <li>Verified students</li>
+          <li>Company-reviewed work</li>
+          <li>Pay after approval</li>
+        </ul>
+        <button class="button secondary" type="button" data-go="booking">Book a project</button>
+      </div>
+    </section>
+
+    <section class="screen" id="freelancers" aria-labelledby="freelancers-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="freelancers-title">Meet the student freelancers</h2>
+          <p class="intro">Sample profiles for prototype testing. All names are placeholders.</p>
+        </div>
+        <div class="filter-row">
+          <label for="skill-filter">Filter by skill</label>
+          <select id="skill-filter">
+            <option value="all">All skills</option>
+            <option value="Graphic design">Graphic design</option>
+            <option value="Video editing">Video editing</option>
+            <option value="Web development">Web development</option>
+            <option value="CAD">CAD</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid freelancers" id="freelancer-list"></div>
+    </section>
+
+    <section class="screen" id="packages" aria-labelledby="packages-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="packages-title">Starter packages</h2>
+          <p class="intro">Sample prices and package details for user testing.</p>
+        </div>
+      </div>
+      <div class="grid three" id="package-list"></div>
+    </section>
+
+    <section class="screen" id="schedule" aria-labelledby="schedule-title">
+      <h2 id="schedule-title">Weekly batch schedule</h2>
+      <p class="intro">Sample schedule for prototype testing. Requests are grouped by skill and assigned on intake days.</p>
+      <div class="schedule-wrap">
+        <table>
+          <thead><tr><th scope="col">Day</th><th scope="col">Skill group receiving orders</th></tr></thead>
+          <tbody>
+            <tr><td>Monday-Tuesday</td><td>Graphic design</td></tr>
+            <tr><td>Wednesday</td><td>Video editing</td></tr>
+            <tr><td>Thursday-Friday</td><td>Web development and CAD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Orders are assigned in rotation so every freelancer gets a fair turn.</p>
+    </section>
+
+    <section class="screen" id="booking" aria-labelledby="booking-title">
+      <h2 id="booking-title">Book a project</h2>
+      <p class="intro">Tell us what you need. This prototype does not send or save your information.</p>
+      <form id="booking-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="business-name">Business name</label>
+            <input id="business-name" name="businessName" type="text" required>
+          </div>
+          <div class="field">
+            <label for="contact">Contact (email or phone)</label>
+            <input id="contact" name="contact" type="text" required>
+          </div>
+          <div class="field">
+            <label for="chosen-package">Choose a package</label>
+            <select id="chosen-package" name="package" required></select>
+          </div>
+          <div class="field">
+            <label for="deadline">Preferred deadline</label>
+            <input id="deadline" name="deadline" type="date" required>
+          </div>
+          <div class="field wide">
+            <label for="description">Short project description</label>
+            <textarea id="description" name="description" maxlength="500" required placeholder="What would you like the freelancer to create?"></textarea>
+          </div>
+        </div>
+        <button class="button" type="submit">Review project agreement</button>
+      </form>
+
+      <div class="card agreement" id="agreement" hidden>
+        <h3>Project agreement summary</h3>
+        <div class="summary-list">
+          <div class="summary-item"><strong>Scope</strong><br><span id="summary-scope"></span></div>
+          <div class="summary-item"><strong>Preferred deadline</strong><br><span id="summary-deadline"></span></div>
+          <div class="summary-item"><strong>Revisions</strong><br>1 free revision</div>
+          <div class="summary-item"><strong>Sample price</strong><br><span id="summary-price"></span></div>
+        </div>
+        <fieldset class="agreement-choice">
+          <legend><strong>Payment terms</strong></legend>
+          <label><input type="radio" name="payment-terms" value="Pay after approval" checked> Pay after approval</label>
+          <label><input type="radio" name="payment-terms" value="50% upfront and 50% on delivery"> 50% upfront and 50% on delivery</label>
+        </fieldset>
+        <p class="note">This agreement is a prototype summary only. No booking or payment will be created.</p>
+        <label><input id="agree-check" type="checkbox"> I agree to this project summary</label>
+        <button class="button secondary" id="confirm-booking" type="button" disabled>Confirm (prototype only)</button>
+      </div>
+      <p id="booking-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="screen" id="tracker" aria-labelledby="tracker-title">
+      <h2 id="tracker-title">Order tracker</h2>
+      <div id="tracker-empty" class="card">
+        <p class="empty-state">No sample order yet. Submit the booking form and confirm the project agreement to start the tracker.</p>
+        <button class="button" type="button" data-go="booking">Go to booking form</button>
+      </div>
+      <div id="tracker-content" hidden>
+        <p id="order-label" class="intro"></p>
+        <ol class="tracker" id="tracker-steps"></ol>
+        <p class="status-line" id="payment-status" aria-live="polite"></p>
+        <button class="button secondary" type="button" id="next-step">Simulate next step</button>
+        <p id="tracker-complete" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="screen" id="dashboard" aria-labelledby="dashboard-title">
+      <h2 id="dashboard-title">Freelancer dashboard</h2>
+      <p class="intro">Sample student-side view. Availability and jobs are mock data.</p>
+      <div class="dashboard-grid">
+        <div class="card">
+          <h3>Availability</h3>
+          <label><input id="unavailable-toggle" type="checkbox"> Mark unavailable for exam week</label>
+          <ul class="day-list" id="availability-list"></ul>
+        </div>
+        <div class="card">
+          <h3>Active jobs <span class="sample-label">(max 2)</span></h3>
+          <ul id="active-jobs"></ul>
+          <p id="job-cap-note" class="sample-label"></p>
+        </div>
+        <div class="card">
+          <h3>Portfolio</h3>
+          <ul id="portfolio-list"></ul>
+          <p id="portfolio-empty" class="empty-state">No new client-approved sample work has been added.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const freelancers = [
+      { name: "Sample A", skill: "Graphic design", level: "Advanced", verified: "Skill test passed and sample work reviewed", intake: "Monday" },
+      { name: "Sample B", skill: "Video editing", level: "Beginner", verified: "Editing task completed and sample work reviewed", intake: "Wednesday" },
+      { name: "Sample C", skill: "Web development", level: "Advanced", verified: "Code exercise passed and sample site reviewed", intake: "Thursday" },
+      { name: "Sample D", skill: "CAD", level: "Beginner", verified: "CAD task completed and drawing reviewed", intake: "Friday" },
+      { name: "Sample E", skill: "Graphic design", level: "Beginner", verified: "Skill test passed and sample work reviewed", intake: "Tuesday" },
+      { name: "Sample F", skill: "Web development", level: "Beginner", verified: "Code exercise passed and sample site reviewed", intake: "Friday" }
+    ];
+
+    const packages = [
+      { name: "Logo", price: "Sample price: PHP 800", scope: "One logo concept with one free revision.", includes: "One logo concept, final digital file, 1 free revision", delivery: "3 to 5 days" },
+      { name: "3 Social Media Posters", price: "Sample price: PHP 1,200", scope: "Three social media poster designs.", includes: "3 poster designs, sized for social media, 1 free revision", delivery: "3 to 5 days" },
+      { name: "Simple Landing Page", price: "Sample price: PHP 2,500", scope: "One simple responsive landing page.", includes: "One-page layout, responsive build, 1 free revision", delivery: "3 to 5 days" }
+    ];
+
+    const steps = [
+      "Order received",
+      "Assigned to a freelancer",
+      "In progress",
+      "Company review",
+      "Delivered for your approval",
+      "Payment released",
+      "Added to freelancer portfolio (with client permission)"
+    ];
+    const paymentUpdates = [
+      "No payment has been made. This is a sample order.",
+      "No payment has been made. The order is assigned for this prototype.",
+      "No payment has been made. Work is in progress in this prototype.",
+      "No payment has been made. SugboSkills is reviewing the work.",
+      "Payment is held by SugboSkills until you approve the delivery.",
+      "Payment would be released according to the agreed terms. No real payment is processed.",
+      "The sample order is complete. No real payment was processed."
+    ];
+
+    let order = null;
+    let currentStep = -1;
+    let portfolioAdded = false;
+    const navButtons = document.querySelectorAll(".nav-button");
+
+    function showScreen(id) {
+      document.querySelectorAll(".screen").forEach((section) => {
+        section.classList.toggle("active", section.id === id);
+      });
+      navButtons.forEach((button) => {
+        if (button.dataset.screen === id) button.setAttribute("aria-current", "page");
+        else button.removeAttribute("aria-current");
+      });
+      window.scrollTo(0, 0);
+    }
+
+    function renderFreelancers(filter = "all") {
+      const list = document.getElementById("freelancer-list");
+      const visible = freelancers.filter((freelancer) => filter === "all" || freelancer.skill === filter);
+      list.innerHTML = visible.map((freelancer) => `
+        <article class="card">
+          <h3>${freelancer.name} <span class="sample-label">(Sample)</span></h3>
+          <p><strong>${freelancer.skill}</strong> · ${freelancer.level}</p>
+          <p><span class="badge">Verified by SugboSkills</span></p>
+          <p>${freelancer.verified}</p>
+          <p><strong>Next available intake:</strong> ${freelancer.intake}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderPackages() {
+      document.getElementById("package-list").innerHTML = packages.map((item, index) => `
+        <article class="card">
+          <h3>${item.name}</h3>
+          <p><strong>${item.price}</strong></p>
+          <p>${item.includes}</p>
+          <p><strong>Delivery:</strong> ${item.delivery}</p>
+          <button class="button" type="button" data-select-package="${index}">Choose package</button>
+        </article>
+      `).join("");
+      const select = document.getElementById("chosen-package");
+      select.innerHTML = '<option value="">Select a package</option>' + packages.map((item, index) =>
+        `<option value="${index}">${item.name} — ${item.price}</option>`
+      ).join("");
+    }
+
+    function renderDashboard() {
+      const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+      const unavailable = document.getElementById("unavailable-toggle").checked;
+      document.getElementById("availability-list").innerHTML = days.map((day) =>
+        `<li class="${unavailable ? "unavailable" : ""}">${day}: ${unavailable ? "Unavailable (exam week)" : "Available"}</li>`
+      ).join("");
+      const jobs = ["Sample job: Social media design"];
+      if (order && currentStep >= 1 && currentStep < 5) jobs.push(`Sample client order: ${order.package.name}`);
+      document.getElementById("active-jobs").innerHTML = jobs.map((job) => `<li>${job}</li>`).join("");
+      document.getElementById("job-cap-note").textContent = `${jobs.length} of 2 active job slots shown in this sample.`;
+      const portfolio = document.getElementById("portfolio-list");
+      portfolio.innerHTML = portfolioAdded
+        ? `<li>Sample client project: ${order.package.name} (client permission received in prototype)</li>`
+        : "";
+      document.getElementById("portfolio-empty").hidden = portfolioAdded;
+    }
+
+    function renderTracker() {
+      const hasOrder = Boolean(order);
+      document.getElementById("tracker-empty").hidden = hasOrder;
+      document.getElementById("tracker-content").hidden = !hasOrder;
+      if (!hasOrder) return;
+      document.getElementById("order-label").textContent = `Sample order: ${order.package.name} · Deadline: ${order.deadline}`;
+      document.getElementById("tracker-steps").innerHTML = steps.map((step, index) => {
+        const status = index < currentStep ? "done" : index === currentStep ? "current" : "";
+        return `<li class="${status}" ${index === currentStep ? 'aria-current="step"' : ""}>${step}</li>`;
+      }).join("");
+      document.getElementById("payment-status").textContent = `Where is my payment right now? ${paymentUpdates[Math.max(0, currentStep)]}`;
+      const finished = currentStep >= steps.length - 1;
+      document.getElementById("next-step").disabled = finished;
+      document.getElementById("tracker-complete").textContent = finished
+        ? "This sample order has reached the final step."
+        : `Step ${currentStep + 1} of ${steps.length}. Select “Simulate next step” to continue.`;
+    }
+
+    navButtons.forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.screen)));
+    document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.go)));
+    document.getElementById("skill-filter").addEventListener("change", (event) => renderFreelancers(event.target.value));
+    document.getElementById("package-list").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-select-package]");
+      if (!button) return;
+      document.getElementById("chosen-package").value = button.dataset.selectPackage;
+      showScreen("booking");
+      document.getElementById("chosen-package").focus();
+    });
+    document.getElementById("booking-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const selected = packages[Number(formData.get("package"))];
+      if (!selected) return;
+      order = {
+        businessName: String(formData.get("businessName")).trim(),
+        contact: String(formData.get("contact")).trim(),
+        description: String(formData.get("description")).trim(),
+        deadline: String(formData.get("deadline")),
+        package: selected
+      };
+      document.getElementById("summary-scope").textContent = `${selected.name}: ${selected.scope} Project details: ${order.description}`;
+      document.getElementById("summary-deadline").textContent = order.deadline;
+      document.getElementById("summary-price").textContent = selected.price;
+      document.getElementById("agreement").hidden = false;
+      document.getElementById("agree-check").checked = false;
+      document.getElementById("confirm-booking").disabled = true;
+      document.getElementById("booking-message").textContent = "Review the summary and select the agreement checkbox to continue.";
+      document.getElementById("agreement").scrollIntoView({ behavior: "auto", block: "start" });
+    });
+    document.getElementById("agree-check").addEventListener("change", (event) => {
+      document.getElementById("confirm-booking").disabled = !event.target.checked;
+    });
+    document.querySelectorAll('input[name="payment-terms"]').forEach((radio) => {
+      radio.addEventListener("change", (event) => {
+        if (order) order.paymentTerms = event.target.value;
+      });
+    });
+    document.getElementById("confirm-booking").addEventListener("click", () => {
+      if (!order || !document.getElementById("agree-check").checked) return;
+      order.paymentTerms = document.querySelector('input[name="payment-terms"]:checked').value;
+      currentStep = 0;
+      portfolioAdded = false;
+      document.getElementById("booking-message").textContent = "Sample order confirmed for this prototype. No booking or payment was created.";
+      renderTracker();
+      renderDashboard();
+      showScreen("tracker");
+    });
+    document.getElementById("next-step").addEventListener("click", () => {
+      if (!order || currentStep >= steps.length - 1) return;
+      currentStep += 1;
+      if (currentStep === steps.length - 1) portfolioAdded = true;
+      renderTracker();
+      renderDashboard();
+    });
+    document.getElementById("unavailable-toggle").addEventListener("change", renderDashboard);
+
+    renderFreelancers();
+    renderPackages();
+    renderDashboard();
+    renderTracker();
+  </script>
+</body>
+</html>

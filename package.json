@@ -1,0 +1,9 @@
+{
+  "name": "sugboskills-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local development server for the SugboSkills HTML prototype",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}
