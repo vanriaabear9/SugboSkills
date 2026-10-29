@@ -518,7 +518,6 @@
     <a class="nav-button" href="#/freelancers" data-nav-role="freelancer">Explore talent</a>
     <a class="nav-button" href="#/packages">Packages</a>
     <a class="nav-button" href="#/schedule">Schedule</a>
-    <a class="nav-button" href="#/dashboard/client/book" data-nav-role="client">Book a project</a>
     <a class="nav-button" href="#/tracker" data-nav-role="client">Order tracker</a>
   </nav>
 
@@ -697,7 +696,7 @@
       <h2 id="tracker-title">Order tracker</h2>
       <div id="tracker-empty" class="card">
         <p class="empty-state">No sample order yet. Submit the booking form and confirm the project agreement to start the tracker.</p>
-        <button class="button" type="button" data-go="booking">Go to booking form</button>
+        <a class="button" href="#/dashboard/client/book">Go to booking form</a>
       </div>
       <div id="tracker-content" hidden>
         <p id="order-label" class="intro"></p>
@@ -891,7 +890,7 @@
             : null;
       document.querySelectorAll("#main-navigation a").forEach((link) => {
         link.hidden = Boolean(activeNavRole && link.dataset.navRole !== activeNavRole);
-        if (link.getAttribute("href") === `#${route}`) link.setAttribute("aria-current", "page");
+        if (link.getAttribute("href") === `#${route}` || (route === "/dashboard/client/book" && link.getAttribute("href") === "#/dashboard/client")) link.setAttribute("aria-current", "page");
         else link.removeAttribute("aria-current");
       });
       if (window.location.hash.startsWith("#/")) window.scrollTo(0, 0);
