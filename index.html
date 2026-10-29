@@ -214,16 +214,17 @@
       <div class="section-heading">
         <div>
           <h2 id="freelancers-title">Meet the student freelancers</h2>
-          <p class="intro">Sample profiles for prototype testing. All names are placeholders.</p>
+          <p class="intro">Browse student freelancers by skill and experience level.</p>
         </div>
         <div class="filter-row">
           <label for="skill-filter">Filter by skill</label>
           <select id="skill-filter">
             <option value="all">All skills</option>
-            <option value="Graphic design">Graphic design</option>
-            <option value="Video editing">Video editing</option>
-            <option value="Web development">Web development</option>
-            <option value="CAD">CAD</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Video Editing">Video Editing</option>
+            <option value="Photo Editing">Photo Editing</option>
+            <option value="Web Design and Development">Web Design and Development</option>
+            <option value="CAD and 3d Modelling">CAD and 3d Modelling</option>
           </select>
         </div>
       </div>
@@ -247,9 +248,11 @@
         <table>
           <thead><tr><th scope="col">Day</th><th scope="col">Skill group receiving orders</th></tr></thead>
           <tbody>
-            <tr><td>Monday-Tuesday</td><td>Graphic design</td></tr>
-            <tr><td>Wednesday</td><td>Video editing</td></tr>
-            <tr><td>Thursday-Friday</td><td>Web development and CAD</td></tr>
+            <tr><td>Monday</td><td>Graphic Design</td></tr>
+            <tr><td>Tuesday</td><td>Photo Editing</td></tr>
+            <tr><td>Wednesday</td><td>Video Editing</td></tr>
+            <tr><td>Thursday</td><td>Web Design and Development</td></tr>
+            <tr><td>Friday</td><td>CAD and 3d Modelling</td></tr>
           </tbody>
         </table>
       </div>
@@ -322,7 +325,7 @@
 
     <section class="screen" id="dashboard" aria-labelledby="dashboard-title">
       <h2 id="dashboard-title">Freelancer dashboard</h2>
-      <p class="intro">Sample student-side view. Availability and jobs are mock data.</p>
+      <p class="intro">Freelancer roster. Availability and jobs are mock data.</p>
       <div class="dashboard-grid">
         <div class="card">
           <h3>Availability</h3>
@@ -340,17 +343,40 @@
           <p id="portfolio-empty" class="empty-state">No new client-approved sample work has been added.</p>
         </div>
       </div>
+      <h3>Freelancer roster</h3>
+      <div class="grid two" id="dashboard-freelancer-roster"></div>
     </section>
   </main>
 
   <script>
+    const skills = [
+      "Graphic Design",
+      "Video Editing",
+      "Photo Editing",
+      "Web Design and Development",
+      "CAD and 3d Modelling"
+    ];
     const freelancers = [
-      { name: "Sample A", skill: "Graphic design", level: "Advanced", verified: "Skill test passed and sample work reviewed", intake: "Monday" },
-      { name: "Sample B", skill: "Video editing", level: "Beginner", verified: "Editing task completed and sample work reviewed", intake: "Wednesday" },
-      { name: "Sample C", skill: "Web development", level: "Advanced", verified: "Code exercise passed and sample site reviewed", intake: "Thursday" },
-      { name: "Sample D", skill: "CAD", level: "Beginner", verified: "CAD task completed and drawing reviewed", intake: "Friday" },
-      { name: "Sample E", skill: "Graphic design", level: "Beginner", verified: "Skill test passed and sample work reviewed", intake: "Tuesday" },
-      { name: "Sample F", skill: "Web development", level: "Beginner", verified: "Code exercise passed and sample site reviewed", intake: "Friday" }
+      { name: "Barbie Igot", skill: "Graphic Design", level: "Advanced" },
+      { name: "Cryzza Belotindos", skill: "Graphic Design", level: "Advanced" },
+      { name: "Valir Dela Cruz", skill: "Graphic Design", level: "Intermediate" },
+      { name: "Joshua Reyes", skill: "Graphic Design", level: "Intermediate" },
+      { name: "Dane Aying", skill: "Video Editing", level: "Advanced" },
+      { name: "Romel Namocatcat", skill: "Video Editing", level: "Advanced" },
+      { name: "Shaina Chua", skill: "Video Editing", level: "Intermediate" },
+      { name: "Meghan Red", skill: "Video Editing", level: "Intermediate" },
+      { name: "Archiel Gilhang", skill: "Photo Editing", level: "Advanced" },
+      { name: "Daniel Rosialda", skill: "Photo Editing", level: "Advanced" },
+      { name: "Thompson Flores", skill: "Photo Editing", level: "Intermediate" },
+      { name: "Rey Garcia", skill: "Photo Editing", level: "Intermediate" },
+      { name: "Vincent Augusto", skill: "Web Design and Development", level: "Advanced" },
+      { name: "Michael Tagaan", skill: "Web Design and Development", level: "Advanced" },
+      { name: "Lester Lumactud", skill: "Web Design and Development", level: "Intermediate" },
+      { name: "Kyr Nadela", skill: "Web Design and Development", level: "Intermediate" },
+      { name: "Mikae Molina", skill: "CAD and 3d Modelling", level: "Advanced" },
+      { name: "Justin Aldevera", skill: "CAD and 3d Modelling", level: "Advanced" },
+      { name: "May Lopez", skill: "CAD and 3d Modelling", level: "Intermediate" },
+      { name: "Jhon Castro", skill: "CAD and 3d Modelling", level: "Intermediate" }
     ];
 
     const packages = [
@@ -399,11 +425,19 @@
       const visible = freelancers.filter((freelancer) => filter === "all" || freelancer.skill === filter);
       list.innerHTML = visible.map((freelancer) => `
         <article class="card">
-          <h3>${freelancer.name} <span class="sample-label">(Sample)</span></h3>
+          <h3>${freelancer.name}</h3>
           <p><strong>${freelancer.skill}</strong> · ${freelancer.level}</p>
-          <p><span class="badge">Verified by SugboSkills</span></p>
-          <p>${freelancer.verified}</p>
-          <p><strong>Next available intake:</strong> ${freelancer.intake}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderFreelancerRoster() {
+      document.getElementById("dashboard-freelancer-roster").innerHTML = skills.map((skill) => `
+        <article class="card">
+          <h4>${skill}</h4>
+          <ul>${freelancers.filter((freelancer) => freelancer.skill === skill).map((freelancer) => `
+            <li>${freelancer.name} — ${freelancer.level}</li>
+          `).join("")}</ul>
         </article>
       `).join("");
     }
@@ -518,6 +552,7 @@
     document.getElementById("unavailable-toggle").addEventListener("change", renderDashboard);
 
     renderFreelancers();
+    renderFreelancerRoster();
     renderPackages();
     renderDashboard();
     renderTracker();
