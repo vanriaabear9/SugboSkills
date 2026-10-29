@@ -518,7 +518,7 @@
     <a class="nav-button" href="#/freelancers" data-nav-role="freelancer">Explore talent</a>
     <a class="nav-button" href="#/packages">Packages</a>
     <a class="nav-button" href="#/schedule">Schedule</a>
-    <a class="nav-button" href="#/booking" data-nav-role="client">Book a project</a>
+    <a class="nav-button" href="#/dashboard/client/book" data-nav-role="client">Book a project</a>
     <a class="nav-button" href="#/tracker" data-nav-role="client">Order tracker</a>
   </nav>
 
@@ -862,6 +862,7 @@
       "/": "home",
       "/dashboard/freelancer": "dashboard",
       "/dashboard/client": "client-dashboard",
+      "/dashboard/client/book": "client-dashboard",
       "/dashboard/admin": "admin-dashboard",
       "/freelancers": "freelancers",
       "/packages": "packages",
@@ -870,17 +871,20 @@
       "/tracker": "tracker"
     };
     const screenRoutes = Object.fromEntries(Object.entries(routes).map(([route, screen]) => [screen, route]));
+    screenRoutes["client-dashboard"] = "/dashboard/client";
 
     function renderRoute() {
       const route = window.location.hash.startsWith("#/") ? window.location.hash.slice(1) : "/";
       const screenId = routes[route] || "home";
+      if (route === "/dashboard/client/book") activeClientPage = "book";
+      else if (route === "/dashboard/client") activeClientPage = "overview";
       document.querySelectorAll(".screen").forEach((section) => {
         section.classList.toggle("active", section.id === screenId);
       });
       document.body.classList.toggle("dashboard-view", route !== "/");
       const activeNavRole = route === "/dashboard/freelancer" || route === "/freelancers"
         ? "freelancer"
-        : route === "/dashboard/client" || route === "/booking" || route === "/tracker"
+        : route === "/dashboard/client" || route === "/dashboard/client/book" || route === "/booking" || route === "/tracker"
           ? "client"
           : route === "/dashboard/admin"
             ? "admin"
