@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#25503E">
-  <title>SugboSkills | Skills in Action. Futures in Motion.</title>
+  <meta name="theme-color" content="#174d38">
+  <meta name="description" content="Discover digital talent and new opportunities with SugboSkills, a freelancing marketplace for Filipino students and young professionals.">
+  <title>SugboSkills | Your Skills. Your Opportunities.</title>
   <style>
     :root {
       color-scheme: light;
@@ -174,40 +175,246 @@
       .grid.freelancers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .tracker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
+    :root {
+      --green: #174d38;
+      --orange: #e8b66d;
+      --ink: #172a21;
+      --muted: #64736a;
+      --surface: #f5f8f5;
+      --line: #e1e9e3;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(27, 63, 45, .08);
+    }
+    body { background: #fff; font-family: Inter, "Segoe UI", Arial, sans-serif; color: var(--ink); }
+    .site-header { padding: .8rem max(1.25rem, calc((100% - 1160px) / 2)); background: #fff; color: var(--ink); }
+    .brand-row { min-height: 54px; }
+    .brand-lockup { display: inline-flex; align-items: center; gap: .75rem; color: inherit; text-decoration: none; }
+    .brand-mark { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 14px; background: var(--green); color: #fff; font-size: 1.4rem; font-weight: 800; box-shadow: 0 7px 16px rgba(23, 77, 56, .18); }
+    .brand-lockup > span:last-child { display: grid; gap: .08rem; }
+    .brand { display: block; color: var(--green); font-size: 1.18rem; font-weight: 800; letter-spacing: -.025em; }
+    .tagline { display: block; margin: 0; color: var(--muted); font-size: .79rem; }
+    .prototype-banner { display: inline-flex; align-items: center; gap: .5rem; margin: 0; padding: .42rem .75rem; border: 1px solid #e8eee8; border-radius: 999px; background: #f7faf7; color: #56675c; font-size: .76rem; font-weight: 700; }
+    .prototype-banner > span { width: 7px; height: 7px; border-radius: 50%; background: #74a783; box-shadow: 0 0 0 3px #e1efe4; }
+    nav { display: none; flex-wrap: wrap; padding: .7rem max(1.25rem, calc((100% - 1160px) / 2)); border-top: 1px solid #f0f3f0; border-bottom: 1px solid var(--line); }
+    body.dashboard-view nav { display: flex; }
+    .nav-button { padding: .45rem .8rem; color: var(--green); font-size: .87rem; text-decoration: none; transition: background .18s ease, color .18s ease, border-color .18s ease; }
+    .nav-button:hover, .nav-button[aria-current="page"] { border-color: #d7e6da; background: #eaf3ec; color: #123d2b; }
+    main { max-width: 1160px; padding: 2rem 1.25rem 4rem; }
+    .screen.active { animation: screen-enter .3s ease both; }
+    @keyframes screen-enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+    h1, h2, h3, h4 { color: var(--green); letter-spacing: -.025em; }
+    h1 { font-size: clamp(2.35rem, 5vw, 4.1rem); line-height: 1.08; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); }
+    .welcome-hero { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; min-height: 440px; overflow: hidden; align-items: center; padding: clamp(2rem, 5vw, 4.35rem); border: 1px solid #e7eee8; border-radius: 28px; background: linear-gradient(112deg, #f3f8f3 0%, #f8faf6 51%, #edf5ed 100%); }
+    .hero-copy { position: relative; z-index: 1; max-width: 600px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .45rem; color: #43835d; font-size: .77rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .hero-copy h1 { margin: 1rem 0 .95rem; }
+    .hero-copy h1 span { color: #4b9163; }
+    .hero-subtitle { max-width: 570px; margin: 0 0 .75rem; color: #344a3c; font-size: clamp(1.1rem, 2vw, 1.28rem); line-height: 1.55; }
+    .hero-description { max-width: 570px; color: var(--muted); }
+    .button { min-height: 48px; border-radius: 10px; background: var(--green); box-shadow: 0 7px 15px rgba(23, 77, 56, .13); transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); background: #103c2a; box-shadow: 0 10px 20px rgba(23, 77, 56, .19); }
+    .button.secondary { background: #e8b66d; color: #39290e; }
+    .button.secondary:hover { background: #dfaa5b; }
+    .hero-button { gap: .85rem; margin-top: .55rem; padding: .8rem 1.1rem; }
+    .hero-button span { font-size: 1.1rem; }
+    .hero-proof { display: flex; align-items: center; gap: .55rem; margin-top: 1.4rem; color: #587060; font-size: .83rem; font-weight: 600; }
+    .proof-icon { display: grid; width: 20px; height: 20px; place-items: center; border-radius: 50%; background: #dceee0; color: var(--green); font-size: .75rem; }
+    .hero-art { position: relative; display: grid; min-height: 330px; place-items: center; }
+    .art-orbit { position: absolute; width: 300px; height: 300px; border: 1px solid rgba(58, 123, 80, .13); border-radius: 50%; }
+    .orbit-one { transform: scale(1.12); }
+    .orbit-two { width: 225px; height: 225px; border-style: dashed; }
+    .art-window { position: relative; z-index: 1; width: min(295px, 75vw); overflow: hidden; border: 1px solid rgba(255,255,255,.9); border-radius: 20px; background: #fff; box-shadow: 0 24px 60px rgba(35, 83, 53, .2); transform: rotate(-4deg); }
+    .window-top { display: flex; align-items: center; gap: 5px; height: 36px; padding: 0 12px; border-bottom: 1px solid #edf1ed; }
+    .window-top i { width: 7px; height: 7px; border-radius: 50%; background: #d9e5db; }
+    .window-top span { margin-left: auto; color: #72907a; font-size: .57rem; font-weight: 800; letter-spacing: .11em; }
+    .window-content { position: relative; min-height: 205px; padding: 20px; background: linear-gradient(145deg, #f8faf7, #edf5ed); }
+    .art-avatar { display: grid; width: 68px; height: 68px; place-items: center; border-radius: 20px; background: linear-gradient(145deg, #31744e, #8ab47e); color: #fff; font-size: 2rem; font-weight: 800; }
+    .art-lines { position: absolute; top: 37px; left: 103px; display: grid; gap: 8px; }
+    .art-lines b, .art-lines i { display: block; height: 8px; border-radius: 8px; background: #bed3c0; }
+    .art-lines b { width: 110px; background: #527a5d; }
+    .art-lines i { width: 74px; }
+    .art-tag { position: absolute; top: 31px; right: 18px; color: #397b4e; font-size: .58rem; font-weight: 900; line-height: 1.25; letter-spacing: .1em; }
+    .art-chart { display: flex; height: 63px; align-items: end; gap: 9px; margin-top: 18px; padding: 0 5px 5px; border-bottom: 1px solid #d5e4d7; }
+    .art-chart span { flex: 1; border-radius: 6px 6px 2px 2px; background: linear-gradient(#98c38d, #4b9362); }
+    .art-chart span:nth-child(1) { height: 35%; }.art-chart span:nth-child(2) { height: 54%; }.art-chart span:nth-child(3) { height: 45%; }.art-chart span:nth-child(4) { height: 78%; }.art-chart span:nth-child(5) { height: 100%; }
+    .art-note { position: absolute; right: 18px; bottom: 11px; color: #597362; font-size: .65rem; font-weight: 700; }
+    .art-note span { color: #42865a; font-size: .9rem; }
+    .art-spark { position: absolute; z-index: 2; color: #d39b4e; }
+    .spark-one { top: 15%; left: 12%; font-size: 1.6rem; }
+    .spark-two { right: 5%; bottom: 18%; font-size: 1.7rem; }
+    .floating-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: .65rem; padding: .7rem .8rem; border: 1px solid rgba(222, 234, 224, .9); border-radius: 12px; background: rgba(255,255,255,.95); box-shadow: 0 12px 30px rgba(31, 74, 47, .12); }
+    .floating-card > span { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; background: #e9f4e9; color: #4b8e5e; font-weight: 800; }
+    .floating-card div { display: grid; gap: 2px; }
+    .floating-card b { color: #294635; font-size: .73rem; }
+    .floating-card small { color: #758279; font-size: .61rem; }
+    .float-project { top: 14%; right: 0; }
+    .float-growth { bottom: 10%; left: 0; }
+    .welcome-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 1rem 0 3.5rem; padding: 1.1rem 1rem; border: 1px solid #edf1ed; border-radius: 15px; background: #fff; }
+    .welcome-stats div { display: grid; gap: .15rem; padding: .15rem 1rem; border-right: 1px solid #e9eee9; }
+    .welcome-stats div:last-child { border: 0; }
+    .welcome-stats strong { color: var(--green); font-size: .93rem; }
+    .welcome-stats span { color: var(--muted); font-size: .79rem; }
+    .role-section { scroll-margin-top: 24px; }
+    .role-heading { margin-bottom: 1.35rem; text-align: center; }
+    .role-heading h2 { margin: .55rem 0 .4rem; font-size: clamp(1.75rem, 3vw, 2.25rem); }
+    .role-heading p { color: var(--muted); }
+    .role-grid { gap: 1.15rem; }
+    .role-card { display: flex; min-height: 300px; flex-direction: column; align-items: flex-start; padding: 1.5rem; border: 1px solid #e6ece7; border-radius: 18px; background: #fff; box-shadow: 0 8px 26px rgba(28, 63, 43, .045); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .role-card:hover { transform: translateY(-5px); border-color: #c9ddcd; box-shadow: var(--shadow); }
+    .role-card:focus-visible { outline: 3px solid #d59a4c; outline-offset: 4px; }
+    .role-icon { display: grid; width: 52px; height: 52px; place-items: center; margin-bottom: 1.2rem; border-radius: 15px; }
+    .role-icon svg { width: 25px; height: 25px; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .freelancer-icon { background: #e8f3e8; color: #347b4a; }
+    .client-icon { background: #edf1fa; color: #5571a0; }
+    .admin-icon { background: #f8f0df; color: #a17b36; }
+    .role-kicker { color: #8a968e; font-size: .65rem; font-weight: 800; letter-spacing: .1em; }
+    .role-card h3 { margin: .35rem 0 .5rem; font-size: 1.17rem; }
+    .role-card p { margin: 0 0 1.25rem; color: var(--muted); font-size: .91rem; }
+    .role-button { width: 100%; justify-content: space-between; gap: .5rem; margin-top: auto; font-size: .88rem; }
+    .role-button span { font-size: 1.1rem; transition: transform .18s ease; }
+    .role-button:hover span { transform: translateX(3px); }
+    .dashboard-view main { min-height: calc(100vh - 190px); }
+    .dashboard-panel { margin-bottom: 1.4rem; padding: clamp(1.35rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(120deg, #f2f7f2, #fff); }
+    .dashboard-panel h2 { margin: .55rem 0; }
+    .dashboard-panel p { color: var(--muted); }
+    .dashboard-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+    .card, .role-card { box-shadow: 0 8px 26px rgba(28, 63, 43, .045); }
+    .card { border-radius: 15px; }
+    .text-link { color: #347b4a; font-size: .87rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .text-link:hover { color: #174d38; }
+    .admin-tools { margin-top: 1rem; }
+    .admin-metrics .card h3 { margin: .55rem 0 .25rem; font-size: 1.65rem; }
+    .admin-metrics .card p { margin-bottom: 0; color: var(--muted); font-size: .86rem; }
+    .status-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #5da36d; vertical-align: 2px; }
+    footer { display: flex; max-width: 1160px; justify-content: space-between; gap: 1rem; margin: 0 auto; padding: 1.4rem 1.25rem 2rem; border-top: 1px solid #e9eee9; color: var(--muted); font-size: .82rem; }
+    .footer-brand { color: var(--green); font-weight: 800; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #d59a4c; outline-offset: 3px; }
+    @media (max-width: 800px) {
+      .welcome-hero { grid-template-columns: 1fr .8fr; min-height: 400px; padding: 2rem; }
+      .hero-art { transform: scale(.86); }
+      .float-project { right: -12px; }
+      .float-growth { left: -12px; }
+      .role-card { padding: 1.2rem; }
+    }
+    @media (max-width: 650px) {
+      .site-header { padding: .75rem 1rem; }
+      .prototype-banner { font-size: .68rem; }
+      main { padding: 1.25rem 1rem 3rem; }
+      .welcome-hero { grid-template-columns: 1fr; gap: .5rem; padding: 1.55rem; border-radius: 21px; }
+      .hero-copy h1 { font-size: clamp(2.3rem, 11vw, 3.2rem); }
+      .hero-art { min-height: 275px; margin: -.1rem 0 -.3rem; transform: scale(.88); }
+      .art-orbit { width: 255px; height: 255px; }
+      .orbit-two { width: 195px; height: 195px; }
+      .welcome-stats { grid-template-columns: 1fr; gap: .75rem; margin: .85rem 0 2.5rem; padding: 1rem; }
+      .welcome-stats div { padding: 0 0 .7rem; border-right: 0; border-bottom: 1px solid #e9eee9; }
+      .welcome-stats div:last-child { padding-bottom: 0; }
+      .role-grid { grid-template-columns: 1fr; }
+      .role-card { min-height: 265px; }
+      footer { flex-direction: column; gap: .35rem; padding: 1.2rem 1rem 1.6rem; }
+      body.dashboard-view nav { padding: .65rem 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="brand-row">
-      <div>
-        <p class="brand"><strong>SugboSkills</strong></p>
-        <p class="tagline">Skills in Action. Futures in Motion.</p>
-      </div>
+      <a class="brand-lockup" href="#/" aria-label="SugboSkills home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span>
+          <span class="brand">SugboSkills</span>
+          <span class="tagline">Your Skills. Your Opportunities.</span>
+        </span>
+      </a>
+      <span class="prototype-banner"><span aria-hidden="true"></span> Prototype Mode</span>
     </div>
-    <div class="prototype-banner">Prototype for testing. No real payments or bookings.</div>
   </header>
-  <nav aria-label="Main navigation">
-    <button class="nav-button" type="button" data-screen="home" aria-current="page">Home</button>
-    <button class="nav-button" type="button" data-screen="freelancers">Freelancers</button>
-    <button class="nav-button" type="button" data-screen="packages">Packages</button>
-    <button class="nav-button" type="button" data-screen="schedule">Batch schedule</button>
-    <button class="nav-button" type="button" data-screen="booking">Book a project</button>
-    <button class="nav-button" type="button" data-screen="tracker">Order tracker</button>
-    <button class="nav-button" type="button" data-screen="dashboard">Student side</button>
+  <nav id="main-navigation" aria-label="Dashboard navigation">
+    <a class="nav-button" href="#/">Welcome</a>
+    <a class="nav-button" href="#/dashboard/freelancer">Freelancer</a>
+    <a class="nav-button" href="#/dashboard/client">Client</a>
+    <a class="nav-button" href="#/dashboard/admin">Admin</a>
+    <a class="nav-button" href="#/freelancers">Explore talent</a>
+    <a class="nav-button" href="#/packages">Packages</a>
+    <a class="nav-button" href="#/schedule">Schedule</a>
+    <a class="nav-button" href="#/booking">Book a project</a>
+    <a class="nav-button" href="#/tracker">Order tracker</a>
   </nav>
 
   <main>
     <section class="screen active" id="home" aria-labelledby="home-title">
-      <div class="hero">
-        <h1 id="home-title">Affordable student talent, checked by SugboSkills</h1>
-        <p class="intro">Get practical creative and technical help from CTU Main student freelancers, with every project reviewed by SugboSkills before delivery.</p>
-        <ul class="trust-list">
-          <li>Verified students</li>
-          <li>Company-reviewed work</li>
-          <li>Pay after approval</li>
-        </ul>
-        <button class="button secondary" type="button" data-go="booking">Book a project</button>
+      <div class="welcome-hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span aria-hidden="true">✦</span> A community built on talent</span>
+          <h1 id="home-title">Welcome to <span>SugboSkills</span></h1>
+          <p class="hero-subtitle">Discover opportunities, showcase your skills, and connect with clients who value your talent.</p>
+          <p class="hero-description">A home for Filipino students and young professionals to offer non-academic digital services, find great collaborators, and turn their skills into real-world experience.</p>
+          <a class="button hero-button" href="#choose-dashboard">Explore your next opportunity <span aria-hidden="true">↓</span></a>
+          <div class="hero-proof"><span class="proof-icon" aria-hidden="true">✓</span> Made for the next generation of Filipino digital talent</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-spark spark-one">✦</div>
+          <div class="art-spark spark-two">✳</div>
+          <div class="art-window">
+            <div class="window-top"><i></i><i></i><i></i><span>sugboskills</span></div>
+            <div class="window-content">
+              <div class="art-avatar">S</div>
+              <div class="art-lines"><b></b><i></i></div>
+              <div class="art-tag">CREATIVE<br>THINKER</div>
+              <div class="art-chart"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="art-note"><span>↗</span> Skills in motion</div>
+            </div>
+          </div>
+          <div class="floating-card float-project"><span>✦</span><div><b>New opportunity</b><small>Your next idea starts here</small></div></div>
+          <div class="floating-card float-growth"><span>↗</span><div><b>Room to grow</b><small>Build your future, one skill at a time</small></div></div>
+        </div>
       </div>
+      <div class="welcome-stats" aria-label="Platform highlights">
+        <div><strong>Local talent</strong><span>Rooted in the Philippines</span></div>
+        <div><strong>Digital services</strong><span>Creative and technical skills</span></div>
+        <div><strong>Real opportunity</strong><span>Made for people building what's next</span></div>
+      </div>
+      <section class="role-section" id="choose-dashboard" aria-labelledby="roles-title">
+        <div class="role-heading">
+          <span class="eyebrow">Get started in one click</span>
+          <h2 id="roles-title">Choose Your Dashboard</h2>
+          <p>Pick a space to explore. No account or password needed in this prototype.</p>
+        </div>
+        <div class="grid three role-grid">
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/freelancer" aria-label="Freelancer Dashboard">
+            <div class="role-icon freelancer-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M8 21h8M12 17v4M8 9h8M8 13h5"></path></svg>
+            </div>
+            <span class="role-kicker">FOR INDEPENDENT CREATORS</span>
+            <h3>Freelancer Dashboard</h3>
+            <p>Find gigs, showcase your portfolio, and grow your freelance career.</p>
+            <a class="button role-button" href="#/dashboard/freelancer">Continue as Freelancer <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/client" aria-label="Client Dashboard">
+            <div class="role-icon client-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="role-kicker">FOR PEOPLE WITH PROJECTS</span>
+            <h3>Client Dashboard</h3>
+            <p>Post projects, discover skilled freelancers, and manage your hires.</p>
+            <a class="button role-button" href="#/dashboard/client">Continue as Client <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="role-card" tabindex="0" data-role-route="#/dashboard/admin" aria-label="Admin Dashboard">
+            <div class="role-icon admin-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </div>
+            <span class="role-kicker">FOR PLATFORM OPERATORS</span>
+            <h3>Admin Dashboard</h3>
+            <p>Manage users, monitor platform activities, and maintain a safe marketplace.</p>
+            <a class="button role-button" href="#/dashboard/admin">Continue as Admin <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
     </section>
 
     <section class="screen" id="freelancers" aria-labelledby="freelancers-title">
@@ -325,7 +532,15 @@
 
     <section class="screen" id="dashboard" aria-labelledby="dashboard-title">
       <h2 id="dashboard-title">Freelancer dashboard</h2>
-      <p class="intro">Freelancer roster. Availability and jobs are mock data.</p>
+      <div class="dashboard-panel">
+        <span class="eyebrow">YOUR CREATOR SPACE</span>
+        <h2 id="freelancer-welcome">Good to have you here.</h2>
+        <p>Find your next project, keep your availability up to date, and build a portfolio that shows what you can do.</p>
+        <div class="dashboard-actions">
+          <a class="button" href="#/freelancers">Explore freelancer roster</a>
+          <a class="button secondary" href="#/tracker">View order tracker</a>
+        </div>
+      </div>
       <div class="dashboard-grid">
         <div class="card">
           <h3>Availability</h3>
@@ -346,7 +561,65 @@
       <h3>Freelancer roster</h3>
       <div class="grid two" id="dashboard-freelancer-roster"></div>
     </section>
+
+    <section class="screen" id="client-dashboard" aria-labelledby="client-dashboard-title">
+      <div class="dashboard-panel">
+        <span class="eyebrow">YOUR CLIENT SPACE</span>
+        <h2 id="client-dashboard-title">Great work starts with the right people.</h2>
+        <p>Find local digital talent, choose a service package, and keep your project moving from one convenient place.</p>
+        <div class="dashboard-actions">
+          <a class="button" href="#/freelancers">Discover freelancers</a>
+          <a class="button secondary" href="#/booking">Start a project</a>
+        </div>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <span class="badge">01 · DISCOVER</span>
+          <h3>Find your people</h3>
+          <p>Explore student and early-career talent across five digital skill areas.</p>
+          <a class="text-link" href="#/freelancers">Browse the freelancer roster →</a>
+        </article>
+        <article class="card">
+          <span class="badge">02 · PLAN</span>
+          <h3>Choose a service</h3>
+          <p>Review sample packages and find a starting point for your next idea.</p>
+          <a class="text-link" href="#/packages">View service packages →</a>
+        </article>
+        <article class="card">
+          <span class="badge">03 · GET MOVING</span>
+          <h3>Share your brief</h3>
+          <p>Tell us what you need in the project booking prototype. Nothing is submitted or saved.</p>
+          <a class="text-link" href="#/booking">Create a project brief →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="screen" id="admin-dashboard" aria-labelledby="admin-dashboard-title">
+      <div class="dashboard-panel">
+        <span class="eyebrow">MARKETPLACE OPERATIONS</span>
+        <h2 id="admin-dashboard-title">Admin Dashboard</h2>
+        <p>A prototype overview for keeping the SugboSkills community organized, visible, and safe.</p>
+      </div>
+      <div class="grid three admin-metrics">
+        <article class="card"><span class="sample-label">FREELANCER PROFILES</span><h3>20</h3><p>Across 5 digital skill groups</p></article>
+        <article class="card"><span class="sample-label">SKILL CATEGORIES</span><h3>5</h3><p>Creative and technical services</p></article>
+        <article class="card"><span class="sample-label">PLATFORM STATUS</span><h3><span class="status-dot"></span> Prototype</h3><p>Demo data only; no live accounts</p></article>
+      </div>
+      <div class="card admin-tools">
+        <h3>Marketplace tools</h3>
+        <p>Review the current demo roster, explore the service workflow, or check the sample order tracker.</p>
+        <div class="dashboard-actions">
+          <a class="button" href="#/freelancers">Review freelancer roster</a>
+          <a class="button secondary" href="#/schedule">View batch schedule</a>
+          <a class="button" href="#/tracker">Open order tracker</a>
+        </div>
+      </div>
+    </section>
   </main>
+  <footer>
+    <div><span class="footer-brand">SugboSkills</span><br>Your Skills. Your Opportunities.</div>
+    <div>Demonstration prototype · No accounts, bookings, or payments are processed.</div>
+  </footer>
 
   <script>
     const skills = [
@@ -407,17 +680,43 @@
     let order = null;
     let currentStep = -1;
     let portfolioAdded = false;
-    const navButtons = document.querySelectorAll(".nav-button");
+    const routes = {
+      "/": "home",
+      "/dashboard/freelancer": "dashboard",
+      "/dashboard/client": "client-dashboard",
+      "/dashboard/admin": "admin-dashboard",
+      "/freelancers": "freelancers",
+      "/packages": "packages",
+      "/schedule": "schedule",
+      "/booking": "booking",
+      "/tracker": "tracker"
+    };
+    const screenRoutes = Object.fromEntries(Object.entries(routes).map(([route, screen]) => [screen, route]));
+
+    function renderRoute() {
+      const route = window.location.hash.startsWith("#/") ? window.location.hash.slice(1) : "/";
+      const screenId = routes[route] || "home";
+      document.querySelectorAll(".screen").forEach((section) => {
+        section.classList.toggle("active", section.id === screenId);
+      });
+      document.body.classList.toggle("dashboard-view", route !== "/");
+      document.querySelectorAll("#main-navigation a").forEach((link) => {
+        if (link.getAttribute("href") === `#${route}`) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      });
+      if (window.location.hash.startsWith("#/")) window.scrollTo(0, 0);
+      const title = document.querySelector(`#${screenId} h1, #${screenId} h2`);
+      document.title = title ? `${title.textContent.trim()} | SugboSkills` : "SugboSkills | Your Skills. Your Opportunities.";
+    }
 
     function showScreen(id) {
-      document.querySelectorAll(".screen").forEach((section) => {
-        section.classList.toggle("active", section.id === id);
-      });
-      navButtons.forEach((button) => {
-        if (button.dataset.screen === id) button.setAttribute("aria-current", "page");
-        else button.removeAttribute("aria-current");
-      });
-      window.scrollTo(0, 0);
+      const route = screenRoutes[id];
+      if (!route) throw new Error(`Unknown SugboSkills screen: ${id}`);
+      if (window.location.hash === `#${route}`) renderRoute();
+      else {
+        window.location.hash = route;
+        renderRoute();
+      }
     }
 
     function renderFreelancers(filter = "all") {
@@ -493,8 +792,18 @@
         : `Step ${currentStep + 1} of ${steps.length}. Select “Simulate next step” to continue.`;
     }
 
-    navButtons.forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.screen)));
     document.querySelectorAll("[data-go]").forEach((button) => button.addEventListener("click", () => showScreen(button.dataset.go)));
+    document.querySelectorAll("[data-role-route]").forEach((card) => {
+      card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+        window.location.hash = card.dataset.roleRoute.slice(1);
+      });
+      card.addEventListener("keydown", (event) => {
+        if (event.target !== card || (event.key !== "Enter" && event.key !== " ")) return;
+        event.preventDefault();
+        window.location.hash = card.dataset.roleRoute.slice(1);
+      });
+    });
     document.getElementById("skill-filter").addEventListener("change", (event) => renderFreelancers(event.target.value));
     document.getElementById("package-list").addEventListener("click", (event) => {
       const button = event.target.closest("[data-select-package]");
@@ -550,12 +859,14 @@
       renderDashboard();
     });
     document.getElementById("unavailable-toggle").addEventListener("change", renderDashboard);
+    window.addEventListener("hashchange", renderRoute);
 
     renderFreelancers();
     renderFreelancerRoster();
     renderPackages();
     renderDashboard();
     renderTracker();
+    renderRoute();
   </script>
 </body>
 </html>
