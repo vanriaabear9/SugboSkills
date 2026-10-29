@@ -825,8 +825,8 @@
       { name: "Kyr Nadela", skill: "Web Design and Development", level: "Intermediate" },
       { name: "Mikae Molina", skill: "CAD and 3d Modelling", level: "Advanced" },
       { name: "Justin Aldevera", skill: "CAD and 3d Modelling", level: "Advanced" },
-      { name: "May Lopez", skill: "CAD and 3d Modelling", level: "Intermediate" },
-      { name: "Jhon Castro", skill: "CAD and 3d Modelling", level: "Intermediate" }
+      { name: "Mariah Cassandra", skill: "CAD and 3d Modelling", level: "Intermediate" },
+      { name: "Peter Aquino", skill: "CAD and 3d Modelling", level: "Intermediate" }
     ];
 
     const packages = [
@@ -976,7 +976,12 @@
       { id:"gig-cad-model", title:"3D model and product render for a furniture maker", client:"Kahoy Studio", verified:false, category:"CAD and 3d Modeling", description:"Create a clean 3D model and product render from the maker's reference sketches.", fullDescription:"Model one small furniture product from provided measurements and sketches. Deliver editable project files and two polished product renders for the maker's online catalog.", skills:["CAD and 3D Modeling","3D Rendering","Product Visualization"], budget:2800, deadline:dateAfterDays(26), applicants:3, experience:"Advanced" }
     ];
     demoGigs.forEach((gig,index) => { gig.postedAt = dateAfterDays(-index); });
-    const platformSkills = ["Graphic Design","Video Editing","Photo Editing","Web Design and Development","CAD and 3d Modeling"];
+    const platformSkills = [...skills];
+    function normalizeMarketplaceSkill(skill) {
+      return skill === "CAD and 3d Modeling" || skill === "CAD and 3D Modeling"
+        ? "CAD and 3d Modelling"
+        : skill;
+    }
     const marketplaceStorageKey = "sugboSkills.marketplace.v1";
     const marketplaceClient = { id:"client-maya", name:"Maya Santos", business:"Harbor & Hearth Cafe", email:"maya.santos.demo@example.test", status:"Active" };
     const rosterProfiles = freelancers.map((freelancer,index) => ({
@@ -990,6 +995,14 @@
       email:`${freelancer.name.toLowerCase().replace(/[^a-z0-9]+/g,".")}@student.example.test`,
       status:"Active"
     }));
+    const rosterIdAliases = new Map([
+      ["roster-may-lopez","roster-mariah-cassandra"],
+      ["roster-jhon-castro","roster-peter-aquino"]
+    ]);
+    const renamedRosterProfiles = {
+      "roster-may-lopez":{id:"roster-mariah-cassandra",name:"Mariah Cassandra"},
+      "roster-jhon-castro":{id:"roster-peter-aquino",name:"Peter Aquino"}
+    };
     function defaultTeamForDate(date) {
       const weekday = new Date(`${date}T00:00:00`).getDay();
       return weekday % 2 === 1 ? 0 : 1;
@@ -1043,6 +1056,29 @@
         if (!saved) return defaults;
         const parsed=JSON.parse(saved);
         if (!parsed || typeof parsed!=="object" || !Array.isArray(parsed.freelancers) || !Array.isArray(parsed.clients) || !parsed.scheduleOverrides || !Array.isArray(parsed.bookings) || !Array.isArray(parsed.complaints) || !Array.isArray(parsed.announcements)) throw new Error("Saved marketplace data is invalid.");
+        const migratedProfileIds=new Map(rosterIdAliases);
+        parsed.freelancers=parsed.freelancers.map((profile)=>{
+          const renamed=renamedRosterProfiles[profile.id];
+          if(!renamed) return profile;
+          migratedProfileIds.set(profile.id,renamed.id);
+          return {...profile,...renamed,skill:normalizeMarketplaceSkill(profile.skill)};
+        }).map((profile)=>({
+          ...profile,
+          skill:normalizeMarketplaceSkill(profile.skill)
+        })).filter((profile,index,profiles)=>profiles.findIndex((candidate)=>candidate.id===profile.id)===index);
+        parsed.scheduleOverrides=Object.fromEntries(Object.entries(parsed.scheduleOverrides).map(([key,id])=>{
+          const [date,skill,level]=key.split("|");
+          return [[date,normalizeMarketplaceSkill(skill),level].join("|"),migratedProfileIds.get(id)||id];
+        }));
+        parsed.bookings=parsed.bookings.map((booking)=>{
+          const newFreelancerId=migratedProfileIds.get(booking.freelancerId);
+          const profile=newFreelancerId&&parsed.freelancers.find((candidate)=>candidate.id===newFreelancerId);
+          return {
+            ...booking,
+            skill:normalizeMarketplaceSkill(booking.skill),
+            ...(newFreelancerId?{freelancerId:newFreelancerId,freelancerName:profile?.name||booking.freelancerName}:{})
+          };
+        });
         return {...defaults,...parsed};
       } catch (error) {
         console.error("Could not load shared marketplace data.",error);
@@ -1136,7 +1172,11 @@
     let activeFreelancerAccountId = "alex-rivera";
     try {
       const savedAccountId = localStorage.getItem(`${freelancerStorageKey}.active`);
-      if (savedAccountId && freelancerAccounts[savedAccountId]) activeFreelancerAccountId = savedAccountId;
+      const savedRosterId=savedAccountId?.replace(/^student-/,"");
+      const migratedAccountId=savedRosterId&&rosterIdAliases.has(savedRosterId)
+        ?`student-${rosterIdAliases.get(savedRosterId)}`
+        :savedAccountId;
+      if (migratedAccountId && freelancerAccounts[migratedAccountId]) activeFreelancerAccountId = migratedAccountId;
     } catch (error) {
       console.error("Could not read the selected demo freelancer account.", error);
     }
