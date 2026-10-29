@@ -335,7 +335,23 @@
     .workspace-compact-button { min-height:30px; border:1px solid var(--line); border-radius:7px; padding:.3rem .48rem; background:#fff; color:#405448; font-size:.66rem; font-weight:700; }
     .workspace-compact-button:hover { background:#f3f8f3; }
     .workspace-dialog { width:min(600px,calc(100% - 2rem)); max-height:85vh; overflow:auto; border:1px solid var(--line); border-radius:14px; padding:1rem; }
+    .workspace-dialog.profile-wide { width:min(860px,calc(100% - 2rem)); }
     .workspace-dialog::backdrop { background:rgba(18,34,25,.48); }
+    .browse-freelancer-card { display:grid; grid-template-columns:76px minmax(0,1fr); gap:.7rem; width:100%; padding:.75rem; border:1px solid var(--line); border-radius:12px; background:#fff; text-align:left; cursor:pointer; box-shadow:0 5px 16px rgba(28,63,43,.035); }
+    .browse-freelancer-card:hover, .browse-freelancer-card:focus-visible { border-color:#c5d8c9; background:#f7fbf7; }
+    .browse-card-photo, .profile-dialog-photo { width:76px; height:76px; object-fit:cover; border-radius:12px; background:#eaf3eb; }
+    .profile-dialog-photo { width:92px; height:92px; border-radius:16px; }
+    .browse-freelancer-card h3 { margin:.05rem 0 .2rem; color:#294031; font-size:.9rem; }
+    .browse-freelancer-card p { margin:0 0 .35rem; color:#68766d; font-size:.73rem; }
+    .browse-skill-group { margin-bottom:1.15rem; }
+    .browse-profile-hero { display:flex; align-items:flex-start; gap:.85rem; margin-bottom:.9rem; }
+    .browse-profile-hero h2 { margin:.1rem 0 .2rem; }
+    .browse-portfolio-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.65rem; }
+    .browse-portfolio-item { overflow:hidden; border:1px solid var(--line); border-radius:11px; background:#fff; }
+    .browse-portfolio-item img { display:block; width:100%; height:132px; object-fit:cover; background:#eaf3eb; }
+    .browse-portfolio-item h3 { margin:.55rem .7rem .2rem; color:#314334; font-size:.78rem; }
+    .browse-portfolio-item p { margin:0 .7rem .7rem; color:#748077; font-size:.67rem; }
+    @media (max-width:650px) { .browse-portfolio-grid { grid-template-columns:1fr; } .browse-profile-hero { flex-direction:column; } }
     .workspace-mobile-nav { display:none; }
     @media (max-width:900px) { .workspace-grid.four { grid-template-columns:repeat(2,minmax(0,1fr)); }.workspace-grid.three { grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width:650px) { .workspace-shell { grid-template-columns:minmax(0,1fr); }.workspace-sidebar { position:static; min-height:0; padding:.55rem; }.workspace-brand { display:none; }.workspace-nav { display:flex; overflow-x:auto; }.workspace-nav button { width:auto; flex:0 0 auto; white-space:nowrap; }.workspace-grid,.workspace-grid.three { grid-template-columns:1fr; }.workspace-form { grid-template-columns:1fr; }.workspace-form .wide { grid-column:auto; }.workspace-topbar { min-height:35px; }.workspace-user-label { display:none; } }
@@ -714,9 +730,7 @@
           <p class="sidebar-label">Workspace</p>
           <nav class="freelancer-menu" aria-label="Freelancer dashboard">
             <button type="button" data-freelancer-page="overview" aria-current="page"><span aria-hidden="true">⌂</span>Overview</button>
-            <button type="button" data-freelancer-page="gigs"><span aria-hidden="true">⌕</span>Find Gigs</button>
-            <button type="button" data-freelancer-page="applications"><span aria-hidden="true">▤</span>My Applications</button>
-            <button type="button" data-freelancer-page="my-gigs"><span aria-hidden="true">◷</span>My Gigs</button>
+            <button type="button" data-freelancer-page="my-gigs"><span aria-hidden="true">◷</span>My Bookings</button>
             <button type="button" data-freelancer-page="portfolio"><span aria-hidden="true">▧</span>My Portfolio</button>
             <button type="button" data-freelancer-page="reviews"><span aria-hidden="true">☆</span>Ratings &amp; Reviews</button>
             <button type="button" data-freelancer-page="messages"><span aria-hidden="true">✉</span>Messages</button>
@@ -752,6 +766,7 @@
           <nav class="workspace-nav" aria-label="Client dashboard">
             <button type="button" data-client-page="overview" aria-current="page">⌂ Overview</button>
             <button type="button" data-client-page="book">＋ Book a Project</button>
+            <button type="button" data-client-page="browse-freelancers">👥 Browse Freelancers</button>
             <button type="button" data-client-page="bookings">▤ My Bookings</button>
             <button type="button" data-client-page="announcements">◉ Announcements</button>
             <button type="button" data-client-page="complaints">⚑ Report an Issue</button>
@@ -910,13 +925,8 @@
 
     function renderFreelancers(filter = "all") {
       const list = document.getElementById("freelancer-list");
-      const visible = freelancers.filter((freelancer) => filter === "all" || freelancer.skill === filter);
-      list.innerHTML = visible.map((freelancer) => `
-        <article class="card">
-          <h3>${freelancer.name}</h3>
-          <p><strong>${freelancer.skill}</strong> · ${freelancer.level}</p>
-        </article>
-      `).join("");
+      const visible = marketplaceState.freelancers.filter((freelancer) => filter === "all" || freelancer.skill === filter);
+      list.innerHTML = visible.map((freelancer) => renderBrowseFreelancerCard(freelancer)).join("") || '<div class="empty-state">No student freelancers match this skill yet.</div>';
     }
 
     function renderPackages() {
@@ -1101,6 +1111,106 @@
       }
     }
     function getRosterProfile(id) { return marketplaceState.freelancers.find((profile)=>profile.id===id); }
+    function unsplashPhoto(id, width=800) {
+      return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+    }
+    function hashSeed(value) {
+      return [...String(value)].reduce((hash, character) => (hash * 31 + character.charCodeAt(0)) >>> 0, 0);
+    }
+    const freelancerPortraits = [
+      "photo-1531123897727-8f129e1688ce","photo-1524504388940-b1c1722653e1","photo-1500648767791-00dcc994a43e","photo-1507003211169-0a1dd7228f2d",
+      "photo-1438761681033-6461ffad8d80","photo-1534528741775-53994a69daeb","photo-1544005313-94ddf0286df2","photo-1506794778202-cad84cf45f1d",
+      "photo-1472099645785-5658abf4ff4e","photo-1517841905240-472988babdf9","photo-1539571696357-5a69c17a67c6","photo-1487412720507-e7ab37603c6f",
+      "photo-1494790108377-be9c29b29330","photo-1519085360753-af0119f7cbe7","photo-1463453091185-61582044d556","photo-1488426862026-3ee34a7d66df",
+      "photo-1508214753546-523dcfbb3e69","photo-1521119989659-a83ddd788061","photo-1527980965255-d3b416303d12","photo-1529665253569-6d01c0eaf7b6"
+    ];
+    const browsePortfolioCatalog = {
+      "Graphic Design": [
+        { title:"Harbor cafe brand kit", description:"Logo, color palette, and storefront-ready marks for a neighborhood cafe.", image:unsplashPhoto("photo-1561070791-2526d30994b5") },
+        { title:"Social poster series", description:"A three-post campaign set sized for Facebook and Instagram.", image:unsplashPhoto("photo-1626785774573-4b799315345d") },
+        { title:"Market day flyer pack", description:"Print and digital flyers for a weekend community market.", image:unsplashPhoto("photo-1542744173-8e7e53415bb0") },
+        { title:"Product label refresh", description:"Clean label layouts for a small-batch local product line.", image:unsplashPhoto("photo-1609921217029-a6e61ca4a155") }
+      ],
+      "Video Editing": [
+        { title:"Skincare launch reels", description:"Captioned vertical edits from product footage for a brand launch.", image:unsplashPhoto("photo-1574717024653-61fd2cf4d44d") },
+        { title:"Travel weekend highlight", description:"A paced short-form reel with titles and music direction.", image:unsplashPhoto("photo-1492691527719-9d1e07e534b4") },
+        { title:"Community market recap", description:"A 90-second event highlight with clean audio and titles.", image:unsplashPhoto("photo-1478720568477-152d9b164e26") },
+        { title:"Menu teaser clips", description:"Color-graded food clips ready for social stories.", image:unsplashPhoto("photo-1536240478700-b86987abf5d9") }
+      ],
+      "Photo Editing": [
+        { title:"Restaurant menu retouch", description:"Consistent color and crops across a 12-image food menu set.", image:unsplashPhoto("photo-1542038784456-1ea8e935640e") },
+        { title:"Boutique catalog cleanup", description:"Product photos with even lighting and clean backgrounds.", image:unsplashPhoto("photo-1554048612-b6a482bc67e5") },
+        { title:"Portrait color grade", description:"Soft skin tones and natural color for a studio portrait series.", image:unsplashPhoto("photo-1516035069371-29a1b244cc32") },
+        { title:"Storefront photo polish", description:"Exterior and interior photos prepared for a business listing.", image:unsplashPhoto("photo-1500530855697-b586d89ba3ee") }
+      ],
+      "Web Design and Development": [
+        { title:"Travel studio landing page", description:"Responsive service page with a clear inquiry form prototype.", image:unsplashPhoto("photo-1460925895917-afdab827c52f") },
+        { title:"Cafe booking microsite", description:"A one-page layout with menu highlights and contact CTA.", image:unsplashPhoto("photo-1498050108023-c5249f4df085") },
+        { title:"Portfolio site refresh", description:"A mobile-first layout for showcasing student project work.", image:unsplashPhoto("photo-1547658719-da2b51169166") },
+        { title:"Local shop product page", description:"Product grid and detail layout for a small online catalog.", image:unsplashPhoto("photo-1517694712202-14dd9538aa97") }
+      ],
+      "CAD and 3d Modelling": [
+        { title:"Furniture product render", description:"A modeled stool with two catalog-ready product renders.", image:unsplashPhoto("photo-1581091226825-a6a2a5aee158") },
+        { title:"Interior fixture study", description:"CAD views of a small fixture designed for a local maker.", image:unsplashPhoto("photo-1581094794329-c8112a89af12") },
+        { title:"Packaging mockup model", description:"A simple 3D package form used for label placement studies.", image:unsplashPhoto("photo-1503387762-592deb58ef4e") },
+        { title:"Display stand prototype", description:"Modeled display stand with exploded and assembled views.", image:unsplashPhoto("photo-1486718448742-163732cd1544") }
+      ]
+    };
+    function browsePortrait(profile) {
+      return unsplashPhoto(freelancerPortraits[hashSeed(profile.id || profile.name) % freelancerPortraits.length], 400);
+    }
+    function browsePortfolio(profile) {
+      const catalog = browsePortfolioCatalog[normalizeMarketplaceSkill(profile.skill)] || browsePortfolioCatalog["Graphic Design"];
+      const start = hashSeed(profile.id || profile.name) % catalog.length;
+      return [0,1,2].map((offset) => catalog[(start + offset) % catalog.length]);
+    }
+    function browseBio(profile) {
+      const first = String(profile.name || "").split(" ")[0] || "This freelancer";
+      const level=String(profile.level || "student").toLowerCase();
+      const article=/^[aeiou]/.test(level)?"an":"a";
+      return `${first} is ${article} ${level} ${String(profile.skill || "digital").toLowerCase()} freelancer on SugboSkills. Recent work includes client-ready projects, sample designs, and polished deliverables for local businesses.`;
+    }
+    function avatarFallback(name) {
+      return `https://ui-avatars.com/api/?name=${encodeURIComponent(name || "SugboSkills")}&background=e5f0e6&color=174d38&size=256`;
+    }
+    function renderBrowseFreelancerCard(profile) {
+      const photo = browsePortrait(profile);
+      return `<button class="browse-freelancer-card" type="button" data-client-action="view-freelancer" data-id="${escapeHTML(profile.id)}" aria-label="Open ${escapeHTML(profile.name)} profile and portfolio">
+        <img class="browse-card-photo" src="${escapeHTML(photo)}" alt="" onerror="this.onerror=null;this.src='${escapeHTML(avatarFallback(profile.name))}'">
+        <span>
+          <h3>${escapeHTML(profile.name)}</h3>
+          <p><strong>${escapeHTML(profile.skill)}</strong> · ${escapeHTML(profile.level)}</p>
+          <span class="workspace-muted">★ ${escapeHTML(profile.rating ?? 4.8)} · ${escapeHTML(profile.reviews ?? 8)} reviews · Tap to view portfolio</span>
+        </span>
+      </button>`;
+    }
+    function openFreelancerProfile(profile) {
+      if (!profile) return;
+      const range = pricingRange(profile.level || "Intermediate");
+      const portfolio = browsePortfolio(profile).map((item) => `
+        <article class="browse-portfolio-item">
+          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" onerror="this.style.display='none'">
+          <h3>${escapeHTML(item.title)}</h3>
+          <p>${escapeHTML(item.description)}</p>
+        </article>`).join("");
+      openWorkspaceDialog(`${profile.name} · profile`, `
+        <div class="browse-profile-hero">
+          <img class="profile-dialog-photo" src="${escapeHTML(browsePortrait(profile))}" alt="${escapeHTML(profile.name)}" onerror="this.onerror=null;this.src='${escapeHTML(avatarFallback(profile.name))}'">
+          <div>
+            <span class="skill-tag">${escapeHTML(profile.skill)}</span>
+            <h2>${escapeHTML(profile.name)}</h2>
+            <p>${escapeHTML(profile.level)} · ★ ${escapeHTML(profile.rating ?? 4.8)} (${escapeHTML(profile.reviews ?? 8)} reviews)</p>
+            <p>${escapeHTML(browseBio(profile))}</p>
+            <span class="workspace-muted">Sample rate ${money(range.min)}–${money(range.max)} · Demo profile only</span>
+          </div>
+        </div>
+        <h3>Recent projects and designs</h3>
+        <div class="browse-portfolio-grid">${portfolio}</div>
+        <div class="dialog-actions">
+          <button class="workspace-compact-button" type="button" data-workspace-action="close-dialog">Close</button>
+          <button class="button" type="button" data-client-action="book-skill" data-skill="${escapeHTML(profile.skill)}">Book this skill</button>
+        </div>`, "profile-wide");
+    }
     function marketplaceSlotKey(date,skill,level) { return `${date}|${skill}|${level}`; }
     function marketplaceSlot(date,skill,level) {
       const overrideId=marketplaceState.scheduleOverrides[marketplaceSlotKey(date,skill,level)];
@@ -1630,6 +1740,10 @@
       });
     });
     document.getElementById("skill-filter").addEventListener("change", (event) => renderFreelancers(event.target.value));
+    document.getElementById("freelancer-list").addEventListener("click", (event) => {
+      const action=event.target.closest("[data-client-action='view-freelancer']");
+      if(action) openFreelancerProfile(getRosterProfile(action.dataset.id));
+    });
     document.getElementById("package-list").addEventListener("click", (event) => {
       const button = event.target.closest("[data-select-package]");
       if (!button) return;
@@ -1694,6 +1808,7 @@
     let adminProjectFilter="";
     let clientBookingDate=dateAfterDays(1);
     let clientBookingSkill=platformSkills[0];
+    let clientBrowseSkill="all";
     function workspaceHeading(title,subtitle,action="") {
       return `<div class="workspace-hero"><div><span class="eyebrow">SUGBOSKILLS · DEMO WORKSPACE</span><h1>${escapeHTML(title)}</h1><p>${escapeHTML(subtitle)}</p></div>${action}</div>`;
     }
@@ -1812,11 +1927,22 @@
       const visible=marketplaceState.announcements.filter((item)=>item.audience==="Everyone"||item.audience==="Clients");
       return `${workspaceHeading("Announcements","Notices from the SugboSkills admin team.")}${visible.length?`<div class="workspace-grid">${visible.slice().reverse().map((item)=>`<article class="workspace-card"><h2>${escapeHTML(item.title)}</h2><p>${escapeHTML(item.message)}</p><span class="workspace-muted">${escapeHTML(item.createdAt)}</span></article>`).join("")}</div>`:'<div class="workspace-empty">No announcements are available.</div>'}`;
     }
+    function renderClientBrowseFreelancers() {
+      const filter=platformSkills.includes(clientBrowseSkill)?clientBrowseSkill:"all";
+      const groups=platformSkills.filter((skill)=>filter==="all"||skill===filter).map((skill)=>{
+        const people=marketplaceState.freelancers.filter((profile)=>profile.skill===skill).sort((a,b)=>a.level.localeCompare(b.level)||a.name.localeCompare(b.name));
+        return {skill,people};
+      });
+      const skillFilter=`<div class="workspace-toolbar"><div class="field"><label for="client-browse-skill">Filter by service</label><select id="client-browse-skill"><option value="all">All services</option>${platformSkills.map((skill)=>`<option value="${escapeHTML(skill)}" ${skill===filter?"selected":""}>${escapeHTML(skill)}</option>`).join("")}</select></div></div>`;
+      const sections=groups.map(({skill,people})=>`<section class="browse-skill-group"><h2 class="workspace-section-title">${escapeHTML(skill)} <span class="workspace-muted">${people.length} freelancer${people.length===1?"":"s"}</span></h2>${people.length>=2?`<div class="workspace-grid">${people.map((profile)=>renderBrowseFreelancerCard(profile)).join("")}</div>`:'<div class="workspace-empty">This service needs at least two student freelancers. Ask an admin to add another profile.</div>'}</section>`).join("");
+      return `${workspaceHeading("Browse freelancers","Each digital service shows at least two student freelancers. Tap a card to open their profile, recent projects, and design portfolio.")}${skillFilter}${sections}`;
+    }
     function renderClientPage() {
       const container=document.getElementById("client-page-content");
       if(!container) return;
       const renderers={
         overview:renderClientOverview,book:renderClientBookingForm,bookings:renderClientBookings,announcements:renderClientAnnouncements,
+        "browse-freelancers":renderClientBrowseFreelancers,
         complaints:()=>`${workspaceHeading("Report an issue","Send a demo report for the admin team to review.")}<article class="workspace-card"><form class="workspace-form" data-client-complaint-form><div class="field wide"><label for="client-complaint-subject">Subject</label><input id="client-complaint-subject" name="subject" maxlength="100" required></div><div class="field wide"><label for="client-complaint-details">Details</label><textarea id="client-complaint-details" name="details" maxlength="600" required></textarea></div><div class="field wide"><button class="button" type="submit">Submit demo report</button></div></form></article>`
       };
       container.innerHTML=(renderers[activeClientPage]||renderClientOverview)();
@@ -1829,8 +1955,9 @@
       renderAdminPage();
       renderClientPage();
     }
-    function openWorkspaceDialog(title,body) {
+    function openWorkspaceDialog(title,body,dialogClass="") {
       const dialog=document.getElementById("workspace-dialog");
+      dialog.classList.toggle("profile-wide", dialogClass==="profile-wide");
       dialog.innerHTML=`<div class="dialog-heading"><h2 id="workspace-dialog-title">${escapeHTML(title)}</h2><button class="dialog-close" type="button" aria-label="Close dialog" data-workspace-action="close-dialog">×</button></div>${body}`;
       dialog.showModal();
     }
@@ -1923,6 +2050,7 @@
       const action=event.target.closest("[data-client-action]");
       if(!action) return;
       if(action.dataset.clientAction==="book-skill") {clientBookingSkill=action.dataset.skill;activeClientPage="book";renderClientPage();return;}
+      if(action.dataset.clientAction==="view-freelancer") {openFreelancerProfile(getRosterProfile(action.dataset.id));return;}
       if(action.dataset.clientAction==="cancel-booking") {
         const booking=marketplaceState.bookings.find((item)=>item.id===action.dataset.id&&item.clientId===marketplaceClient.id);
         if(booking?.status==="Pending"&&window.confirm("Cancel this pending demo booking request?")) {booking.status="Cancelled";booking.projectStatus="Cancelled";saveMarketplaceState("Booking cancelled; its slot is available again.");renderClientPage();}
@@ -2018,11 +2146,20 @@
     document.getElementById("workspace-dialog").addEventListener("click",(event)=>{
       if(event.target===event.currentTarget) event.currentTarget.close();
       if(event.target.closest("[data-workspace-action='close-dialog']")) document.getElementById("workspace-dialog").close();
+      const book=event.target.closest("[data-client-action='book-skill']");
+      if(book) {
+        clientBookingSkill=book.dataset.skill;
+        activeClientPage="book";
+        event.currentTarget.close();
+        if(window.location.hash!=="#/dashboard/client/book") window.location.hash="/dashboard/client/book";
+        else { renderRoute(); renderClientPage(); }
+      }
     });
     document.getElementById("workspace-dialog").addEventListener("submit",handleWorkspaceSubmit);
     document.getElementById("client-page-content").addEventListener("submit",handleClientSubmit);
     document.getElementById("client-page-content").addEventListener("change",(event)=>{
       if(event.target.matches("#client-booking-skill")) {clientBookingSkill=event.target.value;renderClientPage();}
+      if(event.target.matches("#client-browse-skill")) {clientBrowseSkill=event.target.value;renderClientPage();}
       if(event.target.matches("#client-booking-date")) {clientBookingDate=event.target.value;renderClientPage();}
       if(event.target.matches("#client-booking-freelancer")) {
         const profile=getRosterProfile(event.target.value);
