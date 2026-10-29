@@ -286,6 +286,59 @@
     .admin-tools { margin-top: 1rem; }
     .admin-metrics .card h3 { margin: .55rem 0 .25rem; font-size: 1.65rem; }
     .admin-metrics .card p { margin-bottom: 0; color: var(--muted); font-size: .86rem; }
+    .workspace-shell { display:grid; grid-template-columns:230px minmax(0,1fr); gap:1rem; align-items:start; }
+    .workspace-sidebar { position:sticky; top:1rem; display:flex; min-height:calc(100vh - 2rem); flex-direction:column; padding:.85rem; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:0 7px 22px rgba(28,63,43,.045); }
+    .workspace-brand { display:flex; align-items:center; gap:.6rem; margin-bottom:1rem; color:#214b35; }
+    .workspace-brand-mark { display:grid; width:34px; height:34px; place-items:center; border-radius:10px; background:#e9f2eb; font-weight:800; }
+    .workspace-brand small { display:block; color:var(--muted); font-size:.68rem; }
+    .workspace-nav { display:grid; gap:.2rem; }
+    .workspace-nav button { display:flex; width:100%; align-items:center; gap:.55rem; border:0; border-radius:8px; padding:.58rem .62rem; background:transparent; color:#58675d; text-align:left; font-size:.73rem; font-weight:650; }
+    .workspace-nav button:hover,.workspace-nav button[aria-current="page"] { background:#eaf3ec; color:var(--green); }
+    .workspace-main { min-width:0; }
+    .workspace-topbar { display:flex; min-height:45px; align-items:center; justify-content:space-between; gap:.6rem; margin-bottom:.75rem; }
+    .workspace-content { min-width:0; }
+    .workspace-hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.8rem; margin-bottom:.85rem; padding:1rem; border:1px solid var(--line); border-radius:13px; background:linear-gradient(120deg,#f2f7f2,#fff); }
+    .workspace-hero h1 { margin:.1rem 0 .3rem; color:#183f2c; font-size:clamp(1.35rem,3vw,1.8rem); }
+    .workspace-hero p { margin:0; color:var(--muted); font-size:.78rem; }
+    .workspace-card { min-width:0; padding:.85rem; border:1px solid var(--line); border-radius:11px; background:#fff; box-shadow:0 5px 16px rgba(28,63,43,.035); }
+    .workspace-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; }
+    .workspace-grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .workspace-grid.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .workspace-card h2,.workspace-card h3 { margin:.1rem 0 .45rem; color:#294031; font-size:.9rem; }
+    .workspace-card p { color:#68766d; font-size:.73rem; }
+    .workspace-metric { color:#1d3828; font-size:1.4rem; font-weight:800; }
+    .workspace-muted { color:#829087; font-size:.66rem; }
+    .workspace-section-title { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem; margin:.95rem 0 .55rem; color:#273b2d; font-size:.94rem; }
+    .workspace-toolbar,.workspace-actions { display:flex; flex-wrap:wrap; align-items:end; gap:.45rem; margin:.55rem 0; }
+    .workspace-toolbar .field { margin:0; }
+    .workspace-toolbar label,.workspace-form label { color:#526257; font-size:.68rem; }
+    .workspace-toolbar input,.workspace-toolbar select,.workspace-form input,.workspace-form select,.workspace-form textarea { min-height:36px; border:1px solid #dfe6e0; border-radius:7px; padding:.38rem .5rem; font-size:.73rem; }
+    .workspace-form textarea { min-height:76px; }
+    .workspace-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem; }
+    .workspace-form .field { margin:0; }
+    .workspace-form .wide { grid-column:1/-1; }
+    .workspace-table-wrap { overflow:auto; border:1px solid var(--line); border-radius:9px; background:#fff; }
+    .workspace-table { width:100%; border-collapse:collapse; font-size:.7rem; }
+    .workspace-table th,.workspace-table td { min-width:90px; padding:.55rem; border-bottom:1px solid #edf1ed; text-align:left; vertical-align:top; }
+    .workspace-table th { background:#f6f8f6; color:#526257; font-size:.65rem; }
+    .workspace-table tr:last-child td { border-bottom:0; }
+    .workspace-status { display:inline-flex; border-radius:999px; padding:.19rem .45rem; background:#eff2ef; color:#59665f; font-size:.61rem; font-weight:750; white-space:nowrap; }
+    .workspace-status.active,.workspace-status.completed,.workspace-status.confirmed { background:#e7f4e9; color:#31734a; }
+    .workspace-status.pending,.workspace-status.upcoming { background:#fff3dc; color:#94661f; }
+    .workspace-status.cancelled,.workspace-status.inactive,.workspace-status.rejected { background:#fbeceb; color:#a5524d; }
+    .workspace-status.progress,.workspace-status.ongoing { background:#eaf2fb; color:#3e6790; }
+    .workspace-slot { display:grid; gap:.28rem; min-width:125px; padding:.45rem; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .workspace-slot.booked { border-color:#e4c891; background:#fff9ed; }
+    .workspace-slot select { width:100%; border:1px solid #dfe6e0; border-radius:6px; padding:.3rem; font-size:.66rem; }
+    .workspace-empty { padding:1rem; border:1px dashed #dbe5dc; border-radius:9px; color:var(--muted); text-align:center; font-size:.75rem; }
+    .workspace-card .button,.workspace-actions .button { min-height:32px; padding:.38rem .6rem; font-size:.68rem; }
+    .workspace-compact-button { min-height:30px; border:1px solid var(--line); border-radius:7px; padding:.3rem .48rem; background:#fff; color:#405448; font-size:.66rem; font-weight:700; }
+    .workspace-compact-button:hover { background:#f3f8f3; }
+    .workspace-dialog { width:min(600px,calc(100% - 2rem)); max-height:85vh; overflow:auto; border:1px solid var(--line); border-radius:14px; padding:1rem; }
+    .workspace-dialog::backdrop { background:rgba(18,34,25,.48); }
+    .workspace-mobile-nav { display:none; }
+    @media (max-width:900px) { .workspace-grid.four { grid-template-columns:repeat(2,minmax(0,1fr)); }.workspace-grid.three { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:650px) { .workspace-shell { grid-template-columns:minmax(0,1fr); }.workspace-sidebar { position:static; min-height:0; padding:.55rem; }.workspace-brand { display:none; }.workspace-nav { display:flex; overflow-x:auto; }.workspace-nav button { width:auto; flex:0 0 auto; white-space:nowrap; }.workspace-grid,.workspace-grid.three { grid-template-columns:1fr; }.workspace-form { grid-template-columns:1fr; }.workspace-form .wide { grid-column:auto; }.workspace-topbar { min-height:35px; }.workspace-user-label { display:none; } }
     .status-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #5da36d; vertical-align: 2px; }
     footer { display: flex; max-width: 1160px; justify-content: space-between; gap: 1rem; margin: 0 auto; padding: 1.4rem 1.25rem 2rem; border-top: 1px solid #e9eee9; color: var(--muted); font-size: .82rem; }
     .footer-brand { color: var(--green); font-weight: 800; }
@@ -459,14 +512,14 @@
   </header>
   <nav id="main-navigation" aria-label="Dashboard navigation">
     <a class="nav-button" href="#/">Welcome</a>
-    <a class="nav-button" href="#/dashboard/freelancer">Freelancer</a>
-    <a class="nav-button" href="#/dashboard/client">Client</a>
-    <a class="nav-button" href="#/dashboard/admin">Admin</a>
-    <a class="nav-button" href="#/freelancers">Explore talent</a>
+    <a class="nav-button" href="#/dashboard/freelancer" data-nav-role="freelancer">Freelancer</a>
+    <a class="nav-button" href="#/dashboard/client" data-nav-role="client">Client</a>
+    <a class="nav-button" href="#/dashboard/admin" data-nav-role="admin">Admin</a>
+    <a class="nav-button" href="#/freelancers" data-nav-role="freelancer">Explore talent</a>
     <a class="nav-button" href="#/packages">Packages</a>
     <a class="nav-button" href="#/schedule">Schedule</a>
-    <a class="nav-button" href="#/booking">Book a project</a>
-    <a class="nav-button" href="#/tracker">Order tracker</a>
+    <a class="nav-button" href="#/booking" data-nav-role="client">Book a project</a>
+    <a class="nav-button" href="#/tracker" data-nav-role="client">Order tracker</a>
   </nav>
 
   <main>
@@ -693,64 +746,57 @@
     </section>
 
     <section class="screen" id="client-dashboard" aria-labelledby="client-dashboard-title">
-      <div class="dashboard-panel">
-        <span class="eyebrow">YOUR CLIENT SPACE</span>
-        <h2 id="client-dashboard-title">Great work starts with the right people.</h2>
-        <p>Find local digital talent, choose a service package, and keep your project moving from one convenient place.</p>
-        <div class="dashboard-actions">
-          <a class="button" href="#/freelancers">Discover freelancers</a>
-          <a class="button secondary" href="#/booking">Start a project</a>
-        </div>
-      </div>
-      <div class="grid three">
-        <article class="card">
-          <span class="badge">01 · DISCOVER</span>
-          <h3>Find your people</h3>
-          <p>Explore student and early-career talent across five digital skill areas.</p>
-          <a class="text-link" href="#/freelancers">Browse the freelancer roster →</a>
-        </article>
-        <article class="card">
-          <span class="badge">02 · PLAN</span>
-          <h3>Choose a service</h3>
-          <p>Review sample packages and find a starting point for your next idea.</p>
-          <a class="text-link" href="#/packages">View service packages →</a>
-        </article>
-        <article class="card">
-          <span class="badge">03 · GET MOVING</span>
-          <h3>Share your brief</h3>
-          <p>Tell us what you need in the project booking prototype. Nothing is submitted or saved.</p>
-          <a class="text-link" href="#/booking">Create a project brief →</a>
-        </article>
+      <h2 class="sr-only" id="client-dashboard-title">Client Dashboard</h2>
+      <div class="workspace-shell">
+        <aside class="workspace-sidebar" aria-label="Client dashboard sidebar">
+          <div class="workspace-brand"><span class="workspace-brand-mark">S</span><span><strong>SugboSkills</strong><small>Client workspace · Demo</small></span></div>
+          <nav class="workspace-nav" aria-label="Client dashboard">
+            <button type="button" data-client-page="overview" aria-current="page">⌂ Overview</button>
+            <button type="button" data-client-page="book">＋ Book a Project</button>
+            <button type="button" data-client-page="bookings">▤ My Bookings</button>
+            <button type="button" data-client-page="announcements">◉ Announcements</button>
+            <button type="button" data-client-page="complaints">⚑ Report an Issue</button>
+          </nav>
+          <button class="button sidebar-back" type="button" data-go="home" style="margin-top:auto">← Back to Welcome Page</button>
+        </aside>
+        <section class="workspace-main" aria-label="Client dashboard content">
+          <div class="workspace-topbar"><span class="demo-chip">SIMULATED BOOKINGS · NO PAYMENTS</span><strong class="workspace-user-label">Maya Santos · Demo Client</strong></div>
+          <div class="workspace-content" id="client-page-content"></div>
+        </section>
       </div>
     </section>
 
     <section class="screen" id="admin-dashboard" aria-labelledby="admin-dashboard-title">
-      <div class="dashboard-panel">
-        <span class="eyebrow">MARKETPLACE OPERATIONS</span>
-        <h2 id="admin-dashboard-title">Admin Dashboard</h2>
-        <p>A prototype overview for keeping the SugboSkills community organized, visible, and safe.</p>
-      </div>
-      <div class="grid three admin-metrics">
-        <article class="card"><span class="sample-label">FREELANCER PROFILES</span><h3>20</h3><p>Across 5 digital skill groups</p></article>
-        <article class="card"><span class="sample-label">SKILL CATEGORIES</span><h3>5</h3><p>Creative and technical services</p></article>
-        <article class="card"><span class="sample-label">PLATFORM STATUS</span><h3><span class="status-dot"></span> Prototype</h3><p>Demo data only; no live accounts</p></article>
-      </div>
-      <div class="card admin-tools">
-        <h3>Marketplace tools</h3>
-        <p>Review the current demo roster, explore the service workflow, or check the sample order tracker.</p>
-        <div class="dashboard-actions">
-          <a class="button" href="#/freelancers">Review freelancer roster</a>
-          <a class="button secondary" href="#/schedule">View batch schedule</a>
-          <a class="button" href="#/tracker">Open order tracker</a>
-        </div>
+      <h2 class="sr-only" id="admin-dashboard-title">Admin Dashboard</h2>
+      <div class="workspace-shell">
+        <aside class="workspace-sidebar" aria-label="Admin dashboard sidebar">
+          <div class="workspace-brand"><span class="workspace-brand-mark">S</span><span><strong>SugboSkills</strong><small>Marketplace admin · Demo</small></span></div>
+          <nav class="workspace-nav" aria-label="Admin dashboard">
+            <button type="button" data-admin-page="overview" aria-current="page">⌂ Overview</button>
+            <button type="button" data-admin-page="freelancers">♙ Freelancer Management</button>
+            <button type="button" data-admin-page="clients">♧ Client Management</button>
+            <button type="button" data-admin-page="schedule">◷ Rotational Schedule</button>
+            <button type="button" data-admin-page="bookings">▤ Booking Management</button>
+            <button type="button" data-admin-page="projects">▣ Project Management</button>
+            <button type="button" data-admin-page="complaints">⚑ Reports &amp; Complaints</button>
+            <button type="button" data-admin-page="transactions">₱ Transactions</button>
+            <button type="button" data-admin-page="announcements">◉ Announcements</button>
+          </nav>
+          <button class="button sidebar-back" type="button" data-go="home" style="margin-top:auto">← Back to Welcome Page</button>
+        </aside>
+        <section class="workspace-main" aria-label="Admin dashboard content">
+          <div class="workspace-topbar"><span class="demo-chip">DEMO DATA · NO REAL PAYMENTS</span><strong class="workspace-user-label">SugboSkills Admin</strong></div>
+          <div class="workspace-content" id="admin-page-content"></div>
+        </section>
       </div>
     </section>
   </main>
   <footer>
     <div><span class="footer-brand">SugboSkills</span><br>Your Skills. Your Opportunities.</div>
-    <div>Demonstration prototype · No accounts, bookings, or payments are processed.</div>
+    <div>Demonstration prototype · Bookings are saved in this browser; no real payments are processed.</div>
   </footer>
   <dialog id="freelancer-dialog" aria-labelledby="dialog-title"></dialog>
+  <dialog id="workspace-dialog" class="workspace-dialog" aria-labelledby="workspace-dialog-title"></dialog>
   <div id="freelancer-toast" class="freelancer-toast" role="status" aria-live="polite" hidden></div>
 
   <script>
@@ -832,7 +878,15 @@
         section.classList.toggle("active", section.id === screenId);
       });
       document.body.classList.toggle("dashboard-view", route !== "/");
+      const activeNavRole = route === "/dashboard/freelancer" || route === "/freelancers"
+        ? "freelancer"
+        : route === "/dashboard/client" || route === "/booking" || route === "/tracker"
+          ? "client"
+          : route === "/dashboard/admin"
+            ? "admin"
+            : null;
       document.querySelectorAll("#main-navigation a").forEach((link) => {
+        link.hidden = Boolean(activeNavRole && link.dataset.navRole !== activeNavRole);
         if (link.getAttribute("href") === `#${route}`) link.setAttribute("aria-current", "page");
         else link.removeAttribute("aria-current");
       });
@@ -920,10 +974,125 @@
     ];
     demoGigs.forEach((gig,index) => { gig.postedAt = dateAfterDays(-index); });
     const platformSkills = ["Graphic Design","Video Editing","Photo Editing","Web Design and Development","CAD and 3d Modeling"];
+    const marketplaceStorageKey = "sugboSkills.marketplace.v1";
+    const marketplaceClient = { id:"client-maya", name:"Maya Santos", business:"Harbor & Hearth Cafe", email:"maya.santos.demo@example.test", status:"Active" };
+    const rosterProfiles = freelancers.map((freelancer,index) => ({
+      id:`roster-${freelancer.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}`,
+      name:freelancer.name,
+      skill:freelancer.skill,
+      level:freelancer.level,
+      experience:freelancer.level,
+      rating:index % 4 === 0 ? 4.9 : index % 3 === 0 ? 4.7 : 4.8,
+      reviews:8 + index % 13,
+      email:`${freelancer.name.toLowerCase().replace(/[^a-z0-9]+/g,".")}@student.example.test`,
+      status:"Active"
+    }));
+    function defaultTeamForDate(date) {
+      const weekday = new Date(`${date}T00:00:00`).getDay();
+      return weekday % 2 === 1 ? 0 : 1;
+    }
+    function rosterSlotFor(date,skill,level,profiles=rosterProfiles) {
+      const team = defaultTeamForDate(date);
+      const candidates = profiles.filter((profile)=>profile.skill===skill&&profile.level===level);
+      const scheduled = candidates[team];
+      return (scheduled?.status==="Active" ? scheduled : null) || candidates.find((profile)=>profile.status==="Active") || candidates[0] || null;
+    }
+    function createSampleBooking(dateOffset,skill,level,title,status,projectStatus,client=marketplaceClient) {
+      const date=dateAfterDays(dateOffset);
+      const freelancer=rosterSlotFor(date,skill,level);
+      const deadlineDate=new Date(`${date}T00:00:00`);
+      deadlineDate.setDate(deadlineDate.getDate()+(projectStatus==="Completed"?-3:7));
+      const deadline=[deadlineDate.getFullYear(),String(deadlineDate.getMonth()+1).padStart(2,"0"),String(deadlineDate.getDate()).padStart(2,"0")].join("-");
+      return {
+        id:`booking-sample-${Math.abs(dateOffset)}-${skill.toLowerCase().replace(/[^a-z0-9]+/g,"-")}`,
+        reference:`SS-${String(1042+Math.abs(dateOffset)).padStart(4,"0")}`,
+        clientId:client.id,clientName:client.name,clientBusiness:client.business,
+        title,description:`${title} for ${client.business}. Sample project brief for the SugboSkills demonstration.`,
+        requirements:"Share review notes and final delivery files through the demo project workspace.",
+        skill,level,freelancerId:freelancer.id,freelancerName:freelancer.name,
+        date,deadline,budget:level==="Advanced"?2200:800,platformFee:0,
+        status,projectStatus,paymentStatus:projectStatus==="Completed"?"Simulated":"Pending",
+        createdAt:dateAfterDays(Math.min(dateOffset,0)),sample:true
+      };
+    }
+    function defaultMarketplaceState() {
+      const secondClient={id:"client-isla",name:"Nico Villanueva",business:"Isla Trail Co.",email:"nico.demo@example.test",status:"Active"};
+      return {
+        freelancers:rosterProfiles.map((profile)=>({...profile})),
+        clients:[{...marketplaceClient},secondClient],
+        scheduleOverrides:{},
+        bookings:[
+          createSampleBooking(-18,"Graphic Design","Intermediate","Cafe social media starter set","Completed","Completed"),
+          createSampleBooking(2,"Video Editing","Advanced","Product launch video edits","Confirmed","In Progress",secondClient)
+        ],
+        complaints:[
+          {id:"complaint-demo-1",reporter:"Maya Santos",subject:"Clarify the revision handoff",details:"Sample request asking for a clearer way to share revision notes.",status:"Under review",createdAt:dateAfterDays(-1),sample:true}
+        ],
+        announcements:[
+          {id:"announcement-demo-1",title:"Welcome to the SugboSkills demo",message:"Explore the sample marketplace. Bookings and payments are simulated and stay in this browser.",audience:"Everyone",createdAt:dateAfterDays(0),sample:true}
+        ]
+      };
+    }
+    function loadMarketplaceState() {
+      const defaults=defaultMarketplaceState();
+      try {
+        const saved=localStorage.getItem(marketplaceStorageKey);
+        if (!saved) return defaults;
+        const parsed=JSON.parse(saved);
+        if (!parsed || typeof parsed!=="object" || !Array.isArray(parsed.freelancers) || !Array.isArray(parsed.clients) || !parsed.scheduleOverrides || !Array.isArray(parsed.bookings) || !Array.isArray(parsed.complaints) || !Array.isArray(parsed.announcements)) throw new Error("Saved marketplace data is invalid.");
+        return {...defaults,...parsed};
+      } catch (error) {
+        console.error("Could not load shared marketplace data.",error);
+        window.addEventListener("DOMContentLoaded",()=>showFreelancerToast("Shared marketplace data could not be read. Showing sample data.",true),{once:true});
+        return defaults;
+      }
+    }
+    let marketplaceState=loadMarketplaceState();
+    const savedMarketplaceClient=marketplaceState.clients.find((client)=>client.id===marketplaceClient.id);
+    if(savedMarketplaceClient) Object.assign(marketplaceClient,savedMarketplaceClient);
+    function saveMarketplaceState(message="") {
+      try {
+        localStorage.setItem(marketplaceStorageKey,JSON.stringify(marketplaceState));
+        if(message) showFreelancerToast(message);
+        return true;
+      } catch(error) {
+        console.error("Could not save shared marketplace data.",error);
+        showFreelancerToast("Your browser could not save this update. It will be lost when the demo closes.",true);
+        return false;
+      }
+    }
+    function getRosterProfile(id) { return marketplaceState.freelancers.find((profile)=>profile.id===id); }
+    function marketplaceSlotKey(date,skill,level) { return `${date}|${skill}|${level}`; }
+    function marketplaceSlot(date,skill,level) {
+      const overrideId=marketplaceState.scheduleOverrides[marketplaceSlotKey(date,skill,level)];
+      const overridden=overrideId&&getRosterProfile(overrideId);
+      if(overridden&&overridden.status==="Active"&&overridden.skill===skill&&overridden.level===level) return overridden;
+      const candidates=marketplaceState.freelancers.filter((profile)=>profile.skill===skill&&profile.level===level);
+      const team=defaultTeamForDate(date);
+      return (candidates[team]?.status==="Active"&&(!overrideId||candidates[team].id!==overrideId)?candidates[team]:null)
+        || candidates.find((profile)=>profile.status==="Active"&&profile.id!==overrideId)
+        || candidates.find((profile)=>profile.status==="Active")
+        || null;
+    }
+    function marketplaceSlotBooking(date,skill,freelancerId,exceptId="") {
+      return marketplaceState.bookings.find((booking)=>booking.id!==exceptId&&booking.date===date&&booking.skill===skill&&booking.freelancerId===freelancerId&&booking.status!=="Cancelled");
+    }
+    function marketplaceClientRecord(name,business="Demo business") {
+      let client=marketplaceState.clients.find((item)=>item.name.toLowerCase()===name.toLowerCase());
+      if(!client) {
+        client={id:`client-${Date.now()}`,name,business,email:`${name.toLowerCase().replace(/[^a-z0-9]+/g,".")}@example.test`,status:"Active"};
+        marketplaceState.clients.push(client);
+      }
+      return client;
+    }
     const freelancerAccounts = {
       "alex-rivera":{ id:"alex-rivera", name:"Alex Rivera", platformSkill:"Graphic Design", experience:"Intermediate", demoEarnings:600 },
       "john-perez":{ id:"john-perez", name:"John Perez", platformSkill:"Video Editing", experience:"Intermediate", demoEarnings:0 }
     };
+    marketplaceState.freelancers.forEach((profile)=>{
+      const id=`student-${profile.id}`;
+      freelancerAccounts[id]={id,name:profile.name,platformSkill:profile.skill,experience:profile.level,demoEarnings:0,rosterId:profile.id};
+    });
     const defaultFreelancerState = {
       profile:{ name:"Alex Rivera", headline:"Graphic designer & visual storyteller", bio:"I help small businesses bring their ideas to life through thoughtful visual design. I enjoy clear collaboration and practical, polished deliverables.", skills:["Branding","Social Media Design","Illustrator"], experience:"Intermediate", available:true, email:"alex.rivera.demo@example.test", verified:true },
       applications:[
@@ -973,7 +1142,17 @@
     let activeConversationId = freelancerState.messages[0]?.id || "";
 
     function currentFreelancerAccount() { return freelancerAccounts[activeFreelancerAccountId]; }
-    function defaultStateForAccount(accountId) { return structuredClone(accountId === "john-perez" ? johnFreelancerState : defaultFreelancerState); }
+    function defaultStateForAccount(accountId) {
+      if(accountId==="john-perez") return structuredClone(johnFreelancerState);
+      if(freelancerAccounts[accountId]?.rosterId) {
+        const account=freelancerAccounts[accountId];
+        return {
+          profile:{name:account.name,headline:`${account.platformSkill} freelancer`,bio:"Student freelancer profile for the SugboSkills demonstration.",skills:[account.platformSkill],experience:account.experience,available:true,email:`${account.name.toLowerCase().replace(/[^a-z0-9]+/g,".")}@student.example.test`,verified:true},
+          applications:[],projects:[],portfolio:[],messages:[]
+        };
+      }
+      return structuredClone(defaultFreelancerState);
+    }
     function pricingRange(experience) {
       return experience === "Advanced" ? { min:1500, max:3000 } : { min:500, max:1000 };
     }
@@ -1019,7 +1198,13 @@
         const parsed = JSON.parse(saved);
         if (!parsed || typeof parsed !== "object" || !parsed.profile || !Array.isArray(parsed.applications) || !Array.isArray(parsed.projects) || !Array.isArray(parsed.portfolio) || !Array.isArray(parsed.messages)) throw new Error("Stored freelancer dashboard data is invalid.");
         const defaults = defaultStateForAccount(accountId);
-        return normalizeSavedPricing({ ...defaults, ...parsed, profile:{ ...defaults.profile, ...parsed.profile } }, accountId);
+        const state=normalizeSavedPricing({ ...defaults, ...parsed, profile:{ ...defaults.profile, ...parsed.profile } }, accountId);
+        if(freelancerAccounts[accountId]?.rosterId) {
+          state.profile.name=freelancerAccounts[accountId].name;
+          state.profile.experience=freelancerAccounts[accountId].experience;
+          state.profile.available=getRosterProfile(freelancerAccounts[accountId].rosterId)?.status==="Active";
+        }
+        return state;
       } catch (error) {
         console.error("Could not load saved freelancer dashboard data.", error);
         window.addEventListener("DOMContentLoaded", () => showFreelancerToast("Saved demo data could not be read. Showing this account's sample data.", true), { once:true });
@@ -1055,11 +1240,8 @@
       document.querySelectorAll("[data-profile-name]").forEach((node) => { node.textContent = freelancerState.profile.name; });
       const accountPicker = document.getElementById("freelancer-account");
       if (accountPicker) {
+        accountPicker.innerHTML=Object.values(freelancerAccounts).map((account)=>`<option value="${escapeHTML(account.id)}">${escapeHTML(account.name)} · ${escapeHTML(account.platformSkill)}</option>`).join("");
         accountPicker.value = activeFreelancerAccountId;
-        Object.values(freelancerAccounts).forEach((account) => {
-          const option = accountPicker.querySelector(`option[value="${account.id}"]`);
-          if (option) option.textContent = `${account.name} · ${account.platformSkill}`;
-        });
       }
     }
     function gigFor(gigId) { return demoGigs.find((gig) => gig.id === gigId); }
@@ -1085,13 +1267,15 @@
       const recommended = demoGigs.filter((gig) => gig.category === currentFreelancerAccount().platformSkill);
       const shownGigs = recommended.slice(0,3);
       const recentApplications = freelancerState.applications.slice().sort((a,b) => b.date.localeCompare(a.date)).slice(0,4);
+      const announcements = marketplaceState.announcements.filter((item)=>item.audience==="Everyone"||item.audience==="Freelancers").slice(-3).reverse();
       return `${pageHeader(`Good day, ${escapeHTML(freelancerState.profile.name.split(" ")[0])}!`,"Here is an overview of your freelance activities.")}
         <div class="metric-grid">
           ${[["Active Applications",activeApps,"▤","Awaiting a client response"],["Ongoing Gigs",ongoing,"◷","Accepted projects in progress"],["Completed Gigs",completed,"✓","Demo project completions"],["Total Earnings",money(earned),"₱","Fixed sample total · no payment processed"]].map(([label,value,icon,foot]) => `<article class="metric-card"><div class="metric-caption">${label}<span class="metric-icon">${icon}</span></div><div class="metric-value">${value}</div><div class="metric-foot">${foot}</div></article>`).join("")}
         </div>
         <div class="content-grid"><section><div class="panel-heading section-label"><h2>Recommended gigs</h2><button class="quiet-link" type="button" data-freelancer-page="gigs">Explore all gigs →</button></div><div class="gig-list">${shownGigs.map((gig) => gigCard(gig,true)).join("")}</div>
         <div class="panel-heading section-label"><h2>Recent applications</h2><button class="quiet-link" type="button" data-freelancer-page="applications">View all →</button></div><div class="freelancer-panel">${recentApplications.length ? recentApplications.map((application) => { const gig=gigFor(application.gigId); return `<div class="application-row"><div><strong>${escapeHTML(gig?.title || "Unavailable gig")}</strong><small>${escapeHTML(gig?.client || "")} · ${escapeHTML(application.date)}</small></div>${statusPill(application.status)}</div>`; }).join("") : '<div class="empty-panel">No applications yet. Find a gig that fits your skills.</div>'}</div></section>
-        <aside><div class="freelancer-panel"><div class="panel-heading"><h2>Recent activity</h2></div>${recentApplications.slice(0,3).map((application) => `<div class="activity-item"><span aria-hidden="true">•</span><span>Your application for <strong>${escapeHTML(gigFor(application.gigId)?.title || "a gig")}</strong> is ${escapeHTML(application.status)}.<br><small>${escapeHTML(application.date)}</small></span></div>`).join("")}${freelancerState.projects.slice(0,2).map((project) => `<div class="activity-item"><span aria-hidden="true">↗</span><span><strong>${escapeHTML(project.title)}</strong> · ${project.status === "completed" ? "completed" : `progress: ${["Not Started","In Progress","Submitted for Review","Revision Requested","Completed"][project.stage]}`}<br><small>Demo project update</small></span></div>`).join("")}</div><div class="freelancer-panel" style="margin-top:.8rem"><div class="panel-heading"><h2>Prototype reminder</h2></div><p class="muted-small">All projects, clients, ratings, and earnings shown here are sample data. No payments are processed.</p></div></aside></div>`;
+        <aside><div class="freelancer-panel"><div class="panel-heading"><h2>Recent activity</h2></div>${recentApplications.slice(0,3).map((application) => `<div class="activity-item"><span aria-hidden="true">•</span><span>Your application for <strong>${escapeHTML(gigFor(application.gigId)?.title || "a gig")}</strong> is ${escapeHTML(application.status)}.<br><small>${escapeHTML(application.date)}</small></span></div>`).join("")}${freelancerState.projects.slice(0,2).map((project) => `<div class="activity-item"><span aria-hidden="true">↗</span><span><strong>${escapeHTML(project.title)}</strong> · ${project.status === "completed" ? "completed" : `progress: ${["Not Started","In Progress","Submitted for Review","Revision Requested","Completed"][project.stage]}`}<br><small>Demo project update</small></span></div>`).join("")}</div><div class="freelancer-panel" style="margin-top:.8rem"><div class="panel-heading"><h2>Prototype reminder</h2></div><p class="muted-small">All projects, clients, ratings, and earnings shown here are sample data. No payments are processed.</p></div></aside></div>
+        <h2 class="section-label">Platform announcements</h2><div class="gig-list">${announcements.map((item)=>`<article class="freelancer-panel"><h3>${escapeHTML(item.title)}</h3><p>${escapeHTML(item.message)}</p><span class="muted-small">${escapeHTML(item.createdAt)} · Demo notice</span></article>`).join("")||'<div class="empty-panel">No announcements at this time.</div>'}</div>`;
     }
     function renderGigs() {
       const fixedSkill = currentFreelancerAccount().platformSkill;
@@ -1141,8 +1325,10 @@
     function renderMyGigs() {
       const ongoing = freelancerState.projects.filter((project) => project.status === "ongoing");
       const completed = freelancerState.projects.filter((project) => project.status === "completed");
+      const sharedBookings=marketplaceState.bookings.filter((booking)=>booking.freelancerId===currentFreelancerAccount().rosterId);
       const renderProject = (project) => `<article class="freelancer-gig"><div class="gig-top"><div><h3>${escapeHTML(project.title)}</h3><span class="gig-client">${escapeHTML(project.client)}</span></div>${statusPill(project.status)}</div><div class="gig-meta"><span>Deadline: ${escapeHTML(project.deadline)}</span><span>Agreed sample budget: ${money(project.budget)}</span></div>${project.status === "ongoing" ? `<div class="tracker-stages">${["Not Started","In Progress","Submitted for Review","Revision Requested","Completed"].map((stage,index) => `<div class="tracker-stage ${index < project.stage ? "done" : ""} ${index === project.stage ? "current" : ""}">${stage}</div>`).join("")}</div><div class="toolbar"><div class="field"><label for="project-stage-${escapeHTML(project.id)}">Update progress</label><select id="project-stage-${escapeHTML(project.id)}" data-project-stage="${escapeHTML(project.id)}"><option value="0" ${project.stage===0?"selected":""}>Not Started</option><option value="1" ${project.stage===1?"selected":""}>In Progress</option><option value="2" ${project.stage===2?"selected":""}>Submitted for Review</option><option value="3" ${project.stage===3?"selected":""}>Revision Requested</option></select></div><button class="button secondary small-button" type="button" data-project-details="${escapeHTML(project.id)}">View details</button>${project.stage === 2 ? `<button class="button small-button" type="button" data-accept-project="${escapeHTML(project.id)}">Simulate client acceptance</button>` : ""}</div>` : `<p class="gig-description">Completed in this prototype; sample earnings are not real payments.</p><div class="gig-actions"><button class="button secondary small-button" type="button" data-project-details="${escapeHTML(project.id)}">View details</button>${project.gigId && !freelancerState.portfolio.some((entry) => entry.projectId === project.id) ? `<button class="button small-button" type="button" data-add-verified="${escapeHTML(project.id)}">Add verified portfolio entry</button>` : ""}</div>`}</article>`;
       return `${pageHeader("My Gigs","Track accepted projects and update demo progress.")}
+        <div class="panel-heading section-label"><h2>Client bookings</h2><span class="muted-small">${sharedBookings.length} shared bookings</span></div><div class="gig-list">${sharedBookings.length ? sharedBookings.map((booking)=>`<article class="freelancer-gig"><div class="gig-top"><div><h3>${escapeHTML(booking.title)}</h3><span class="gig-client">${escapeHTML(booking.clientBusiness)} · ${escapeHTML(booking.skill)} · ${escapeHTML(booking.level)}</span></div><span class="status-pill ${booking.status==="Cancelled"?"rejected":booking.projectStatus==="Completed"?"accepted":booking.status==="Pending"?"pending":"accepted"}">${escapeHTML(booking.status==="Pending"?"Booking request":booking.status)}</span></div><p class="gig-description">${escapeHTML(booking.description)}</p><div class="gig-meta"><span>Start: ${escapeHTML(booking.date)}</span><span>Deadline: ${escapeHTML(booking.deadline)}</span><span>Sample budget: ${money(booking.budget)}</span></div>${booking.status==="Pending"?`<div class="gig-actions"><button class="button" type="button" data-market-booking-action="accept" data-booking-id="${escapeHTML(booking.id)}">Accept booking</button><button class="button secondary" type="button" data-market-booking-action="decline" data-booking-id="${escapeHTML(booking.id)}">Decline</button></div>`:booking.status==="Cancelled"?'<p class="muted-small">This booking is cancelled.</p>':booking.projectStatus==="Completed"?'<p class="muted-small">Project completed in the shared demo marketplace.</p>':`<div class="toolbar"><div class="field"><label for="market-booking-stage-${escapeHTML(booking.id)}">Project status</label><select id="market-booking-stage-${escapeHTML(booking.id)}" data-market-booking-stage="${escapeHTML(booking.id)}">${["Upcoming","In Progress","Submitted for Review","Completed"].map((status)=>`<option ${booking.projectStatus===status?"selected":""}>${escapeHTML(status)}</option>`).join("")}</select></div></div>`}</article>`).join(""):'<div class="empty-panel">No client bookings are assigned to this freelancer yet.</div>'}</div>
         <div class="panel-heading section-label"><h2>Ongoing</h2><span class="muted-small">${ongoing.length} projects</span></div><div class="gig-list">${ongoing.length ? ongoing.map(renderProject).join("") : '<div class="empty-panel">No ongoing projects in this demo.</div>'}</div>
         <div class="panel-heading section-label"><h2>Completed</h2><span class="muted-small">${completed.length} projects</span></div><div class="gig-list">${completed.length ? completed.map(renderProject).join("") : '<div class="empty-panel">Completed projects will appear here.</div>'}</div>`;
     }
@@ -1232,6 +1418,16 @@
       const target = event.target.closest("button");
       if (!target) return;
       if (target.dataset.freelancerPage) { showFreelancerPage(target.dataset.freelancerPage); return; }
+      if (target.dataset.marketBookingAction) {
+        const booking=marketplaceState.bookings.find((item)=>item.id===target.dataset.bookingId&&item.freelancerId===currentFreelancerAccount().rosterId);
+        if(!booking||booking.status!=="Pending") return;
+        if(target.dataset.marketBookingAction==="decline"&&!window.confirm("Decline this sample booking request? Its schedule slot will be released.")) return;
+        booking.status=target.dataset.marketBookingAction==="accept"?"Confirmed":"Cancelled";
+        if(booking.status==="Cancelled") booking.projectStatus="Cancelled";
+        saveMarketplaceState(booking.status==="Confirmed"?"Booking accepted in the shared demo marketplace.":"Booking declined; its slot is available again.");
+        renderFreelancerPage();
+        return;
+      }
       if (target.hasAttribute("data-add-portfolio")) { openPortfolioForm(); return; }
       if (target.hasAttribute("data-edit-profile")) { openProfileForm(); return; }
       if (target.dataset.gigDetails) { const gig=gigFor(target.dataset.gigDetails); if (gig) showGigDetails(gig); return; }
@@ -1293,6 +1489,16 @@
         if (!project || ![0,1,2,3].includes(next)) { renderFreelancerPage(); return; }
         if (next===2 && !window.confirm("Confirm that you have submitted this work for client review?")) { renderFreelancerPage(); return; }
         project.stage=next; persistFreelancerState(next===2 ? "Work marked submitted for review in the demo." : "Project progress updated."); renderFreelancerPage();
+      }
+      if(event.target.matches("[data-market-booking-stage]")) {
+        const booking=marketplaceState.bookings.find((item)=>item.id===event.target.dataset.marketBookingStage&&item.freelancerId===currentFreelancerAccount().rosterId);
+        const next=event.target.value;
+        if(!booking||booking.status==="Cancelled"||!["Upcoming","In Progress","Submitted for Review","Completed"].includes(next)) { renderFreelancerPage(); return; }
+        booking.projectStatus=next;
+        booking.status=next==="Completed"?"Completed":"Confirmed";
+        booking.paymentStatus=next==="Completed"?"Simulated":"Pending";
+        saveMarketplaceState("Shared project status updated.");
+        renderFreelancerPage();
       }
     });
     function filterApplicationResults() {
@@ -1434,13 +1640,390 @@
       renderTracker();
       renderDashboard();
     });
-    window.addEventListener("hashchange", renderRoute);
+    const adminPageLabels={
+      overview:"Overview",freelancers:"Freelancer Management",clients:"Client Management",schedule:"Rotational Schedule",
+      bookings:"Booking Management",projects:"Project Management",complaints:"Reports & Complaints",
+      transactions:"Transactions",announcements:"Announcements"
+    };
+    let activeAdminPage="overview";
+    let activeClientPage="overview";
+    let adminScheduleDate=dateAfterDays(0);
+    let adminProjectFilter="";
+    let clientBookingDate=dateAfterDays(1);
+    let clientBookingSkill=platformSkills[0];
+    function workspaceHeading(title,subtitle,action="") {
+      return `<div class="workspace-hero"><div><span class="eyebrow">SUGBOSKILLS · DEMO WORKSPACE</span><h1>${escapeHTML(title)}</h1><p>${escapeHTML(subtitle)}</p></div>${action}</div>`;
+    }
+    function workspaceTable(headers,rows) {
+      return `<div class="workspace-table-wrap"><table class="workspace-table"><thead><tr>${headers.map((header)=>`<th scope="col">${escapeHTML(header)}</th>`).join("")}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}"><div class="workspace-empty">No records to show.</div></td></tr>`}</tbody></table></div>`;
+    }
+    function workspaceStatus(status) {
+      const tone=status==="Active"||status==="Confirmed"||status==="Completed"?"active":
+        status==="Pending"||status==="Upcoming"||status==="Under review"?"pending":
+        status==="Cancelled"||status==="Inactive"||status==="Rejected"?"cancelled":"progress";
+      return `<span class="workspace-status ${tone}">${escapeHTML(status)}</span>`;
+    }
+    function renderAdminOverview() {
+      const activeProjects=marketplaceState.bookings.filter((booking)=>!["Completed","Cancelled"].includes(booking.projectStatus)).length;
+      const completed=marketplaceState.bookings.filter((booking)=>booking.projectStatus==="Completed").length;
+      const metrics=[
+        ["Freelancers",marketplaceState.freelancers.length,"Fixed roster and demo additions"],
+        ["Clients",marketplaceState.clients.length,"Marketplace client profiles"],
+        ["Bookings",marketplaceState.bookings.filter((booking)=>booking.status!=="Cancelled").length,"Confirmed and pending requests"],
+        ["Active projects",activeProjects,"Upcoming, in progress, or review"],
+        ["Completed projects",completed,"Completed sample work"]
+      ];
+      const recent=marketplaceState.bookings.slice().sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).slice(0,4);
+      return `${workspaceHeading("Marketplace overview","A live view of demo accounts, bookings, work in progress, and operations.",'<button class="button" type="button" data-admin-page="schedule">Manage schedule</button>')}
+        <div class="workspace-grid four">${metrics.map(([label,value,description])=>`<article class="workspace-card"><span class="workspace-muted">${escapeHTML(label.toUpperCase())}</span><div class="workspace-metric">${value}</div><span class="workspace-muted">${escapeHTML(description)}</span></article>`).join("")}</div>
+        <h2 class="workspace-section-title">Recent bookings <button class="workspace-compact-button" type="button" data-admin-page="bookings">View all →</button></h2>
+        ${workspaceTable(["Reference","Project","Client","Freelancer","Date","Status"],recent.map((booking)=>`<tr><td>${escapeHTML(booking.reference)}</td><td>${escapeHTML(booking.title)}</td><td>${escapeHTML(booking.clientName)}</td><td>${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.level)}</td><td>${escapeHTML(booking.date)}</td><td>${workspaceStatus(booking.status)}</td></tr>`).join(""))}
+        <p class="workspace-muted">All accounts, projects, schedules, and payments are demonstration data saved in this browser.</p>`;
+    }
+    function renderAdminFreelancers() {
+      const skillOptions=platformSkills.map((skill)=>`<option>${escapeHTML(skill)}</option>`).join("");
+      const profiles=marketplaceState.freelancers.slice().sort((a,b)=>a.skill.localeCompare(b.skill)||a.name.localeCompare(b.name));
+      const rows=profiles.map((profile)=>`<tr data-admin-freelancer data-skill="${escapeHTML(profile.skill)}" data-status="${escapeHTML(profile.status)}" data-search="${escapeHTML(`${profile.name} ${profile.email} ${profile.skill}`.toLowerCase())}"><td><strong>${escapeHTML(profile.name)}</strong><br><span class="workspace-muted">${escapeHTML(profile.email)}</span></td><td>${escapeHTML(profile.skill)}</td><td>${escapeHTML(profile.level)}</td><td>★ ${Number(profile.rating).toFixed(1)} <span class="workspace-muted">(${profile.reviews} reviews)</span></td><td>${workspaceStatus(profile.status)}</td><td><button class="workspace-compact-button" type="button" data-admin-action="edit-freelancer" data-id="${escapeHTML(profile.id)}">Edit</button> <button class="workspace-compact-button" type="button" data-admin-action="toggle-freelancer" data-id="${escapeHTML(profile.id)}">${profile.status==="Active"?"Deactivate":"Activate"}</button></td></tr>`).join("");
+      return `${workspaceHeading("Freelancer management","Manage the fixed 20-person student roster and additional demo profiles.",'<button class="button" type="button" data-admin-action="add-freelancer">＋ Add freelancer</button>')}
+        <div class="workspace-toolbar"><div class="field"><label for="admin-freelancer-search">Search roster</label><input id="admin-freelancer-search" type="search" placeholder="Name, email, skill"></div><div class="field"><label for="admin-freelancer-skill">Skill</label><select id="admin-freelancer-skill"><option value="">All skills</option>${skillOptions}</select></div><div class="field"><label for="admin-freelancer-status">Status</label><select id="admin-freelancer-status"><option value="">All statuses</option><option>Active</option><option>Inactive</option></select></div></div>
+        ${workspaceTable(["Freelancer","Digital skill","Experience","Rating","Account status","Actions"],rows)}`;
+    }
+    function renderAdminClients() {
+      const rows=marketplaceState.clients.map((client)=> {
+        const bookings=marketplaceState.bookings.filter((booking)=>booking.clientId===client.id);
+        return `<tr><td><strong>${escapeHTML(client.name)}</strong><br><span class="workspace-muted">${escapeHTML(client.business)}</span></td><td>${escapeHTML(client.email)}</td><td>${bookings.length}</td><td>${workspaceStatus(client.status)}</td><td><button class="workspace-compact-button" type="button" data-admin-action="client-history" data-id="${escapeHTML(client.id)}">Booking history</button> <button class="workspace-compact-button" type="button" data-admin-action="toggle-client" data-id="${escapeHTML(client.id)}">${client.status==="Active"?"Deactivate":"Activate"}</button></td></tr>`;
+      }).join("");
+      return `${workspaceHeading("Client management","Review demo client profiles, booking history, and account status.")}${workspaceTable(["Client","Contact","Bookings","Account status","Actions"],rows)}`;
+    }
+    function renderAdminSchedule() {
+      const slotRows=platformSkills.map((skill)=>`<tr><td><strong>${escapeHTML(skill)}</strong></td>${["Advanced","Intermediate"].map((level)=>{
+        const profile=marketplaceSlot(adminScheduleDate,skill,level);
+        const booking=profile&&marketplaceSlotBooking(adminScheduleDate,skill,profile.id);
+        const eligible=marketplaceState.freelancers.filter((item)=>item.skill===skill&&item.level===level&&item.status==="Active").length;
+        return `<td><div class="workspace-slot ${booking?"booked":""}"><strong>${escapeHTML(level)}</strong><span>${escapeHTML(profile?.name||"No active freelancer")}</span><span class="workspace-muted">${booking?`Booked · ${escapeHTML(booking.reference)}`:profile?"Available":"No active freelancer"}</span><button class="workspace-compact-button" type="button" data-admin-action="edit-schedule" data-skill="${escapeHTML(skill)}" data-level="${level}" ${eligible?"":"disabled"}>Assign / change</button></div></td>`;
+      }).join("")}</tr>`).join("");
+      return `${workspaceHeading("Rotational schedule","Each skill has one Advanced and one Intermediate slot per day. Team A covers Monday; batches alternate daily.",'<button class="workspace-compact-button" type="button" data-admin-action="schedule-prev">← Previous day</button>')}
+        <div class="workspace-toolbar"><div class="field"><label for="admin-schedule-date">Schedule date</label><input id="admin-schedule-date" type="date" min="${dateAfterDays(0)}" value="${escapeHTML(adminScheduleDate)}"></div><button class="workspace-compact-button" type="button" data-admin-action="schedule-next">Next day →</button><span class="workspace-muted">Team ${defaultTeamForDate(adminScheduleDate)===0?"A":"B"} · Dates repeat in alternating batches</span></div>
+        ${workspaceTable(["Digital skill","Advanced slot","Intermediate slot"],slotRows)}
+        <p class="workspace-muted">Changing a slot updates the client booking options immediately. A slot with an active booking cannot be reassigned until the booking is cancelled.</p>`;
+    }
+    function renderAdminBookings() {
+      const rows=marketplaceState.bookings.slice().sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).map((booking)=>`<tr data-admin-booking data-status="${escapeHTML(booking.status)}" data-skill="${escapeHTML(booking.skill)}" data-search="${escapeHTML(`${booking.reference} ${booking.title} ${booking.clientName} ${booking.freelancerName}`.toLowerCase())}"><td>${escapeHTML(booking.reference)}</td><td><strong>${escapeHTML(booking.title)}</strong><br><span class="workspace-muted">${escapeHTML(booking.clientName)} · ${escapeHTML(booking.clientBusiness)}</span></td><td>${escapeHTML(booking.skill)}<br>${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.level)}</td><td>${escapeHTML(booking.date)}<br><span class="workspace-muted">Due ${escapeHTML(booking.deadline)}</span></td><td>${money(booking.budget)}</td><td>${workspaceStatus(booking.status)}</td><td><button class="workspace-compact-button" type="button" data-admin-action="booking-details" data-id="${escapeHTML(booking.id)}">Details</button> ${booking.status==="Pending"?`<button class="workspace-compact-button" type="button" data-admin-action="confirm-booking" data-id="${escapeHTML(booking.id)}">Confirm</button>`:""} ${booking.status!=="Cancelled"&&booking.status!=="Completed"?`<button class="workspace-compact-button" type="button" data-admin-action="cancel-booking" data-id="${escapeHTML(booking.id)}">Cancel</button>`:""}</td></tr>`).join("");
+      const skills=platformSkills.map((skill)=>`<option>${escapeHTML(skill)}</option>`).join("");
+      return `${workspaceHeading("Booking management","Review selected freelancers, project details, dates, and booking status.")}<div class="workspace-toolbar"><div class="field"><label for="admin-booking-search">Search</label><input id="admin-booking-search" type="search" placeholder="Reference, project, client"></div><div class="field"><label for="admin-booking-skill">Skill</label><select id="admin-booking-skill"><option value="">All skills</option>${skills}</select></div><div class="field"><label for="admin-booking-status">Status</label><select id="admin-booking-status"><option value="">All statuses</option>${["Pending","Confirmed","Completed","Cancelled"].map((status)=>`<option>${status}</option>`).join("")}</select></div></div>${workspaceTable(["Reference","Project / client","Skill / freelancer","Dates","Sample price","Status","Actions"],rows)}`;
+    }
+    function renderAdminProjects() {
+      const filter=adminProjectFilter;
+      const projects=marketplaceState.bookings.filter((booking)=>!filter||booking.projectStatus===filter||booking.status===filter);
+      const rows=projects.map((booking)=>`<tr data-project-row><td><strong>${escapeHTML(booking.title)}</strong><br><span class="workspace-muted">${escapeHTML(booking.reference)} · ${escapeHTML(booking.clientName)}</span></td><td>${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.skill)}</td><td>${escapeHTML(booking.date)}</td><td>${escapeHTML(booking.deadline)} ${booking.deadline<dateAfterDays(0)&&booking.projectStatus!=="Completed"&&booking.status!=="Cancelled"?'<br><span class="workspace-status cancelled">Overdue</span>':""}</td><td>${workspaceStatus(booking.projectStatus)}</td><td><select aria-label="Project status for ${escapeHTML(booking.title)}" data-admin-project-status="${escapeHTML(booking.id)}">${["Upcoming","In Progress","Submitted for Review","Completed","Cancelled"].map((status)=>`<option ${booking.projectStatus===status?"selected":""}>${status}</option>`).join("")}</select></td></tr>`).join("");
+      return `${workspaceHeading("Project management","Monitor ongoing, completed, and overdue projects.")}<div class="workspace-toolbar"><div class="field"><label for="admin-project-status">Filter by status</label><select id="admin-project-status"><option value="" ${!filter?"selected":""}>All project statuses</option>${["Upcoming","In Progress","Submitted for Review","Completed","Cancelled"].map((status)=>`<option ${filter===status?"selected":""}>${status}</option>`).join("")}</select></div><span class="workspace-muted">${marketplaceState.bookings.filter((booking)=>booking.deadline<dateAfterDays(0)&&booking.projectStatus!=="Completed"&&booking.status!=="Cancelled").length} overdue projects</span></div>${workspaceTable(["Project / client","Assigned freelancer","Start date","Deadline","Status","Update status"],rows)}`;
+    }
+    function renderAdminComplaints() {
+      const rows=marketplaceState.complaints.map((complaint)=>`<tr><td>${escapeHTML(complaint.createdAt)}</td><td>${escapeHTML(complaint.reporter)}</td><td><strong>${escapeHTML(complaint.subject)}</strong><br><span class="workspace-muted">${escapeHTML(complaint.details)}</span></td><td>${complaint.sample?'<span class="workspace-muted">Sample</span>':'<span class="workspace-muted">Client report</span>'}</td><td><select aria-label="Complaint status for ${escapeHTML(complaint.subject)}" data-complaint-status="${escapeHTML(complaint.id)}">${["New","Under review","Resolved","Dismissed"].map((status)=>`<option ${complaint.status===status?"selected":""}>${status}</option>`).join("")}</select></td></tr>`).join("");
+      return `${workspaceHeading("Reports & complaints","Review reported issues and update their resolution status.")}${workspaceTable(["Reported","Reporter","Report","Source","Status"],rows)}`;
+    }
+    function renderAdminTransactions() {
+      const records=marketplaceState.bookings.filter((booking)=>booking.status!=="Cancelled");
+      const total=records.reduce((sum,booking)=>sum+Number(booking.budget),0);
+      const simulated=records.filter((booking)=>booking.paymentStatus==="Simulated").reduce((sum,booking)=>sum+Number(booking.budget),0);
+      const fees=records.reduce((sum,booking)=>sum+Math.round(Number(booking.budget)*.1),0);
+      const rows=records.map((booking)=>`<tr><td>${escapeHTML(booking.reference)}</td><td>${escapeHTML(booking.title)}<br><span class="workspace-muted">${escapeHTML(booking.clientName)} → ${escapeHTML(booking.freelancerName)}</span></td><td>${money(booking.budget)}</td><td>${money(Math.round(Number(booking.budget)*.1))} <span class="workspace-muted">sample estimate</span></td><td>${workspaceStatus(booking.paymentStatus)}</td></tr>`).join("");
+      return `${workspaceHeading("Transactions","Read-only sample transaction ledger. No money is collected or transferred.")}<div class="workspace-grid three"><article class="workspace-card"><span class="workspace-muted">BOOKED SAMPLE VALUE</span><div class="workspace-metric">${money(total)}</div></article><article class="workspace-card"><span class="workspace-muted">SIMULATED COMPLETIONS</span><div class="workspace-metric">${money(simulated)}</div></article><article class="workspace-card"><span class="workspace-muted">ILLUSTRATIVE PLATFORM FEES</span><div class="workspace-metric">${money(fees)}</div><span class="workspace-muted">10% example only; not charged</span></article></div><h2 class="workspace-section-title">Transaction records</h2>${workspaceTable(["Reference","Project","Sample price","Platform fee","Payment status"],rows)}<p class="workspace-muted">Platform fees are illustrative estimates only. Payment status “Simulated” never represents a real transaction.</p>`;
+    }
+    function renderAdminAnnouncements() {
+      const rows=marketplaceState.announcements.slice().reverse().map((announcement)=>`<article class="workspace-card"><div class="workspace-section-title"><strong>${escapeHTML(announcement.title)}</strong><span>${workspaceStatus(announcement.audience)}</span></div><p>${escapeHTML(announcement.message)}</p><span class="workspace-muted">${escapeHTML(announcement.createdAt)} · ${announcement.sample?"Sample":"Created in this demo"}</span>${!announcement.sample?` <button class="workspace-compact-button" type="button" data-admin-action="delete-announcement" data-id="${escapeHTML(announcement.id)}">Delete</button>`:""}</article>`).join("");
+      return `${workspaceHeading("Announcements","Create demo notices for freelancers, clients, or both.")}<article class="workspace-card"><form class="workspace-form" data-admin-announcement-form><div class="field"><label for="announcement-title">Announcement title</label><input id="announcement-title" name="title" maxlength="100" required></div><div class="field"><label for="announcement-audience">Audience</label><select id="announcement-audience" name="audience"><option>Everyone</option><option>Freelancers</option><option>Clients</option></select></div><div class="field wide"><label for="announcement-message">Message</label><textarea id="announcement-message" name="message" maxlength="600" required></textarea></div><div class="field wide"><button class="button" type="submit">Publish announcement</button></div></form></article><h2 class="workspace-section-title">Published announcements</h2><div class="workspace-grid">${rows||'<div class="workspace-empty">No announcements yet.</div>'}</div>`;
+    }
+    function renderAdminPage() {
+      const renderers={overview:renderAdminOverview,freelancers:renderAdminFreelancers,clients:renderAdminClients,schedule:renderAdminSchedule,bookings:renderAdminBookings,projects:renderAdminProjects,complaints:renderAdminComplaints,transactions:renderAdminTransactions,announcements:renderAdminAnnouncements};
+      const container=document.getElementById("admin-page-content");
+      if(!container) return;
+      container.innerHTML=(renderers[activeAdminPage]||renderAdminOverview)();
+      const heading=container.querySelector("h1");
+      if(heading) document.getElementById("admin-dashboard-title").textContent=heading.textContent;
+      if(document.getElementById("admin-dashboard").classList.contains("active")) document.title=`${adminPageLabels[activeAdminPage]} | SugboSkills`;
+      document.querySelectorAll("[data-admin-page]").forEach((button)=>button.setAttribute("aria-current",button.dataset.adminPage===activeAdminPage?"page":"false"));
+    }
+    function renderClientBookings() {
+      const bookings=marketplaceState.bookings.filter((booking)=>booking.clientId===marketplaceClient.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+      return `${workspaceHeading("My bookings","Bookings are shared with the admin and assigned freelancer dashboards.",'<button class="button" type="button" data-client-page="book">＋ Book a Project</button>')}${bookings.length?`<div class="workspace-grid">${bookings.map((booking)=>`<article class="workspace-card"><div class="workspace-section-title"><h2>${escapeHTML(booking.title)}</h2>${workspaceStatus(booking.status)}</div><p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.level)}</p><div class="workspace-muted">Ref ${escapeHTML(booking.reference)} · ${escapeHTML(booking.date)} to ${escapeHTML(booking.deadline)}</div><p>${escapeHTML(booking.description)}</p><strong>${money(booking.budget)} sample estimate</strong>${booking.status==="Pending"?`<div class="workspace-actions"><button class="workspace-compact-button" type="button" data-client-action="cancel-booking" data-id="${escapeHTML(booking.id)}">Cancel request</button></div>`:""}</article>`).join("")}</div>`:'<div class="workspace-empty">No bookings yet. Choose a service and reserve an available slot.</div>'}`;
+    }
+    function renderClientBookingForm() {
+      const skill=platformSkills.includes(clientBookingSkill)?clientBookingSkill:platformSkills[0];
+      const date=clientBookingDate>=dateAfterDays(0)?clientBookingDate:dateAfterDays(1);
+      const slots=["Advanced","Intermediate"].map((level)=> {
+        const profile=marketplaceSlot(date,skill,level);
+        const booking=profile&&marketplaceSlotBooking(date,skill,profile.id);
+        return {profile,booking};
+      });
+      const options=slots.filter(({profile})=>profile&&profile.status==="Active").map(({profile,booking})=>`<option value="${escapeHTML(profile.id)}" data-level="${escapeHTML(profile.level)}" ${booking?"disabled":""}>${escapeHTML(profile.name)} · ${escapeHTML(profile.level)} · ${booking?"Booked":"Available"}</option>`).join("");
+      const hasAvailableSlot=slots.some(({profile,booking})=>profile?.status==="Active"&&!booking);
+      return `${workspaceHeading("Book a project","Choose a service, day, and available batch freelancer, then share your project brief.")}<article class="workspace-card"><form class="workspace-form" data-client-booking-form><div class="field"><label for="client-booking-name">Your name</label><input id="client-booking-name" name="clientName" value="${escapeHTML(marketplaceClient.name)}" maxlength="80" required></div><div class="field"><label for="client-booking-business">Business / organization</label><input id="client-booking-business" name="business" value="${escapeHTML(marketplaceClient.business)}" maxlength="100" required></div><div class="field"><label for="client-booking-skill">Digital skill</label><select id="client-booking-skill" name="skill">${platformSkills.map((item)=>`<option ${item===skill?"selected":""}>${escapeHTML(item)}</option>`).join("")}</select></div><div class="field"><label for="client-booking-date">Booking date</label><input id="client-booking-date" type="date" name="date" min="${dateAfterDays(0)}" value="${escapeHTML(date)}" required></div><div class="field wide"><span class="workspace-muted">Daily rotation · Team ${defaultTeamForDate(date)===0?"A":"B"} · Only one Advanced and one Intermediate slot per skill</span></div><div class="field"><label for="client-booking-freelancer">Available freelancer</label><select id="client-booking-freelancer" name="freelancerId" required><option value="">Choose an available freelancer</option>${options||'<option disabled>No active freelancers are scheduled</option>'}</select>${hasAvailableSlot?"":'<small class="workspace-muted">No slots remain for this skill on that date. Choose another date or service.</small>'}</div><div class="field"><label for="client-booking-budget">Sample project budget (PHP)</label><input id="client-booking-budget" name="budget" type="number" min="500" max="3000" step="50" value="800" required></div><div class="field"><label for="client-booking-deadline">Preferred deadline</label><input id="client-booking-deadline" name="deadline" type="date" min="${escapeHTML(date)}" value="${escapeHTML(dateAfterDays(clientDateOffset(date)+7))}" required></div><div class="field"><label for="client-booking-title">Project title</label><input id="client-booking-title" name="title" maxlength="100" required></div><div class="field wide"><label for="client-booking-description">Project brief</label><textarea id="client-booking-description" name="description" maxlength="1200" required placeholder="Describe the work and expected deliverables."></textarea></div><div class="field wide"><label for="client-booking-requirements">Requirements</label><textarea id="client-booking-requirements" name="requirements" maxlength="800" required placeholder="Dimensions, formats, references, or other requirements."></textarea></div><div class="field wide"><p class="workspace-muted">Demo only: this creates a local booking request. No freelancer is contacted and no payment is processed.</p><button class="button" type="submit">Review and request booking</button></div></form></article>`;
+    }
+    function renderClientOverview() {
+      const bookings=marketplaceState.bookings.filter((booking)=>booking.clientId===marketplaceClient.id&&booking.status!=="Cancelled");
+      const active=bookings.filter((booking)=>!["Completed","Cancelled"].includes(booking.projectStatus)).length;
+      return `${workspaceHeading(`Good day, ${marketplaceClient.name.split(" ")[0]}!`,"Your bookings and projects at a glance.",'<button class="button" type="button" data-client-page="book">＋ Book a Project</button>')}<div class="workspace-grid three"><article class="workspace-card"><span class="workspace-muted">TOTAL BOOKINGS</span><div class="workspace-metric">${bookings.length}</div></article><article class="workspace-card"><span class="workspace-muted">ACTIVE PROJECTS</span><div class="workspace-metric">${active}</div></article><article class="workspace-card"><span class="workspace-muted">COMPLETED PROJECTS</span><div class="workspace-metric">${bookings.filter((booking)=>booking.projectStatus==="Completed").length}</div></article></div><h2 class="workspace-section-title">Recent bookings <button class="workspace-compact-button" type="button" data-client-page="bookings">View all →</button></h2>${bookings.length?`<div class="workspace-grid">${bookings.slice(0,3).map((booking)=>`<article class="workspace-card"><div class="workspace-section-title"><h2>${escapeHTML(booking.title)}</h2>${workspaceStatus(booking.status)}</div><p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.freelancerName)}</p><span class="workspace-muted">${escapeHTML(booking.date)} · ${money(booking.budget)} sample estimate</span></article>`).join("")}</div>`:'<div class="workspace-empty">No bookings yet. Book an available freelancer to get started.</div>'}<h2 class="workspace-section-title">Available digital skills</h2><div class="workspace-grid three">${platformSkills.map((skill)=>`<article class="workspace-card"><h2>${escapeHTML(skill)}</h2><p>Browse the current rotational schedule and request an available freelancer.</p><button class="workspace-compact-button" type="button" data-client-action="book-skill" data-skill="${escapeHTML(skill)}">Explore available slots →</button></article>`).join("")}</div>`;
+    }
+    function renderClientAnnouncements() {
+      const visible=marketplaceState.announcements.filter((item)=>item.audience==="Everyone"||item.audience==="Clients");
+      return `${workspaceHeading("Announcements","Notices from the SugboSkills admin team.")}${visible.length?`<div class="workspace-grid">${visible.slice().reverse().map((item)=>`<article class="workspace-card"><h2>${escapeHTML(item.title)}</h2><p>${escapeHTML(item.message)}</p><span class="workspace-muted">${escapeHTML(item.createdAt)}</span></article>`).join("")}</div>`:'<div class="workspace-empty">No announcements are available.</div>'}`;
+    }
+    function renderClientPage() {
+      const container=document.getElementById("client-page-content");
+      if(!container) return;
+      const renderers={
+        overview:renderClientOverview,book:renderClientBookingForm,bookings:renderClientBookings,announcements:renderClientAnnouncements,
+        complaints:()=>`${workspaceHeading("Report an issue","Send a demo report for the admin team to review.")}<article class="workspace-card"><form class="workspace-form" data-client-complaint-form><div class="field wide"><label for="client-complaint-subject">Subject</label><input id="client-complaint-subject" name="subject" maxlength="100" required></div><div class="field wide"><label for="client-complaint-details">Details</label><textarea id="client-complaint-details" name="details" maxlength="600" required></textarea></div><div class="field wide"><button class="button" type="submit">Submit demo report</button></div></form></article>`
+      };
+      container.innerHTML=(renderers[activeClientPage]||renderClientOverview)();
+      const heading=container.querySelector("h1");
+      if(heading) document.getElementById("client-dashboard-title").textContent=heading.textContent;
+      if(document.getElementById("client-dashboard").classList.contains("active")) document.title=`${heading?.textContent||"Client Dashboard"} | SugboSkills`;
+      document.querySelectorAll("[data-client-page]").forEach((button)=>button.setAttribute("aria-current",button.dataset.clientPage===activeClientPage?"page":"false"));
+    }
+    function renderWorkspace() {
+      renderAdminPage();
+      renderClientPage();
+    }
+    function openWorkspaceDialog(title,body) {
+      const dialog=document.getElementById("workspace-dialog");
+      dialog.innerHTML=`<div class="dialog-heading"><h2 id="workspace-dialog-title">${escapeHTML(title)}</h2><button class="dialog-close" type="button" aria-label="Close dialog" data-workspace-action="close-dialog">×</button></div>${body}`;
+      dialog.showModal();
+    }
+    function openFreelancerEditor(profile=null) {
+      const editing=Boolean(profile);
+      const skills=platformSkills.map((skill)=>`<option ${profile?.skill===skill?"selected":""}>${escapeHTML(skill)}</option>`).join("");
+      openWorkspaceDialog(editing?"Edit freelancer":"Add freelancer",`<form class="workspace-form" data-workspace-form="freelancer" data-id="${escapeHTML(profile?.id||"")}"><div class="field"><label for="admin-profile-name">Name</label><input id="admin-profile-name" name="name" maxlength="80" value="${escapeHTML(profile?.name||"")}" required></div><div class="field"><label for="admin-profile-email">Demo email</label><input id="admin-profile-email" name="email" type="email" maxlength="120" value="${escapeHTML(profile?.email||"")}" required></div><div class="field"><label for="admin-profile-skill">Digital skill</label><select id="admin-profile-skill" name="skill">${skills}</select></div><div class="field"><label for="admin-profile-level">Experience level</label><select id="admin-profile-level" name="level"><option ${profile?.level==="Intermediate"?"selected":""}>Intermediate</option><option ${profile?.level==="Advanced"?"selected":""}>Advanced</option></select></div><div class="field wide"><div class="dialog-actions"><button class="workspace-compact-button" type="button" data-workspace-action="close-dialog">Cancel</button><button class="button" type="submit">Save freelancer</button></div></div></form>`);
+    }
+    function openScheduleEditor(skill,level,date) {
+      const current=marketplaceSlot(date,skill,level);
+      const profiles=marketplaceState.freelancers.filter((profile)=>profile.skill===skill&&profile.level===level&&profile.status==="Active");
+      openWorkspaceDialog(`Assign ${level} freelancer`,`<p>${escapeHTML(skill)} · ${escapeHTML(date)}. Only active freelancers with the matching skill and experience level can be assigned.</p><form class="workspace-form" data-workspace-form="schedule" data-skill="${escapeHTML(skill)}" data-level="${escapeHTML(level)}" data-date="${escapeHTML(date)}"><div class="field wide"><label for="admin-schedule-freelancer">Freelancer</label><select id="admin-schedule-freelancer" name="freelancerId" required>${profiles.map((profile)=>`<option value="${escapeHTML(profile.id)}" ${profile.id===current?.id?"selected":""}>${escapeHTML(profile.name)}</option>`).join("")}</select></div><div class="field wide"><p class="workspace-muted">Booked slots cannot be reassigned. One Advanced and one Intermediate slot remain available for each skill and day.</p><div class="dialog-actions"><button class="workspace-compact-button" type="button" data-workspace-action="close-dialog">Cancel</button><button class="button" type="submit">Save assignment</button></div></div></form>`);
+    }
+    function openBookingDetails(booking) {
+      openWorkspaceDialog(`Booking ${booking.reference}`,`<div class="workspace-grid"><div><span class="workspace-muted">CLIENT</span><p>${escapeHTML(booking.clientName)} · ${escapeHTML(booking.clientBusiness)}</p></div><div><span class="workspace-muted">FREELANCER</span><p>${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.level)}</p></div><div><span class="workspace-muted">SKILL / DATE</span><p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.date)}</p></div><div><span class="workspace-muted">DEADLINE / PRICE</span><p>${escapeHTML(booking.deadline)} · ${money(booking.budget)}</p></div></div><h3>${escapeHTML(booking.title)}</h3><p>${escapeHTML(booking.description)}</p><p><strong>Requirements:</strong> ${escapeHTML(booking.requirements)}</p><p>Booking status: ${escapeHTML(booking.status)} · Project status: ${escapeHTML(booking.projectStatus)} · Payment: ${escapeHTML(booking.paymentStatus)} (simulated)</p><div class="dialog-actions"><button class="workspace-compact-button" type="button" data-workspace-action="close-dialog">Close</button></div>`);
+    }
+    function filterAdminTable() {
+      const query=(document.getElementById("admin-booking-search")?.value||"").trim().toLowerCase();
+      const skill=document.getElementById("admin-booking-skill")?.value||"";
+      const status=document.getElementById("admin-booking-status")?.value||"";
+      const rows=[...document.querySelectorAll("[data-admin-booking]")];
+      rows.forEach((row)=>{row.hidden=(query&&!row.dataset.search.includes(query))||(skill&&row.dataset.skill!==skill)||(status&&row.dataset.status!==status);});
+    }
+    function filterAdminFreelancers() {
+      const query=(document.getElementById("admin-freelancer-search")?.value||"").trim().toLowerCase();
+      const skill=document.getElementById("admin-freelancer-skill")?.value||"";
+      const status=document.getElementById("admin-freelancer-status")?.value||"";
+      const rows=[...document.querySelectorAll("[data-admin-freelancer]")];
+      rows.forEach((row)=>{row.hidden=(query&&!row.dataset.search.includes(query))||(skill&&row.dataset.skill!==skill)||(status&&row.dataset.status!==status);});
+    }
+    function syncFreelancerAccounts() {
+      marketplaceState.freelancers.forEach((profile)=>{
+        const id=`student-${profile.id}`;
+        freelancerAccounts[id]={id,name:profile.name,platformSkill:profile.skill,experience:profile.level,demoEarnings:0,rosterId:profile.id};
+      });
+      if(freelancerAccounts[activeFreelancerAccountId]?.rosterId) {
+        const account=freelancerAccounts[activeFreelancerAccountId];
+        freelancerState.profile.name=account.name;
+        freelancerState.profile.experience=account.experience;
+      }
+    }
+    function handleAdminClick(event) {
+      const page=event.target.closest("[data-admin-page]");
+      if(page) { activeAdminPage=page.dataset.adminPage; renderAdminPage(); return; }
+      const action=event.target.closest("[data-admin-action]");
+      if(!action) return;
+      const id=action.dataset.id;
+      const profile=getRosterProfile(id);
+      const client=marketplaceState.clients.find((item)=>item.id===id);
+      const booking=marketplaceState.bookings.find((item)=>item.id===id);
+      switch(action.dataset.adminAction) {
+        case "add-freelancer": openFreelancerEditor(); break;
+        case "edit-freelancer": if(profile) openFreelancerEditor(profile); break;
+        case "toggle-freelancer":
+          if(!profile) return;
+          if(profile.status==="Active"&&marketplaceState.bookings.some((item)=>item.freelancerId===id&&item.status!=="Cancelled"&&item.status!=="Completed")) { showFreelancerToast("This freelancer has an active booking. Complete or cancel it before deactivation.",true); return; }
+          profile.status=profile.status==="Active"?"Inactive":"Active";
+          syncFreelancerAccounts(); saveMarketplaceState(`Freelancer ${profile.status.toLowerCase()}.`); renderAdminPage(); break;
+        case "toggle-client":
+          if(client) {client.status=client.status==="Active"?"Inactive":"Active";saveMarketplaceState(`Client ${client.status.toLowerCase()}.`);renderAdminPage();}
+          break;
+        case "client-history":
+          if(client) {
+            const history=marketplaceState.bookings.filter((item)=>item.clientId===client.id);
+            openWorkspaceDialog(`${client.name} · booking history`,history.length?history.map((item)=>`<article class="workspace-card"><strong>${escapeHTML(item.reference)} · ${escapeHTML(item.title)}</strong><p>${escapeHTML(item.date)} · ${escapeHTML(item.skill)} · ${escapeHTML(item.freelancerName)}</p>${workspaceStatus(item.status)}</article>`).join(""):'<div class="workspace-empty">No bookings for this client.</div>');
+          }
+          break;
+          case "schedule-prev": adminScheduleDate=dateAfterDays(clientDateOffset(adminScheduleDate)-1); renderAdminPage(); break;
+          case "schedule-next": adminScheduleDate=dateAfterDays(clientDateOffset(adminScheduleDate)+1); renderAdminPage(); break;
+        case "edit-schedule":
+          if(marketplaceSlotBooking(adminScheduleDate,action.dataset.skill,marketplaceSlot(adminScheduleDate,action.dataset.skill,action.dataset.level)?.id||"")) { showFreelancerToast("This slot has an active booking and cannot be reassigned.",true); return; }
+          openScheduleEditor(action.dataset.skill,action.dataset.level,adminScheduleDate); break;
+        case "booking-details": if(booking) openBookingDetails(booking); break;
+        case "confirm-booking":
+          if(booking?.status==="Pending") {booking.status="Confirmed";saveMarketplaceState("Booking confirmed in the demo.");renderAdminPage();}
+          break;
+        case "cancel-booking":
+          if(booking&&booking.status!=="Cancelled"&&booking.status!=="Completed"&&window.confirm(`Cancel ${booking.reference}? The schedule slot will be released.`)) {booking.status="Cancelled";booking.projectStatus="Cancelled";saveMarketplaceState("Booking cancelled; its schedule slot is available.");renderAdminPage();}
+          break;
+        case "delete-announcement":
+          marketplaceState.announcements=marketplaceState.announcements.filter((item)=>item.id!==id);saveMarketplaceState("Announcement deleted.");renderAdminPage();break;
+      }
+    }
+    function clientDateOffset(date) {
+      return Math.floor((new Date(`${date}T00:00:00Z`).getTime()-new Date(`${dateAfterDays(0)}T00:00:00Z`).getTime())/86400000);
+    }
+    function handleClientClick(event) {
+      const page=event.target.closest("[data-client-page]");
+      if(page) {activeClientPage=page.dataset.clientPage;renderClientPage();return;}
+      const action=event.target.closest("[data-client-action]");
+      if(!action) return;
+      if(action.dataset.clientAction==="book-skill") {clientBookingSkill=action.dataset.skill;activeClientPage="book";renderClientPage();return;}
+      if(action.dataset.clientAction==="cancel-booking") {
+        const booking=marketplaceState.bookings.find((item)=>item.id===action.dataset.id&&item.clientId===marketplaceClient.id);
+        if(booking?.status==="Pending"&&window.confirm("Cancel this pending demo booking request?")) {booking.status="Cancelled";booking.projectStatus="Cancelled";saveMarketplaceState("Booking cancelled; its slot is available again.");renderClientPage();}
+      }
+    }
+    function handleWorkspaceSubmit(event) {
+      const form=event.target;
+      if(form.matches("[data-workspace-form='freelancer']")) {
+        event.preventDefault();
+        const data=new FormData(form);
+        const id=form.dataset.id;
+        const existing=getRosterProfile(id);
+        const values={name:String(data.get("name")).trim(),email:String(data.get("email")).trim(),skill:String(data.get("skill")),level:String(data.get("level"))};
+        if(existing&&(existing.skill!==values.skill||existing.level!==values.level)&&marketplaceState.bookings.some((booking)=>booking.freelancerId===existing.id&&booking.status!=="Cancelled"&&booking.status!=="Completed")) {showFreelancerToast("This freelancer has an active booking. Complete or cancel it before changing their skill or level.",true);return;}
+        const sameSlot=marketplaceState.freelancers.some((item)=>item.id!==id&&item.status==="Active"&&item.skill===values.skill&&item.level===values.level&&item.name.toLowerCase()===values.name.toLowerCase());
+        if(sameSlot) {showFreelancerToast("A freelancer with this name and skill level already exists.",true);return;}
+        if(existing) {
+          if(existing.skill!==values.skill||existing.level!==values.level) {
+            Object.keys(marketplaceState.scheduleOverrides).forEach((key)=>{if(marketplaceState.scheduleOverrides[key]===existing.id) delete marketplaceState.scheduleOverrides[key];});
+          }
+          Object.assign(existing,values);
+        }
+        else marketplaceState.freelancers.push({id:`roster-${Date.now()}`,rating:4.8,reviews:0,status:"Active",...values});
+        syncFreelancerAccounts(); saveMarketplaceState(existing?"Freelancer profile updated.":"Freelancer added.");document.getElementById("workspace-dialog").close();renderAdminPage();renderFreelancerPage();return;
+      }
+      if(form.matches("[data-workspace-form='schedule']")) {
+        event.preventDefault();
+        const {date,skill,level}=form.dataset;
+        const profile=getRosterProfile(String(new FormData(form).get("freelancerId")));
+        const current=marketplaceSlot(date,skill,level);
+        if(marketplaceSlotBooking(date,skill,current?.id||"")) {showFreelancerToast("This slot has a booking and cannot be reassigned.",true);return;}
+        if(!profile||profile.status!=="Active"||profile.skill!==skill||profile.level!==level) {showFreelancerToast("Choose an active freelancer with the matching skill and experience level.",true);return;}
+        marketplaceState.scheduleOverrides[marketplaceSlotKey(date,skill,level)]=profile.id;
+        if(!saveMarketplaceState("Rotational assignment updated. Client slot availability has been refreshed.")) return;
+        document.getElementById("workspace-dialog").close();renderAdminPage();renderClientPage();return;
+      }
+    }
+    function handleClientSubmit(event) {
+      const form=event.target;
+      if(form.matches("[data-client-booking-form]")) {
+        event.preventDefault();
+        const data=new FormData(form);
+        const date=String(data.get("date"));
+        const skill=String(data.get("skill"));
+        const profileId=String(data.get("freelancerId"));
+        const profile=marketplaceSlot(date,skill,getRosterProfile(profileId)?.level||"");
+        const currentProfile=getRosterProfile(profileId);
+        const title=String(data.get("title")).trim();
+        const description=String(data.get("description")).trim();
+        const requirements=String(data.get("requirements")).trim();
+        const budget=Number(data.get("budget"));
+        if(date<dateAfterDays(0)||String(data.get("deadline"))<date||!platformSkills.includes(skill)||!currentProfile||!profile||profile.id!==currentProfile.id||currentProfile.status!=="Active") {showFreelancerToast("Choose a valid date, deadline on or after the booking date, skill, and available freelancer.",true);renderClientPage();return;}
+        if(marketplaceSlotBooking(date,skill,profileId)) {showFreelancerToast("That slot was just booked. Select another date or freelancer.",true);renderClientPage();return;}
+        const range=pricingRange(currentProfile.level);
+        if(!Number.isFinite(budget)||budget<range.min||budget>range.max||!title||!description||!requirements) {showFreelancerToast(`Enter all required details and a sample budget from ${money(range.min)} to ${money(range.max)}.`,true);return;}
+        const clientName=String(data.get("clientName")).trim();
+        const business=String(data.get("business")).trim();
+        if(!clientName||!business) {showFreelancerToast("Enter your name and business or organization.",true);return;}
+        const client=marketplaceState.clients.find((item)=>item.id===marketplaceClient.id)||marketplaceClient;
+        if(client.status!=="Active") {showFreelancerToast("This demo client account is inactive.",true);return;}
+        client.name=clientName;client.business=business;
+        Object.assign(marketplaceClient,{name:clientName,business});
+        const booking={
+          id:`booking-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,reference:`SS-${String(Date.now()).slice(-6)}`,
+          clientId:client.id,clientName,clientBusiness:business,title,description,requirements,
+          skill,level:currentProfile.level,freelancerId:currentProfile.id,freelancerName:currentProfile.name,
+          date,deadline:String(data.get("deadline")),budget,platformFee:0,status:"Pending",projectStatus:"Upcoming",paymentStatus:"Pending",
+          createdAt:dateAfterDays(0),sample:false
+        };
+        marketplaceState.bookings.unshift(booking);
+        if(!saveMarketplaceState(`Booking request ${booking.reference} created. No payment was made.`)) return;
+        activeClientPage="bookings";renderClientPage();return;
+      }
+      if(form.matches("[data-client-complaint-form]")) {
+        event.preventDefault();
+        const data=new FormData(form);
+        marketplaceState.complaints.unshift({id:`complaint-${Date.now()}`,reporter:marketplaceClient.name,subject:String(data.get("subject")).trim(),details:String(data.get("details")).trim(),status:"New",createdAt:dateAfterDays(0),sample:false});
+        if(!saveMarketplaceState("Demo report sent to admin review.")) return;
+        form.reset();showFreelancerToast("Your report is available to the admin team in this browser.");return;
+      }
+    }
+    function handleAdminSubmit(event) {
+      const form=event.target;
+      if(!form.matches("[data-admin-announcement-form]")) return;
+      event.preventDefault();
+      const data=new FormData(form);
+      marketplaceState.announcements.push({id:`announcement-${Date.now()}`,title:String(data.get("title")).trim(),message:String(data.get("message")).trim(),audience:String(data.get("audience")),createdAt:dateAfterDays(0),sample:false});
+      if(!saveMarketplaceState("Announcement published in the demo.")) return;
+      renderAdminPage();
+    }
+    document.getElementById("admin-dashboard").addEventListener("click",handleAdminClick);
+    document.getElementById("client-dashboard").addEventListener("click",handleClientClick);
+    document.getElementById("workspace-dialog").addEventListener("click",(event)=>{
+      if(event.target===event.currentTarget) event.currentTarget.close();
+      if(event.target.closest("[data-workspace-action='close-dialog']")) document.getElementById("workspace-dialog").close();
+    });
+    document.getElementById("workspace-dialog").addEventListener("submit",handleWorkspaceSubmit);
+    document.getElementById("client-page-content").addEventListener("submit",handleClientSubmit);
+    document.getElementById("client-page-content").addEventListener("change",(event)=>{
+      if(event.target.matches("#client-booking-skill")) {clientBookingSkill=event.target.value;renderClientPage();}
+      if(event.target.matches("#client-booking-date")) {clientBookingDate=event.target.value;renderClientPage();}
+      if(event.target.matches("#client-booking-freelancer")) {
+        const profile=getRosterProfile(event.target.value);
+        const budget=document.getElementById("client-booking-budget");
+        if(profile&&budget) {const range=pricingRange(profile.level);budget.min=String(range.min);budget.max=String(range.max);budget.value=String(profile.level==="Advanced"?2200:800);}
+      }
+    });
+    document.getElementById("admin-page-content").addEventListener("input",(event)=>{
+      if(event.target.matches("#admin-booking-search,#admin-booking-skill,#admin-booking-status")) filterAdminTable();
+      if(event.target.matches("#admin-freelancer-search,#admin-freelancer-skill,#admin-freelancer-status")) filterAdminFreelancers();
+    });
+    document.getElementById("admin-page-content").addEventListener("change",(event)=>{
+      if(event.target.matches("#admin-booking-skill,#admin-booking-status")) filterAdminTable();
+      if(event.target.matches("#admin-freelancer-skill,#admin-freelancer-status")) filterAdminFreelancers();
+      if(event.target.matches("#admin-schedule-date")) {adminScheduleDate=event.target.value||dateAfterDays(0);renderAdminPage();}
+      if(event.target.matches("#admin-project-status")) {adminProjectFilter=event.target.value;renderAdminPage();}
+      if(event.target.matches("[data-admin-project-status]")) {
+        const booking=marketplaceState.bookings.find((item)=>item.id===event.target.dataset.adminProjectStatus);
+        if(booking) {booking.projectStatus=event.target.value;if(event.target.value==="Completed"){booking.status="Completed";booking.paymentStatus="Simulated";}else if(event.target.value==="Cancelled"){booking.status="Cancelled";booking.paymentStatus="Pending";}else if(booking.status!=="Pending"){booking.status="Confirmed";booking.paymentStatus="Pending";}saveMarketplaceState("Project status updated.");renderAdminPage();}
+      }
+      if(event.target.matches("[data-complaint-status]")) {
+        const complaint=marketplaceState.complaints.find((item)=>item.id===event.target.dataset.complaintStatus);
+        if(complaint) {complaint.status=event.target.value;saveMarketplaceState("Complaint status updated.");}
+      }
+    });
+    document.getElementById("admin-page-content").addEventListener("submit",handleAdminSubmit);
+    window.addEventListener("storage",(event)=>{
+      if(event.key!==marketplaceStorageKey) return;
+      marketplaceState=loadMarketplaceState();syncFreelancerAccounts();
+      if(document.getElementById("admin-dashboard").classList.contains("active")) renderAdminPage();
+      if(document.getElementById("client-dashboard").classList.contains("active")) renderClientPage();
+      if(document.getElementById("dashboard").classList.contains("active")) renderFreelancerPage();
+    });
+    window.addEventListener("hashchange",()=>{
+      renderRoute();
+      renderWorkspace();
+    });
 
     renderFreelancers();
     renderPackages();
     renderDashboard();
     renderTracker();
     renderRoute();
+    renderWorkspace();
   </script>
 </body>
 </html>
