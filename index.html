@@ -337,10 +337,8 @@
     .workspace-dialog { width:min(600px,calc(100% - 2rem)); max-height:85vh; overflow:auto; border:1px solid var(--line); border-radius:14px; padding:1rem; }
     .workspace-dialog.profile-wide { width:min(860px,calc(100% - 2rem)); }
     .workspace-dialog::backdrop { background:rgba(18,34,25,.48); }
-    .browse-freelancer-card { display:grid; grid-template-columns:76px minmax(0,1fr); gap:.7rem; width:100%; padding:.75rem; border:1px solid var(--line); border-radius:12px; background:#fff; text-align:left; cursor:pointer; box-shadow:0 5px 16px rgba(28,63,43,.035); }
+    .browse-freelancer-card { display:grid; grid-template-columns:minmax(0,1fr); gap:.7rem; width:100%; padding:.75rem; border:1px solid var(--line); border-radius:12px; background:#fff; text-align:left; cursor:pointer; box-shadow:0 5px 16px rgba(28,63,43,.035); }
     .browse-freelancer-card:hover, .browse-freelancer-card:focus-visible { border-color:#c5d8c9; background:#f7fbf7; }
-    .browse-card-photo, .profile-dialog-photo { width:76px; height:76px; object-fit:cover; border-radius:12px; background:#eaf3eb; }
-    .profile-dialog-photo { width:92px; height:92px; border-radius:16px; }
     .browse-freelancer-card h3 { margin:.05rem 0 .2rem; color:#294031; font-size:.9rem; }
     .browse-freelancer-card p { margin:0 0 .35rem; color:#68766d; font-size:.73rem; }
     .browse-skill-group { margin-bottom:1.15rem; }
@@ -1117,13 +1115,6 @@
     function hashSeed(value) {
       return [...String(value)].reduce((hash, character) => (hash * 31 + character.charCodeAt(0)) >>> 0, 0);
     }
-    const freelancerPortraits = [
-      "photo-1531123897727-8f129e1688ce","photo-1524504388940-b1c1722653e1","photo-1500648767791-00dcc994a43e","photo-1507003211169-0a1dd7228f2d",
-      "photo-1438761681033-6461ffad8d80","photo-1534528741775-53994a69daeb","photo-1544005313-94ddf0286df2","photo-1506794778202-cad84cf45f1d",
-      "photo-1472099645785-5658abf4ff4e","photo-1517841905240-472988babdf9","photo-1539571696357-5a69c17a67c6","photo-1487412720507-e7ab37603c6f",
-      "photo-1494790108377-be9c29b29330","photo-1519085360753-af0119f7cbe7","photo-1463453091185-61582044d556","photo-1488426862026-3ee34a7d66df",
-      "photo-1508214753546-523dcfbb3e69","photo-1521119989659-a83ddd788061","photo-1527980965255-d3b416303d12","photo-1529665253569-6d01c0eaf7b6"
-    ];
     const browsePortfolioCatalog = {
       "Graphic Design": [
         { title:"Harbor cafe brand kit", description:"Logo, color palette, and storefront-ready marks for a neighborhood cafe.", image:unsplashPhoto("photo-1561070791-2526d30994b5") },
@@ -1156,9 +1147,6 @@
         { title:"Display stand prototype", description:"Modeled display stand with exploded and assembled views.", image:unsplashPhoto("photo-1486718448742-163732cd1544") }
       ]
     };
-    function browsePortrait(profile) {
-      return unsplashPhoto(freelancerPortraits[hashSeed(profile.id || profile.name) % freelancerPortraits.length], 400);
-    }
     function browsePortfolio(profile) {
       const catalog = browsePortfolioCatalog[normalizeMarketplaceSkill(profile.skill)] || browsePortfolioCatalog["Graphic Design"];
       const start = hashSeed(profile.id || profile.name) % catalog.length;
@@ -1170,13 +1158,8 @@
       const article=/^[aeiou]/.test(level)?"an":"a";
       return `${first} is ${article} ${level} ${String(profile.skill || "digital").toLowerCase()} freelancer on SugboSkills. Recent work includes client-ready projects, sample designs, and polished deliverables for local businesses.`;
     }
-    function avatarFallback(name) {
-      return `https://ui-avatars.com/api/?name=${encodeURIComponent(name || "SugboSkills")}&background=e5f0e6&color=174d38&size=256`;
-    }
     function renderBrowseFreelancerCard(profile) {
-      const photo = browsePortrait(profile);
       return `<button class="browse-freelancer-card" type="button" data-client-action="view-freelancer" data-id="${escapeHTML(profile.id)}" aria-label="Open ${escapeHTML(profile.name)} profile and portfolio">
-        <img class="browse-card-photo" src="${escapeHTML(photo)}" alt="" onerror="this.onerror=null;this.src='${escapeHTML(avatarFallback(profile.name))}'">
         <span>
           <h3>${escapeHTML(profile.name)}</h3>
           <p><strong>${escapeHTML(profile.skill)}</strong> · ${escapeHTML(profile.level)}</p>
@@ -1195,7 +1178,6 @@
         </article>`).join("");
       openWorkspaceDialog(`${profile.name} · profile`, `
         <div class="browse-profile-hero">
-          <img class="profile-dialog-photo" src="${escapeHTML(browsePortrait(profile))}" alt="${escapeHTML(profile.name)}" onerror="this.onerror=null;this.src='${escapeHTML(avatarFallback(profile.name))}'">
           <div>
             <span class="skill-tag">${escapeHTML(profile.skill)}</span>
             <h2>${escapeHTML(profile.name)}</h2>
