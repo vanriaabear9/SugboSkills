@@ -27,10 +27,17 @@ function respond(body: Record<string, unknown>, status: number, origin: string) 
 }
 
 Deno.serve(async (request: Request) => {
-  const configuredOrigin = Deno.env.get("CORS_ALLOWED_ORIGIN") || "*";
-  const allowOrigin = configuredOrigin === "*" ? "*" : configuredOrigin;
+  const requestOrigin = request.headers.get("origin") || "";
+  const configuredOrigins = (Deno.env.get("CORS_ALLOWED_ORIGINS") || Deno.env.get("CORS_ALLOWED_ORIGIN") || "*")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  const wildcardOrigin = configuredOrigins.includes("*");
+  const localDevelopmentOrigin = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/i.test(requestOrigin);
+  const originAllowed = wildcardOrigin || configuredOrigins.includes(requestOrigin) || localDevelopmentOrigin;
+  const allowOrigin = wildcardOrigin ? "*" : originAllowed && requestOrigin ? requestOrigin : configuredOrigins[0] || "null";
 
-  if (configuredOrigin !== "*" && request.headers.get("origin") && request.headers.get("origin") !== configuredOrigin) {
+  if (requestOrigin && !originAllowed) {
     return respond({ error: "Origin is not allowed." }, 403, allowOrigin);
   }
   if (request.method === "OPTIONS") {
@@ -112,13 +119,11 @@ Deno.serve(async (request: Request) => {
         return respond({ error: "Select an allowed freelancer skill, level, and team." }, 400, allowOrigin);
       }
 
-      const siteUrl = Deno.env.get("SITE_URL");
-      if (!siteUrl) {
-        return respond({ error: "SITE_URL is missing from the function environment." }, 500, allowOrigin);
-      }
+      const siteUrl = Deno.env.get("SITE_URL") || requestOrigin;
+      if (!siteUrl) return respond({ error: "Set SITE_URL or send the invite from the application website." }, 500, allowOrigin);
       const redirectTo = `${siteUrl.replace(/\/+$/, "")}/?setup=1`;
       const { data: invitation, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email, {
-        data: { full_name: fullName },
+        data: { full_name: fullName, role },
         redirectTo
       });
       if (inviteError || !invitation.user) {
@@ -149,15 +154,31 @@ Deno.serve(async (request: Request) => {
       if (!userId) return respond({ error: "A user ID is required." }, 400, allowOrigin);
       const { data: profile, error: profileError } = await adminClient
         .from("profiles")
-        .select("email, status")
+        .select("email, full_name, role, status")
         .eq("id", userId)
         .maybeSingle();
       if (profileError) return respond({ error: "Could not find that account." }, 404, allowOrigin);
       if (!profile || profile.status !== "active") {
         return respond({ error: "Only active accounts can receive a new invite." }, 400, allowOrigin);
       }
-      const siteUrl = Deno.env.get("SITE_URL");
-      if (!siteUrl) return respond({ error: "SITE_URL is missing from the function environment." }, 500, allowOrigin);
+      const { data: authUser, error: authUserError } = await adminClient.auth.admin.getUserById(userId);
+      if (authUserError || !authUser.user) {
+        console.error("Could not load account metadata before resending an invite.", authUserError);
+        return respond({ error: "Could not load account details for the invite." }, 500, allowOrigin);
+      }
+      const { error: metadataError } = await adminClient.auth.admin.updateUserById(userId, {
+        user_metadata: {
+          ...authUser.user.user_metadata,
+          full_name: profile.full_name,
+          role: profile.role
+        }
+      });
+      if (metadataError) {
+        console.error("Could not update account metadata before resending an invite.", metadataError);
+        return respond({ error: "Could not prepare account details for the invite." }, 500, allowOrigin);
+      }
+      const siteUrl = Deno.env.get("SITE_URL") || requestOrigin;
+      if (!siteUrl) return respond({ error: "Set SITE_URL or resend the invite from the application website." }, 500, allowOrigin);
       const { error: resendError } = await adminClient.auth.resend({
         type: "signup",
         email: profile.email,

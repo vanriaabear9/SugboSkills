@@ -1073,6 +1073,9 @@
       authReady = true;
       if (session?.user && currentAuthProfile && new URLSearchParams(window.location.search).get("setup") === "1") {
         window.location.hash = "/set-password";
+        const inviteUrl = new URL(window.location.href);
+        inviteUrl.searchParams.delete("setup");
+        window.history.replaceState(null, "", `${inviteUrl.pathname}${inviteUrl.search}${inviteUrl.hash}`);
       } else {
         renderRoute();
       }
