@@ -3,7 +3,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const port = Number(process.env.PORT) || 5173;
-const indexPath = path.join(__dirname, "index.html");
+const staticFiles = new Map([
+  ["/", { file: "index.html", type: "text/html; charset=utf-8" }],
+  ["/index.html", { file: "index.html", type: "text/html; charset=utf-8" }],
+  ["/supabase-config.js", { file: "supabase-config.js", type: "text/javascript; charset=utf-8" }]
+]);
 
 const server = http.createServer((request, response) => {
   const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
@@ -14,22 +18,23 @@ const server = http.createServer((request, response) => {
     return;
   }
 
-  if (pathname !== "/" && pathname !== "/index.html") {
+  const file = staticFiles.get(pathname);
+  if (!file) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
     response.end("Not Found");
     return;
   }
 
-  fs.readFile(indexPath, (error, content) => {
+  fs.readFile(path.join(__dirname, file.file), (error, content) => {
     if (error) {
-      console.error("Could not read index.html:", error);
+      console.error(`Could not read ${file.file}:`, error);
       response.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
       response.end("Could not load the prototype.");
       return;
     }
 
     response.writeHead(200, {
-      "Content-Type": "text/html; charset=utf-8",
+      "Content-Type": file.type,
       "Content-Length": content.length
     });
     response.end(request.method === "HEAD" ? undefined : content);
