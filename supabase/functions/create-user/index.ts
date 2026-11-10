@@ -33,21 +33,16 @@ function getCorsSettings(request: Request) {
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
-  const allowedOrigins = new Set([
-    ...configuredOrigins,
-    "http://localhost:5173",
-    "http://127.0.0.1:5173"
-  ]);
   const requestOrigin = request.headers.get("origin") || "";
-  const originAllowed = !requestOrigin || allowedOrigins.has("*") || allowedOrigins.has(requestOrigin);
-  const allowOrigin = allowedOrigins.has("*")
-    ? "*"
-    : allowedOrigins.has(requestOrigin) ? requestOrigin : configuredOrigins[0] || "null";
-  return { originAllowed, allowOrigin };
+  const wildcardOrigin = configuredOrigins.includes("*");
+  const localDevelopmentOrigin = /^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/i.test(requestOrigin);
+  const originAllowed = !requestOrigin || wildcardOrigin || configuredOrigins.includes(requestOrigin) || localDevelopmentOrigin;
+  const allowOrigin = wildcardOrigin ? "*" : originAllowed && requestOrigin ? requestOrigin : configuredOrigins[0] || "null";
+  return { originAllowed, allowOrigin, requestOrigin };
 }
 
 Deno.serve(async (request: Request) => {
-  const { originAllowed, allowOrigin } = getCorsSettings(request);
+  const { originAllowed, allowOrigin, requestOrigin } = getCorsSettings(request);
   if (!originAllowed) {
     return respond({ error: "Origin is not allowed." }, 403, allowOrigin);
   }
@@ -229,13 +224,11 @@ Deno.serve(async (request: Request) => {
         return respond({ error: "Only admin invites can be sent by email. Freelancer roster accounts use username and password." }, 400, allowOrigin);
       }
 
-      const siteUrl = Deno.env.get("SITE_URL");
-      if (!siteUrl) {
-        return respond({ error: "SITE_URL is missing from the function environment." }, 500, allowOrigin);
-      }
+      const siteUrl = Deno.env.get("SITE_URL") || requestOrigin;
+      if (!siteUrl) return respond({ error: "Set SITE_URL or send the invite from the application website." }, 500, allowOrigin);
       const redirectTo = `${siteUrl.replace(/\/+$/, "")}/?setup=1`;
       const { data: invitation, error: inviteError } = await adminClient.auth.admin.inviteUserByEmail(email, {
-        data: { full_name: fullName },
+        data: { full_name: fullName, role },
         redirectTo
       });
       if (inviteError || !invitation.user) {
@@ -263,7 +256,7 @@ Deno.serve(async (request: Request) => {
       if (!userId) return respond({ error: "A user ID is required." }, 400, allowOrigin);
       const { data: profile, error: profileError } = await adminClient
         .from("profiles")
-        .select("email, role, status")
+        .select("email, full_name, role, status")
         .eq("id", userId)
         .maybeSingle();
       if (profileError) return respond({ error: "Could not find that account." }, 404, allowOrigin);
@@ -273,8 +266,24 @@ Deno.serve(async (request: Request) => {
       if (profile.role === "freelancer") {
         return respond({ error: "Freelancer accounts use a username and password and do not receive email invites." }, 400, allowOrigin);
       }
-      const siteUrl = Deno.env.get("SITE_URL");
-      if (!siteUrl) return respond({ error: "SITE_URL is missing from the function environment." }, 500, allowOrigin);
+      const { data: authUser, error: authUserError } = await adminClient.auth.admin.getUserById(userId);
+      if (authUserError || !authUser.user) {
+        console.error("Could not load account metadata before resending an invite.", authUserError);
+        return respond({ error: "Could not load account details for the invite." }, 500, allowOrigin);
+      }
+      const { error: metadataError } = await adminClient.auth.admin.updateUserById(userId, {
+        user_metadata: {
+          ...authUser.user.user_metadata,
+          full_name: profile.full_name,
+          role: profile.role
+        }
+      });
+      if (metadataError) {
+        console.error("Could not update account metadata before resending an invite.", metadataError);
+        return respond({ error: "Could not prepare account details for the invite." }, 500, allowOrigin);
+      }
+      const siteUrl = Deno.env.get("SITE_URL") || requestOrigin;
+      if (!siteUrl) return respond({ error: "Set SITE_URL or resend the invite from the application website." }, 500, allowOrigin);
       const { error: resendError } = await adminClient.auth.resend({
         type: "signup",
         email: profile.email,
