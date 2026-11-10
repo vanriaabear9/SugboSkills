@@ -3,6 +3,7 @@ create table if not exists public.profiles (
   full_name text not null default '',
   business_name text,
   email text not null unique,
+  username text not null,
   role text not null default 'client' check (role in ('client', 'admin', 'freelancer')),
   skill text,
   level text check (level in ('intermediate', 'advanced')),
@@ -11,6 +12,9 @@ create table if not exists public.profiles (
   created_at timestamptz not null default now()
 );
 
+create unique index if not exists profiles_username_ci_unique
+  on public.profiles (lower(username));
+
 create or replace function public.create_client_profile()
 returns trigger
 language plpgsql
@@ -18,12 +22,16 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, full_name, business_name, email, role)
+  insert into public.profiles (id, full_name, business_name, email, username, role)
   values (
     new.id,
     coalesce(new.raw_user_meta_data ->> 'full_name', ''),
     new.raw_user_meta_data ->> 'business_name',
     new.email,
+    coalesce(
+      nullif(btrim(new.raw_user_meta_data ->> 'username'), ''),
+      split_part(new.email, '@', 1)
+    ),
     'client'
   )
   on conflict (id) do nothing;
@@ -66,6 +74,7 @@ begin
     and (
       new.id is distinct from old.id
       or new.email is distinct from old.email
+      or new.username is distinct from old.username
       or new.role is distinct from old.role
       or new.skill is distinct from old.skill
       or new.level is distinct from old.level
