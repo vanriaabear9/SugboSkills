@@ -65,20 +65,23 @@ Deno.serve(async (request: Request) => {
     return respond({ error: "Request body must be an object." }, 400, allowOrigin);
   }
 
-  const username = typeof body.username === "string" ? body.username.trim() : "";
+  const login = typeof body.username === "string" ? body.username.trim() : "";
   const password = typeof body.password === "string" ? body.password : "";
-  if (!username || username.length > 120 || !/^[\p{L}\p{N} .'-]+$/u.test(username) || !password) {
-    return respond({ error: "Enter a valid username and password." }, 400, allowOrigin);
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(login);
+  const isUsername = login.length <= 120 && /^[\p{L}\p{N} .'-]+$/u.test(login);
+  if ((!isEmail && !isUsername) || !password) {
+    return respond({ error: "Enter a valid username or email and password." }, 400, allowOrigin);
   }
 
   try {
     const adminClient = createClient(supabaseUrl, serviceRoleKey, {
       auth: { persistSession: false, autoRefreshToken: false }
     });
+    const lookupColumn = isEmail ? "email" : "username";
     const { data: profile, error: profileError } = await adminClient
       .from("profiles")
       .select("email, role, status, freelancer_id")
-      .ilike("username", username.replace(/[\\%_]/g, "\\$&"))
+      .ilike(lookupColumn, login.replace(/[\\%_]/g, "\\$&"))
       .maybeSingle();
     if (profileError) {
       console.error("Could not look up the username.", profileError);

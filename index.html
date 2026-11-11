@@ -304,6 +304,9 @@
     .workspace-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; }
     .workspace-grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
     .workspace-grid.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    button.client-booking-metric { display:block; width:100%; color:inherit; font:inherit; text-align:left; cursor:pointer; }
+    button.client-booking-metric:hover { border-color:#a9cbb1; background:#fbfdfb; }
+    .client-booking-metric-hint { display:block; margin-top:.3rem; color:#39764b; font-size:.65rem; font-weight:700; }
     .workspace-card h2,.workspace-card h3 { margin:.1rem 0 .45rem; color:#294031; font-size:.9rem; }
     .workspace-card p { color:#68766d; font-size:.73rem; }
     .workspace-metric { color:#1d3828; font-size:1.4rem; font-weight:800; }
@@ -436,6 +439,35 @@
     .tracker-stages { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.3rem; margin:.75rem 0; }
     .tracker-stage { padding:.38rem .2rem; border-radius:6px; background:#f2f4f2; color:#89948c; text-align:center; font-size:.56rem; line-height:1.3; }
     .tracker-stage.done { background:#e7f3e8; color:#34734a; }.tracker-stage.current { outline:1px solid #79a987; color:#205d37; font-weight:750; }
+    .order-progress { margin:1rem 0; padding:1rem; border:1px solid #e4ebe5; border-radius:11px; background:#fbfdfb; }
+    .order-progress-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem; }
+    .order-progress-heading h3 { margin:0; color:#294031; font-size:.88rem; }
+    .order-progress-heading p { margin:0 0 .2rem; color:#748178; font-size:.59rem; font-weight:800; letter-spacing:.08em; }
+    .order-progress-count { border-radius:999px; padding:.25rem .55rem; background:#edf3ee; color:#42664d; font-size:.64rem; font-weight:750; }
+    .order-tracker { display:grid; gap:0; margin:.9rem 0 0; padding:0; list-style:none; }
+    .order-tracker li { position:relative; min-height:48px; padding:0 0 .85rem 2.45rem; color:#7b877e; font-size:.72rem; line-height:1.4; }
+    .order-tracker li::before { position:absolute; z-index:1; top:0; left:.2rem; display:grid; width:24px; height:24px; place-items:center; border:1px solid #d6dfd8; border-radius:50%; background:#fff; color:#718077; content:counter(order-step); counter-increment:order-step; font-size:.65rem; font-weight:750; }
+    .order-tracker li::after { position:absolute; top:24px; bottom:0; left:.91rem; width:1px; background:#dce4dd; content:""; }
+    .order-tracker li:last-child { min-height:24px; padding-bottom:0; }
+    .order-tracker li:last-child::after { display:none; }
+    .order-tracker li.done { color:#34734a; }
+    .order-tracker li.done::before { border-color:#a9cbb1; background:#e7f3e8; color:#34734a; content:"✓"; }
+    .order-tracker li.done::after { background:#a9cbb1; }
+    .order-tracker li.current { color:#205d37; font-weight:750; }
+    .order-tracker li.current::before { border:2px solid #43855a; background:#e7f3e8; color:#205d37; }
+    .order-tracker li span { display:block; }
+    .order-tracker li .order-step-description { margin-top:.15rem; color:#64736a; font-size:.66rem; font-weight:400; }
+    .order-tracker { counter-reset:order-step; }
+    .project-success { margin:.75rem 0 0; padding:.75rem; border:1px solid #cfe5d3; border-radius:8px; background:#e7f4e9; color:#28613c; font-size:.75rem; font-weight:750; }
+    .client-bookings-grid { grid-template-columns:1fr; }
+    .client-order-card { padding:1rem; }
+    .client-order-card > .workspace-section-title { margin-top:0; }
+    .client-order-meta { display:flex; flex-wrap:wrap; gap:.35rem .9rem; margin:.35rem 0; color:#748178; font-size:.67rem; }
+    .client-order-budget { display:inline-block; margin:.35rem 0; color:#294031; font-size:.78rem; }
+    .client-payment-summary { margin:.65rem 0; padding:.7rem .75rem; border-radius:8px; background:#f4f7f4; color:#5f6e63; font-size:.68rem; }
+    .client-payment-summary strong { color:#344b39; }
+    .order-message-panel { margin-top:.8rem; padding:.75rem; border:1px solid #e9eee9; border-radius:10px; }
+    .order-message-panel h3 { margin:0 0 .45rem; color:#344639; font-size:.78rem; }
     .portfolio-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.7rem; }
     .portfolio-art { display:grid; min-height:84px; place-items:center; border-radius:9px 9px 0 0; background:linear-gradient(135deg,#eaf3eb,#d9e8dc); color:#417d50; font-size:1.45rem; font-weight:800; }
     .portfolio-body { padding:.7rem; }.portfolio-body h3 { margin:.4rem 0; color:#314334; font-size:.78rem; }.portfolio-body p { color:#748077; font-size:.67rem; }
@@ -450,6 +482,12 @@
     .conversation-button:hover,.conversation-button[aria-current="true"] { background:#f3f8f3; }
     .conversation-button strong { display:block; color:#394b3d; font-size:.68rem; }.conversation-button small { display:block; max-width:130px; overflow:hidden; color:#859087; font-size:.6rem; text-overflow:ellipsis; white-space:nowrap; }
     .conversation-view { display:flex; min-width:0; flex-direction:column; }.conversation-title { padding:.8rem; border-bottom:1px solid #edf1ed; color:#334738; font-size:.74rem; font-weight:750; }
+    .message-channel-tabs { display:flex; flex-wrap:wrap; gap:.4rem; margin:.4rem 0 .75rem; }
+    .message-channel-tabs button[aria-current="page"] { border-color:#a9cbb1; background:#eaf3ec; color:#205d37; }
+    .review-conversation-list { max-height:420px; overflow:auto; }
+    .review-conversation-list .conversation-button { min-width:0; }
+    .review-conversation-list .workspace-status { flex:0 0 auto; }
+    .review-thread-note { margin:0; padding:.65rem .8rem; border-bottom:1px solid #edf1ed; background:#fbfdfb; color:#748178; font-size:.64rem; }
     .message-list { display:flex; flex:1; flex-direction:column; gap:.55rem; overflow-y:auto; max-height:330px; padding:.8rem; }
     .message-bubble { max-width:80%; align-self:flex-start; padding:.55rem .65rem; border-radius:11px 11px 11px 3px; background:#f0f4f0; color:#45554a; font-size:.69rem; }
     .message-bubble.mine { align-self:flex-end; border-radius:11px 11px 3px 11px; background:#e5f1e7; color:#285838; }
@@ -514,6 +552,50 @@
       .role-card { min-height: 265px; }
       footer { flex-direction: column; gap: .35rem; padding: 1.2rem 1rem 1.6rem; }
       body.dashboard-view nav { padding: .65rem 1rem; }
+    }
+    @media (max-width: 650px) {
+      html, body { max-width:100%; overflow-x:clip; }
+      main { min-width:0; padding-right:.75rem; padding-left:.75rem; }
+      .workspace-shell,.freelancer-workspace,.workspace-main,.workspace-content,.freelancer-main { min-width:0; }
+      .workspace-shell { gap:.65rem; }
+      .workspace-sidebar,.freelancer-sidebar { border-radius:11px; }
+      .workspace-nav,.freelancer-menu { scrollbar-width:thin; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
+      .workspace-nav button,.freelancer-menu button { min-height:42px; }
+      .workspace-grid.four { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .workspace-topbar { flex-wrap:wrap; }
+      .page-heading-row { align-items:flex-start; }
+      .page-heading-row > .button,.workspace-hero > .button { width:100%; }
+      .workspace-toolbar,.workspace-actions { align-items:stretch; }
+      .workspace-actions > button,.workspace-actions > a { flex:1 1 100%; min-height:42px; }
+      .workspace-table-wrap,.schedule-wrap,.account-table { max-width:100%; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
+      .conversation-layout { min-height:0; grid-template-columns:minmax(0,1fr); }
+      .conversation-list { min-width:0; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
+      .conversation-button { width:min(78vw,240px); min-height:64px; }
+      .conversation-button > span:not(.avatar) { min-width:0; flex:1; }
+      .conversation-button strong,.conversation-button small { max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .conversation-view { min-height:360px; }
+      .conversation-title,.review-thread-note { overflow-wrap:anywhere; }
+      .message-list { min-height:220px; max-height:48vh; }
+      .message-bubble { max-width:90%; overflow-wrap:anywhere; }
+      .message-form { align-items:center; padding:.55rem; }
+      .message-form input { min-height:44px; font-size:16px; }
+      .message-form .button { min-height:44px; flex:0 0 auto; }
+      .workspace-compact-button,.button { min-height:42px; }
+      input,select,textarea { font-size:16px; }
+      .workspace-dialog,.workspace-dialog.profile-wide,dialog { width:calc(100% - 1rem); max-width:none; max-height:calc(100dvh - 1rem); margin:auto; padding:.9rem; border-radius:12px; }
+      .order-progress { padding:.75rem; }
+      .order-tracker li { font-size:.75rem; }
+    }
+    @media (max-width: 380px) {
+      main { padding-right:.6rem; padding-left:.6rem; }
+      .site-header { padding-right:.75rem; padding-left:.75rem; }
+      body.dashboard-view nav { padding-right:.6rem; padding-left:.6rem; }
+      .metric-grid,.workspace-grid.four { grid-template-columns:1fr; }
+      .freelancer-topbar { flex-wrap:wrap; justify-content:space-between; }
+      .account-switcher select { max-width:100px; }
+      .conversation-button { width:82vw; }
+      .message-list { padding:.65rem; }
+      .workspace-hero { padding:.75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -628,7 +710,7 @@
         <div id="client-auth-panel">
           <form id="client-login-form" data-auth-form="client-login">
             <h2>Client login</h2>
-            <div class="field"><label for="client-login-username">Username</label><input id="client-login-username" name="username" autocomplete="username" required></div>
+            <div class="field"><label for="client-login-username">Username or email</label><input id="client-login-username" name="username" autocomplete="username" required></div>
             <div class="field"><label for="client-login-password">Password</label><input id="client-login-password" name="password" type="password" autocomplete="current-password" required></div>
             <button class="button" type="submit">Log in</button>
             <p>New to SugboSkills? <button class="auth-link" type="button" data-auth-mode="signup">Create an account</button></p>
@@ -830,13 +912,14 @@
             <button type="button" data-client-page="book">＋ Book a Project</button>
             <button type="button" data-client-page="browse-freelancers">👥 Browse Freelancers</button>
             <button type="button" data-client-page="bookings">▤ My Bookings</button>
+            <button type="button" data-client-page="messages">✉ Messages</button>
             <button type="button" data-client-page="announcements">◉ Announcements</button>
             <button type="button" data-client-page="complaints">⚑ Report an Issue</button>
           </nav>
           <button class="button sidebar-back" type="button" data-go="home" style="margin-top:auto">← Back to Welcome Page</button>
         </aside>
         <section class="workspace-main" aria-label="Client dashboard content">
-          <div class="workspace-topbar"><span class="demo-chip">SUPABASE BOOKINGS · NO PAYMENTS</span><strong class="workspace-user-label">Client</strong><button class="workspace-compact-button" type="button" data-auth-logout>Log out</button></div>
+          <div class="workspace-topbar"><span class="demo-chip">SHARED ORDERS · TEST PAYMENTS ONLY</span><strong class="workspace-user-label">Client</strong><button class="workspace-compact-button" type="button" data-auth-logout>Log out</button></div>
           <div class="workspace-content" id="client-page-content"></div>
         </section>
       </div>
@@ -854,6 +937,7 @@
             <button type="button" data-admin-page="schedule">◷ Rotational Schedule</button>
             <button type="button" data-admin-page="bookings">▤ Booking Management</button>
             <button type="button" data-admin-page="projects">▣ Project Management</button>
+            <button type="button" data-admin-page="review-inbox">✉ Company Review Inbox</button>
             <button type="button" data-admin-page="complaints">⚑ Reports &amp; Complaints</button>
             <button type="button" data-admin-page="transactions">₱ Transactions</button>
             <button type="button" data-admin-page="announcements">◉ Announcements</button>
@@ -1412,6 +1496,14 @@
     const marketplaceStorageKey = "sugboSkills.marketplace.v1";
     let marketplaceClient = { id:"", name:"Client", business:"", email:"", status:"Active" };
     let marketplaceBookedSlots = [];
+    const bookingMessages = new Map();
+    const bookingMessageLoads = new Map();
+    const companyReviewMessages = new Map();
+    const companyReviewMessageLoads = new Map();
+    let activeBookingConversationId = "";
+    let activeFreelancerReviewBookingId = "";
+    let activeAdminReviewBookingId = "";
+    let activeFreelancerMessageChannel = "client";
     let prototypeDataError = "";
     function defaultTeamForDate(date) {
       const weekday = new Date(`${date}T00:00:00`).getDay();
@@ -1472,9 +1564,191 @@
         title:row.title,description:row.description,requirements:row.requirements,
         skill:normalizeMarketplaceSkill(row.skill),level:row.level,date:row.booking_date,
         deadline:row.deadline,budget:row.budget,platformFee:0,status:row.status,
-        projectStatus:row.project_status,paymentStatus:row.status==="Completed"?"Simulated":"Pending",
+        projectStatus:row.project_status,paymentStatus:row.payment_status||"Unpaid",
+        paymentReleasedAt:row.payment_released_at||null,
         createdAt:String(row.created_at||"").slice(0,10),sample:false
       };
+    }
+    function orderTrackerStep(booking) {
+      if (booking.paymentStatus === "Released (Test)" || booking.status === "Completed") return 6;
+      if (booking.status === "Pending") return 0;
+      if (booking.projectStatus === "Submitted") return 4;
+      if (booking.projectStatus === "Submitted for Review") return 3;
+      if (booking.projectStatus === "In Progress") return 2;
+      return 1;
+    }
+    function renderOrderTracker(booking) {
+      const current=orderTrackerStep(booking);
+      const complete=booking.paymentStatus==="Released (Test)"||booking.status==="Completed";
+      const descriptions=[
+        "Your booking request has been sent and is waiting for the freelancer to accept.",
+        "The freelancer accepted your booking and can begin the work.",
+        "The freelancer is working on your project.",
+        "The freelancer marked the work as sent to SugboSkills for company review through Gmail.",
+        "The reviewed delivery has been sent to you. Check the files shared through Gmail, then approve when ready.",
+        "Your approval released the simulated test payment. No real money was transferred.",
+        "The completed project is now included in the freelancer's portfolio."
+      ];
+      return `<section class="order-progress" aria-labelledby="order-progress-${escapeHTML(booking.id)}">
+        <div class="order-progress-heading"><div><p>ORDER TRACKER</p><h3 id="order-progress-${escapeHTML(booking.id)}">Project progress</h3></div><span class="order-progress-count">${complete?"7 of 7 complete":`Step ${current+1} of ${steps.length}`}</span></div>
+        <ol class="order-tracker" aria-label="Order progress">${steps.map((step,index)=>{
+          const status=complete||index<current?"done":index===current?"current":"";
+          return `<li class="${status}" ${index===current&&!complete?'aria-current="step"':""}><span>${escapeHTML(step)}</span>${index===current&&!complete?`<span class="order-step-description">${escapeHTML(descriptions[index])}</span>`:""}</li>`;
+        }).join("")}</ol>
+      </section>`;
+    }
+    function renderBookingMessages(role) {
+      if(role==="freelancer") {
+        const channelTabs=`<div class="message-channel-tabs" role="group" aria-label="Message channel"><button class="workspace-compact-button" type="button" data-freelancer-message-channel="client" aria-current="${activeFreelancerMessageChannel==="client"?"page":"false"}">Client messages</button><button class="workspace-compact-button" type="button" data-freelancer-message-channel="company-review" aria-current="${activeFreelancerMessageChannel==="company-review"?"page":"false"}">SugboSkills Admin</button></div>`;
+        if(activeFreelancerMessageChannel==="company-review") return `${workspaceHeading("Message SugboSkills Admin","In-app company review messages are shared with the SugboSkills admin team. For project review, select an accepted booking below. Send deliverable files through Gmail separately.")}${channelTabs}${renderCompanyReviewConversation("freelancer")}`;
+        return `${channelTabs}${renderClientBookingMessages(role)}`;
+      }
+      return renderClientBookingMessages(role);
+    }
+    function renderClientBookingMessages(role) {
+      const bookings=marketplaceState.bookings
+        .filter((booking)=>role==="client"
+          ? booking.clientId===marketplaceClient.id
+          : booking.freelancerId===currentFreelancerAccount().rosterId)
+        .filter((booking)=>booking.status!=="Declined"&&booking.status!=="Cancelled")
+        .sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+      if(!bookings.some((booking)=>booking.id===activeBookingConversationId)) activeBookingConversationId=bookings[0]?.id||"";
+      const active=bookings.find((booking)=>booking.id===activeBookingConversationId);
+      if(active&&!bookingMessages.has(active.id)) void loadBookingMessages(active.id);
+      const messages=active?bookingMessages.get(active.id)||[]:[];
+      return `${workspaceHeading("Project messages","Coordinate delivery and updates with the other participant. Send your project files through Gmail separately, then confirm here.",'')}${bookings.length?`
+        <div class="conversation-layout"><aside class="conversation-list"><h3>Project conversations</h3>${bookings.map((booking)=>{
+          const last=(bookingMessages.get(booking.id)||[]).at(-1);
+          const other=role==="client"?booking.freelancerName:booking.clientName;
+          return `<button type="button" class="conversation-button" data-booking-conversation-id="${escapeHTML(booking.id)}" aria-current="${booking.id===activeBookingConversationId}"><span class="avatar">${escapeHTML(initials(other))}</span><span><strong>${escapeHTML(booking.title)}</strong><small>${escapeHTML(last?.body||`${other} · ${booking.reference}`)}</small></span></button>`;
+        }).join("")}</aside><section class="conversation-view" aria-label="Project conversation"><div class="conversation-title">${escapeHTML(active?.title||"Choose a project")}${active?` · ${escapeHTML(role==="client"?active.freelancerName:active.clientName)}`:""}</div><div class="message-list" id="booking-message-list">${active?(bookingMessages.has(active.id)?messages.map((message)=>`<div class="message-bubble ${message.sender_id===currentAuthProfile?.id?"mine":""}">${escapeHTML(message.body)}<small>${escapeHTML(new Date(message.created_at).toLocaleString())}</small></div>`).join("")||'<div class="empty-panel">No messages yet. Start the project conversation here.</div>':'<div class="empty-panel">Loading messages…</div>'):'<div class="empty-panel">Choose a project conversation.</div>'}</div>${active&&active.status!=="Declined"&&active.status!=="Cancelled"?`<form class="message-form" data-booking-message-form="${escapeHTML(active.id)}"><label class="sr-only" for="booking-message-input">Write a project message</label><input id="booking-message-input" name="message" maxlength="2000" required placeholder="Write a project update…"><button class="button small-button" type="submit">Send</button></form>`:""}</section></div>`:'<div class="workspace-empty">No project conversations yet. Messages appear here after you request or receive a booking.</div>'}`;
+    }
+    function companyReviewBookings(role) {
+      return marketplaceState.bookings
+        .filter((booking)=>["Confirmed","Completed"].includes(booking.status)&&
+          (role==="admin"||booking.freelancerId===currentFreelancerAccount().rosterId))
+        .sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+    }
+    function renderCompanyReviewConversation(role) {
+      const bookings=companyReviewBookings(role);
+      const activeId=role==="admin"?activeAdminReviewBookingId:activeFreelancerReviewBookingId;
+      if(!bookings.some((booking)=>booking.id===activeId)) {
+        if(role==="admin") activeAdminReviewBookingId=bookings[0]?.id||"";
+        else activeFreelancerReviewBookingId=bookings[0]?.id||"";
+      }
+      const selectedId=role==="admin"?activeAdminReviewBookingId:activeFreelancerReviewBookingId;
+      const active=bookings.find((booking)=>booking.id===selectedId);
+      if(active&&!companyReviewMessages.has(active.id)) void loadCompanyReviewMessages(active.id);
+      const messages=active?companyReviewMessages.get(active.id)||[]:[];
+      const bookingList=bookings.map((booking)=>{
+        const last=(companyReviewMessages.get(booking.id)||[]).at(-1);
+        const person=role==="admin"?booking.freelancerName:booking.clientName;
+        return `<button type="button" class="conversation-button" data-company-review-booking-id="${escapeHTML(booking.id)}" aria-current="${booking.id===selectedId}"><span class="avatar">${escapeHTML(initials(person))}</span><span style="min-width:0;flex:1"><strong>${escapeHTML(booking.title)}</strong><small>${escapeHTML(person)} · ${escapeHTML(last?.body||booking.reference)}</small></span>${workspaceStatus(booking.projectStatus==="Submitted for Review"?"Under review":booking.projectStatus)}</button>`;
+      }).join("");
+      const emptyCopy=role==="admin"
+        ?"No accepted bookings are ready for company review conversations yet."
+        :"Company review conversations will appear after a client booking is accepted.";
+      if(!bookings.length) return `<div class="workspace-empty">${emptyCopy}</div>`;
+      const person=role==="admin"?active?.freelancerName:active?.clientName;
+      const senderName=role==="admin"?active?.freelancerName:"SugboSkills Admin · sugboskills@gmail.com";
+      return `<div class="conversation-layout"><aside class="conversation-list review-conversation-list"><h3>${role==="admin"?"Freelancer submissions":"Your project reviews"}</h3>${bookingList}</aside><section class="conversation-view" aria-label="Company review conversation"><div class="conversation-title">${escapeHTML(active?.title||"Choose a project")}${active?` · ${escapeHTML(person)} · ${escapeHTML(active.reference)}`:""}</div><p class="review-thread-note">${role==="admin"?"Shared with the assigned freelancer and all active SugboSkills admin accounts.":"To: SugboSkills Admin · sugboskills@gmail.com. This is an in-app conversation shared with the active SugboSkills admin team."} ${role==="admin"?"":"Send deliverable files through Gmail separately; use this thread for review updates."}</p><div class="message-list" id="company-review-message-list">${active?(companyReviewMessages.has(active.id)?messages.map((message)=>`<div class="message-bubble ${message.sender_id===currentAuthProfile?.id?"mine":""}">${escapeHTML(message.body)}<small>${message.sender_id===currentAuthProfile?.id?"You":escapeHTML(senderName)} · ${escapeHTML(new Date(message.created_at).toLocaleString())}</small></div>`).join("")||'<div class="empty-panel">No company review messages yet. Send a project update to start the conversation.</div>':'<div class="empty-panel">Loading messages…</div>'):'<div class="empty-panel">Choose a project conversation.</div>'}</div>${active?`<form class="message-form" data-company-review-message-form="${escapeHTML(active.id)}"><label class="sr-only" for="company-review-message-input">Write a company review message</label><input id="company-review-message-input" name="message" maxlength="2000" required placeholder="${role==="admin"?"Write a review response…":"Message SugboSkills Admin…"}"><button class="button small-button" type="submit">Send</button></form>`:""}</section></div>`;
+    }
+    async function loadCompanyReviewMessages(bookingId,quiet=false) {
+      if(companyReviewMessageLoads.has(bookingId)) return companyReviewMessageLoads.get(bookingId);
+      const load=(async()=>{
+        try {
+          const {data,error}=await supabaseClient.from("prototype_booking_review_messages")
+            .select("id,booking_id,sender_id,body,created_at")
+            .eq("booking_id",bookingId).order("created_at",{ascending:true});
+          if(error) throw error;
+          const messages=data||[];
+          const previous=companyReviewMessages.get(bookingId)||[];
+          const changed=previous.length!==messages.length||previous.at(-1)?.id!==messages.at(-1)?.id;
+          companyReviewMessages.set(bookingId,messages);
+          if(changed) {
+            if(activeFreelancerReviewBookingId===bookingId&&activeFreelancerPage==="messages"&&activeFreelancerMessageChannel==="company-review") renderFreelancerPage();
+            if(activeAdminReviewBookingId===bookingId&&activeAdminPage==="review-inbox") renderAdminPage();
+          }
+          return true;
+        } catch(error) {
+          console.error("Could not load company review messages.",error);
+          if(!quiet) showFreelancerToast(`Company review messages could not be loaded: ${error.message}`,true);
+          return false;
+        } finally {
+          companyReviewMessageLoads.delete(bookingId);
+        }
+      })();
+      companyReviewMessageLoads.set(bookingId,load);
+      return load;
+    }
+    async function sendCompanyReviewMessage(form) {
+      const bookingId=form.dataset.companyReviewMessageForm;
+      const input=form.elements.namedItem("message");
+      const body=String(input.value).trim();
+      if(!bookingId||!body||!currentAuthProfile) return;
+      const button=form.querySelector('button[type="submit"]');
+      button.disabled=true;
+      try {
+        const {error}=await supabaseClient.from("prototype_booking_review_messages").insert({
+          booking_id:bookingId,sender_id:currentAuthProfile.id,body
+        });
+        if(error) throw error;
+        input.value="";
+        await loadCompanyReviewMessages(bookingId);
+      } catch(error) {
+        console.error("Could not send company review message.",error);
+        showFreelancerToast(`Company review message could not be sent: ${error.message}`,true);
+      } finally {
+        button.disabled=false;
+      }
+    }
+    async function loadBookingMessages(bookingId, quiet=false) {
+      if(bookingMessageLoads.has(bookingId)) return bookingMessageLoads.get(bookingId);
+      const load=(async()=>{
+        try {
+          const {data,error}=await supabaseClient.from("prototype_booking_messages")
+            .select("id,booking_id,sender_id,body,created_at")
+            .eq("booking_id",bookingId).order("created_at",{ascending:true});
+          if(error) throw error;
+          const previous=bookingMessages.get(bookingId)||[];
+          const changed=previous.length!==data.length||previous.at(-1)?.id!==data.at(-1)?.id;
+          bookingMessages.set(bookingId,data);
+          if(changed&&activeBookingConversationId===bookingId) {
+            if(activeClientPage==="messages") renderClientPage();
+            if(activeFreelancerPage==="messages") renderFreelancerPage();
+          }
+          return true;
+        } catch(error) {
+          console.error("Could not load project messages.",error);
+          if(!quiet) showFreelancerToast(`Messages could not be loaded: ${error.message}`,true);
+          return false;
+        } finally {
+          bookingMessageLoads.delete(bookingId);
+        }
+      })();
+      bookingMessageLoads.set(bookingId,load);
+      return load;
+    }
+    async function sendBookingMessage(form) {
+      const bookingId=form.dataset.bookingMessageForm;
+      const input=form.elements.namedItem("message");
+      const body=String(input.value).trim();
+      if(!bookingId||!body) return;
+      const button=form.querySelector('button[type="submit"]');
+      button.disabled=true;
+      try {
+        const {error}=await supabaseClient.from("prototype_booking_messages").insert({
+          booking_id:bookingId,sender_id:currentAuthProfile.id,body
+        });
+        if(error) throw error;
+        input.value="";
+        await loadBookingMessages(bookingId);
+      } catch(error) {
+        console.error("Could not send project message.",error);
+        showFreelancerToast(`Message could not be sent: ${error.message}`,true);
+      } finally {
+        button.disabled=false;
+      }
     }
     async function refreshPrototypeMarketplaceData() {
       if(!supabaseClient) return;
@@ -1622,11 +1896,23 @@
           </div>
         </div>
         <h3>Recent projects and designs</h3>
-        <div class="browse-portfolio-grid">${portfolio}</div>
+        <div class="browse-portfolio-grid" data-portfolio-freelancer="${escapeHTML(profile.id)}">${portfolio}</div>
         <div class="dialog-actions">
           <button class="workspace-compact-button" type="button" data-workspace-action="close-dialog">Close</button>
           <button class="button" type="button" data-client-action="book-freelancer" data-id="${escapeHTML(profile.id)}">Request this freelancer</button>
         </div>`, "profile-wide");
+      if(!supabaseClient) return;
+      void supabaseClient.rpc("get_prototype_freelancer_portfolio",{p_freelancer_id:profile.id}).then(({data,error})=>{
+        if(error) throw error;
+        const container=[...document.querySelectorAll("[data-portfolio-freelancer]")]
+          .find((item)=>item.dataset.portfolioFreelancer===profile.id);
+        if(!container||!data?.length) return;
+        const completed=data.map((project)=>`<article class="browse-portfolio-item"><span class="skill-tag">Verified · Client approved</span><h3>${escapeHTML(project.title)}</h3><p>${escapeHTML(project.description)}</p><span class="workspace-muted">${escapeHTML(project.skill)}</span></article>`).join("");
+        container.innerHTML=completed+container.innerHTML;
+      }).catch((error)=>{
+        console.error("Could not load completed freelancer portfolio projects.",error);
+        showFreelancerToast(`Completed portfolio projects could not be loaded: ${error.message}`,true);
+      });
     }
     function marketplaceSlotKey(date,skill,level) { return `${date}|${skill}|${level}`; }
     function marketplaceSlot(date,skill,level) {
@@ -1845,7 +2131,7 @@
         if(!data) throw new Error("This request has already been answered or is no longer available.");
         await refreshPrototypeMarketplaceData();
         renderFreelancerPage();
-        showFreelancerToast(response==="accept"?"Booking accepted.":"Booking declined.");
+        showFreelancerToast(response==="accept"?"Booking accepted and moved to In Progress.":"Booking declined.");
       } catch(error) {
         console.error("Could not update the prototype booking request.",error);
         showFreelancerToast(`Request update failed: ${error.message}`,true);
@@ -1863,9 +2149,12 @@
           p_booking_id:booking.id,p_project_status:select.value
         });
         if(error) throw error;
-        if(!data) throw new Error("This project status could not be updated.");
+        if(!data) throw new Error("This project status could not be updated. Status changes must follow the project workflow.");
         await refreshPrototypeMarketplaceData();
         renderFreelancerPage();
+        showFreelancerToast(select.value==="Submitted for Review"
+          ?"Marked for company review. Send the project to the SugboSkills owners through Gmail, then update it to Submitted when it is delivered to the client."
+          :select.value==="Submitted"?"Delivery sent to the client for approval.":"Project progress updated.");
       } catch(error) {
         console.error("Could not update prototype project progress.",error);
         showFreelancerToast(`Project update failed: ${error.message}`,true);
@@ -1976,13 +2265,13 @@
           : booking.status==="Cancelled"||booking.status==="Declined"
             ? `<p class="muted-small">Request ${escapeHTML(booking.status.toLowerCase())}.</p>`
             : booking.projectStatus==="Completed"
-              ? '<p class="muted-small">Project completed in the shared prototype.</p>'
-              : `<div class="toolbar"><div class="field"><label for="market-booking-stage-${escapeHTML(booking.id)}">Project status</label><select id="market-booking-stage-${escapeHTML(booking.id)}" data-market-booking-stage="${escapeHTML(booking.id)}">${["Upcoming","In Progress","Submitted for Review","Completed"].map((status)=>`<option ${booking.projectStatus===status?"selected":""}>${escapeHTML(status)}</option>`).join("")}</select></div></div>`;
+                ? '<p class="muted-small">Project successful. The client approved the delivery and released the test payment.</p>'
+                : `<p class="muted-small">After submitting the work to the SugboSkills owners through Gmail, choose “Submitted for Review.” Once you send the approved deliverable to the client through Gmail, choose “Submitted.” Keep project updates and confirmations in Messages.</p><div class="toolbar"><div class="field"><label for="market-booking-stage-${escapeHTML(booking.id)}">Project status</label><select id="market-booking-stage-${escapeHTML(booking.id)}" data-market-booking-stage="${escapeHTML(booking.id)}">${["In Progress","Submitted for Review","Submitted"].map((status)=>`<option ${booking.projectStatus===status?"selected":""}>${escapeHTML(status)}</option>`).join("")}</select></div></div>`;
         return `<article class="freelancer-gig">
           <div class="gig-top"><div><h3>${escapeHTML(booking.title)}</h3><span class="gig-client">${escapeHTML(booking.clientName)} · ${escapeHTML(booking.clientBusiness)} · ${escapeHTML(booking.skill)} · ${escapeHTML(booking.level)}</span></div><span class="status-pill ${statusClass}">${escapeHTML(statusLabel)}</span></div>
           <p class="gig-description">${escapeHTML(booking.description)}</p>
           <div class="gig-meta"><span>Start: ${escapeHTML(booking.date)}</span><span>Deadline: ${escapeHTML(booking.deadline)}</span><span>Sample budget: ${money(booking.budget)}</span></div>
-          ${actions}
+          ${actions}<div class="gig-actions"><button class="button secondary small-button" type="button" data-open-booking-messages="${escapeHTML(booking.id)}">Open project messages</button></div>
         </article>`;
       };
       return `${pageHeader("My Gigs","Review client requests and update prototype project progress.")}
@@ -1995,9 +2284,13 @@
         const verified = entry.projectId && freelancerState.projects.some((project) => project.id === entry.projectId && project.status === "completed");
         return `<article class="freelancer-panel" style="padding:0;overflow:hidden"><div class="portfolio-art" aria-hidden="true">${escapeHTML(entry.image || "✦")}</div><div class="portfolio-body"><span class="skill-tag">${verified ? "Verified Completed Gig" : "Freelancer sample work"}</span><h3>${escapeHTML(entry.title)}</h3><p>${escapeHTML(entry.description)}</p><span class="muted-small">${escapeHTML(entry.category)}</span><div class="gig-actions"><button class="button secondary small-button" type="button" data-edit-portfolio="${escapeHTML(entry.id)}">Edit</button><button class="button secondary small-button" type="button" data-delete-portfolio="${escapeHTML(entry.id)}">Delete</button></div></div></article>`;
       }).join("");
+      const paidBookings=marketplaceState.bookings
+        .filter((booking)=>booking.freelancerId===currentFreelancerAccount().rosterId&&booking.paymentStatus==="Released (Test)")
+        .map((booking)=>`<article class="freelancer-panel" style="padding:0;overflow:hidden"><div class="portfolio-art" aria-hidden="true">✓</div><div class="portfolio-body"><span class="skill-tag">Client project · Test payment released</span><h3>${escapeHTML(booking.title)}</h3><p>${escapeHTML(booking.description)}</p><span class="muted-small">${escapeHTML(booking.skill)} · ${escapeHTML(booking.clientName)}</span></div></article>`)
+        .join("");
       return `${pageHeader("My Portfolio","Showcase sample work and projects completed in SugboSkills.",'<button class="button small-button" type="button" data-add-portfolio>Add portfolio entry</button>')}
         <div class="freelancer-panel"><div class="profile-hero"><span class="avatar">${escapeHTML(initials(freelancerState.profile.name))}</span><div><h2>${escapeHTML(freelancerState.profile.headline)}</h2><p>${escapeHTML(freelancerState.profile.bio)}</p><div class="tag-list" style="margin-top:.5rem"><span class="skill-tag">${escapeHTML(currentFreelancerAccount().platformSkill)}</span>${freelancerState.profile.skills.map((skill) => `<span class="skill-tag">${escapeHTML(skill)}</span>`).join("")}</div></div></div></div>
-        <div class="portfolio-grid" style="margin-top:.8rem">${cards || '<div class="empty-panel">Your portfolio is empty. Add a sample entry or a completed gig.</div>'}</div>`;
+        <div class="portfolio-grid" style="margin-top:.8rem">${paidBookings}${cards || (!paidBookings?'<div class="empty-panel">Your portfolio is empty. Add a sample entry or complete a client project.</div>':"")}</div>`;
     }
     function renderReviews() {
       const reviews = [{ client:"Sari-Sari Kitchen", project:"Completed sample project", date:"May 20, 2026", rating:5, text:`Thoughtful work and a smooth handoff. ${freelancerState.profile.name} understood the brief right away.` },{ client:"Harbor & Hearth Cafe", project:"Client project (demo review)", date:"Jun 8, 2026", rating:5, text:"Great communication and a clear creative direction. We are looking forward to the next project milestone." },{ client:"Studio Amihan", project:"Launch assets (sample)", date:"Apr 14, 2026", rating:4, text:"Reliable, creative, and open to feedback throughout the project." }];
@@ -2006,11 +2299,7 @@
         <div class="gig-list" style="margin-top:.8rem">${reviews.map((review) => `<article class="freelancer-panel"><div class="gig-top"><div><strong>${escapeHTML(review.client)}</strong><div class="muted-small">${escapeHTML(review.project)} · ${escapeHTML(review.date)}</div></div><span class="stars" aria-label="${review.rating} out of 5 stars">${"★".repeat(review.rating)}${"☆".repeat(5-review.rating)}</span></div><p class="gig-description">${escapeHTML(review.text)}</p><span class="skill-tag">Demonstration feedback</span></article>`).join("")}</div>`;
     }
     function renderMessages() {
-      const conversations = freelancerState.messages;
-      if (!conversations.some((conversation) => conversation.id === activeConversationId)) activeConversationId = conversations[0]?.id || "";
-      const active = conversations.find((conversation) => conversation.id === activeConversationId);
-      return `${pageHeader("Messages","Demo conversations with sample clients; messages are saved in this browser.")}
-        <div class="conversation-layout"><aside class="conversation-list"><h3>Conversations</h3>${conversations.map((conversation) => `<button type="button" class="conversation-button" data-conversation-id="${escapeHTML(conversation.id)}" aria-current="${conversation.id===activeConversationId}"><span class="avatar">${escapeHTML(conversation.initials)}</span><span><strong>${escapeHTML(conversation.client)}</strong><small>${escapeHTML(conversation.messages.at(-1)?.text || "Start a conversation")}</small></span></button>`).join("")}</aside><section class="conversation-view" aria-label="Conversation with ${escapeHTML(active?.client || "client")}"><div class="conversation-title">${escapeHTML(active?.client || "Choose a conversation")}</div><div class="message-list" id="message-list">${active ? active.messages.map((message) => `<div class="message-bubble ${message.mine?"mine":""}">${escapeHTML(message.text)}<small>${escapeHTML(message.date)} · Demo</small></div>`).join("") : '<div class="empty-panel">No conversations yet.</div>'}</div>${active ? `<form class="message-form" data-message-form="${escapeHTML(active.id)}"><label class="sr-only" for="message-input">Write a message</label><input id="message-input" name="message" maxlength="500" required placeholder="Write a message…"><button class="button small-button" type="submit">Send</button></form>` : ""}</section></div>`;
+      return renderBookingMessages("freelancer");
     }
     function renderProfile() {
       const profile = freelancerState.profile;
@@ -2077,6 +2366,16 @@
     document.getElementById("freelancer-page-content").addEventListener("click", (event) => {
       const target = event.target.closest("button");
       if (!target) return;
+      if(target.dataset.freelancerMessageChannel) {
+        activeFreelancerMessageChannel=target.dataset.freelancerMessageChannel;
+        renderFreelancerPage();
+        return;
+      }
+      if(target.dataset.companyReviewBookingId) {
+        activeFreelancerReviewBookingId=target.dataset.companyReviewBookingId;
+        renderFreelancerPage();
+        return;
+      }
       if (target.dataset.freelancerPage) { showFreelancerPage(target.dataset.freelancerPage); return; }
       if (target.dataset.marketBookingAction) {
         void respondToPrototypeBooking(target);
@@ -2132,7 +2431,12 @@
         if (entry && window.confirm(`Delete “${entry.title}” from your portfolio?`)) { freelancerState.portfolio=freelancerState.portfolio.filter((item) => item.id!==entry.id); persistFreelancerState("Portfolio entry deleted."); renderFreelancerPage(); }
         return;
       }
-      if (target.dataset.conversationId) { activeConversationId=target.dataset.conversationId; renderFreelancerPage(); return; }
+      if (target.dataset.bookingConversationId) { activeBookingConversationId=target.dataset.bookingConversationId; renderFreelancerPage(); return; }
+      if (target.dataset.openBookingMessages) {
+        activeBookingConversationId=target.dataset.openBookingMessages;
+        showFreelancerPage("messages");
+        return;
+      }
     });
     document.getElementById("freelancer-page-content").addEventListener("input", (event) => {
       if (event.target.matches("#gig-search")) renderGigResults();
@@ -2149,7 +2453,7 @@
         project.stage=next; persistFreelancerState(next===2 ? "Work marked submitted for review in the demo." : "Project progress updated."); renderFreelancerPage();
       }
       if(event.target.matches("[data-market-booking-stage]")) {
-        if(!["Upcoming","In Progress","Submitted for Review","Completed"].includes(event.target.value)) { renderFreelancerPage(); return; }
+        if(!["In Progress","Submitted for Review","Submitted"].includes(event.target.value)) { renderFreelancerPage(); return; }
         void updatePrototypeBookingProgress(event.target);
       }
     });
@@ -2215,7 +2519,13 @@
         conversation.messages.push({ text:message,date:new Date().toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}),mine:true });
         activeConversationId=conversation.id; persistFreelancerState(); renderFreelancerPage();
         document.getElementById("message-input")?.focus();
+        return;
       }
+      if(form.matches("[data-company-review-message-form]")) {
+        await sendCompanyReviewMessage(form);
+        return;
+      }
+      if(form.matches("[data-booking-message-form]")) await sendBookingMessage(form);
     });
     document.getElementById("freelancer-page-content").addEventListener("keydown", (event) => {
       if (event.target.matches("#gig-search") && event.key === "Escape") { event.target.value=""; renderGigResults(); }
@@ -2352,7 +2662,7 @@
     });
     const adminPageLabels={
       overview:"Overview",freelancers:"Freelancer Management",clients:"Client Management",schedule:"Rotational Schedule",
-      bookings:"Booking Management",projects:"Project Management",complaints:"Reports & Complaints",
+      bookings:"Booking Management",projects:"Project Management","review-inbox":"Company Review Inbox",complaints:"Reports & Complaints",
       transactions:"Transactions",announcements:"Announcements",accounts:"Account Management"
     };
     let activeAdminPage="overview";
@@ -2594,7 +2904,7 @@
     }
 
     function renderAdminPage() {
-      const renderers={overview:renderAdminOverview,freelancers:renderAdminFreelancers,clients:renderAdminClients,schedule:renderAdminSchedule,bookings:renderAdminBookings,projects:renderAdminProjects,complaints:renderAdminComplaints,transactions:renderAdminTransactions,announcements:renderAdminAnnouncements,accounts:renderAdminAccounts};
+      const renderers={overview:renderAdminOverview,freelancers:renderAdminFreelancers,clients:renderAdminClients,schedule:renderAdminSchedule,bookings:renderAdminBookings,projects:renderAdminProjects,"review-inbox":renderAdminCompanyReviewInbox,complaints:renderAdminComplaints,transactions:renderAdminTransactions,announcements:renderAdminAnnouncements,accounts:renderAdminAccounts};
       const container=document.getElementById("admin-page-content");
       if(!container) return;
       container.innerHTML=(renderers[activeAdminPage]||renderAdminOverview)();
@@ -2604,16 +2914,30 @@
       document.querySelectorAll("[data-admin-page]").forEach((button)=>button.setAttribute("aria-current",button.dataset.adminPage===activeAdminPage?"page":"false"));
       if(activeAdminPage === "accounts") loadAdminAccounts();
     }
+    function renderAdminCompanyReviewInbox() {
+      return `${workspaceHeading("Company review inbox","Review project submissions and message freelancers. All active SugboSkills admin accounts can access these conversations.")}${renderCompanyReviewConversation("admin")}`;
+    }
     function renderClientBookings() {
       const bookings=marketplaceState.bookings.filter((booking)=>booking.clientId===marketplaceClient.id).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
-      return `${workspaceHeading("My bookings","Your requests are saved to your client account and shared with the selected freelancer.",'<button class="button" type="button" data-client-page="book">＋ Book a Project</button>')}
-        ${bookings.length?`<div class="workspace-grid">${bookings.map((booking)=>`<article class="workspace-card">
+      return `${workspaceHeading("Order tracker","Follow every project from booking receipt through delivery approval, test payment, and portfolio completion.",'<button class="button" type="button" data-client-page="book">＋ Book a Project</button>')}
+        ${bookings.length?`<div class="workspace-grid client-bookings-grid">${bookings.map((booking)=>`<article class="workspace-card client-order-card">
           <div class="workspace-section-title"><h2>${escapeHTML(booking.title)}</h2>${workspaceStatus(booking.status)}</div>
-          <p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.freelancerName)} · ${escapeHTML(booking.level)}</p>
-          <div class="workspace-muted">Ref ${escapeHTML(booking.reference)} · ${escapeHTML(booking.date)} to ${escapeHTML(booking.deadline)}</div>
-          <p>${escapeHTML(booking.description)}</p><strong>Project budget: ${money(booking.budget)}</strong>
-          ${booking.status==="Pending"?`<div class="workspace-actions"><button class="workspace-compact-button" type="button" data-client-action="cancel-booking" data-id="${escapeHTML(booking.id)}">Cancel request</button></div>`:""}
+          <div class="client-order-meta"><span>${escapeHTML(booking.skill)}</span><span>Freelancer: ${escapeHTML(booking.freelancerName)}</span><span>${escapeHTML(booking.level)}</span></div>
+          <div class="client-order-meta"><span>Ref ${escapeHTML(booking.reference)}</span><span>${escapeHTML(booking.date)} to ${escapeHTML(booking.deadline)}</span></div>
+          <p>${escapeHTML(booking.description)}</p><strong class="client-order-budget">Project budget: ${money(booking.budget)}</strong>
+          ${booking.status==="Cancelled"||booking.status==="Declined"
+            ? `<p class="workspace-muted">This request was ${escapeHTML(booking.status.toLowerCase())}.</p>`
+            : `${renderOrderTracker(booking)}<div class="client-payment-summary"><strong>Test escrow:</strong> ${escapeHTML(booking.paymentStatus)}. No real money is charged or transferred.</div>
+              ${booking.paymentStatus==="Unpaid"&&booking.status==="Confirmed"?`<div class="workspace-actions"><button class="workspace-compact-button" type="button" data-client-action="fund-test-escrow" data-id="${escapeHTML(booking.id)}">Fund test escrow · ${money(booking.budget)}</button></div>`:""}
+              ${booking.paymentStatus==="Held (Test)"&&booking.projectStatus==="Submitted"?`<div class="workspace-actions"><button class="button" type="button" data-client-action="release-test-payment" data-id="${escapeHTML(booking.id)}">Approve delivery &amp; release test payment</button></div>`:""}
+              ${booking.paymentStatus==="Released (Test)"?'<p class="project-success">Project successful — your delivery was approved, the test payment was released, and the project was added to the freelancer’s portfolio.</p>':""}
+              <div class="workspace-actions"><button class="workspace-compact-button" type="button" data-client-action="open-messages" data-id="${escapeHTML(booking.id)}">Open project messages</button>
+                ${booking.status==="Pending"?`<button class="workspace-compact-button" type="button" data-client-action="cancel-booking" data-id="${escapeHTML(booking.id)}">Cancel request</button>`:""}
+              </div>`}
         </article>`).join("")}</div>`:'<div class="workspace-empty">No bookings yet. Choose a service and reserve an available slot.</div>'}`;
+    }
+    function renderClientMessagePage() {
+      return renderBookingMessages("client");
     }
     function renderClientBookingForm() {
       const skill=platformSkills.includes(clientBookingSkill)?clientBookingSkill:platformSkills[0];
@@ -2632,7 +2956,7 @@
       const bookings=marketplaceState.bookings.filter((booking)=>booking.clientId===marketplaceClient.id&&booking.status!=="Cancelled");
       const active=bookings.filter((booking)=>!["Completed","Cancelled"].includes(booking.projectStatus)).length;
       const recommendations=recommendedFreelancers();
-      return `${workspaceHeading(`Good day, ${marketplaceClient.name.split(" ")[0]}!`,"Your bookings and projects at a glance.",'<button class="button" type="button" data-client-page="book">＋ Request a Freelancer</button>')}${prototypeDataNotice()}<p class="workspace-muted">Your bookings are saved in Supabase and assigned to an individual freelancer account. Payment and some dashboard details are sample-only.</p><div class="workspace-grid three"><article class="workspace-card"><span class="workspace-muted">TOTAL BOOKINGS</span><div class="workspace-metric">${bookings.length}</div></article><article class="workspace-card"><span class="workspace-muted">ACTIVE PROJECTS</span><div class="workspace-metric">${active}</div></article><article class="workspace-card"><span class="workspace-muted">COMPLETED PROJECTS</span><div class="workspace-metric">${bookings.filter((booking)=>booking.projectStatus==="Completed").length}</div></article></div><h2 class="workspace-section-title">Recommended freelancers</h2><p class="workspace-muted">Choose a freelancer to send a project request. They can accept or decline before work begins.</p>${recommendations.length?`<div class="workspace-grid">${recommendations.map(renderRecommendedFreelancer).join("")}</div>`:'<div class="workspace-empty">No freelancers have an available slot in the next two weeks.</div>'}<h2 class="workspace-section-title">Recent bookings <button class="workspace-compact-button" type="button" data-client-page="bookings">View all →</button></h2>${bookings.length?`<div class="workspace-grid">${bookings.slice(0,3).map((booking)=>`<article class="workspace-card"><div class="workspace-section-title"><h2>${escapeHTML(booking.title)}</h2>${workspaceStatus(booking.status)}</div><p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.freelancerName)}</p><span class="workspace-muted">${escapeHTML(booking.date)} · ${money(booking.budget)} sample estimate</span></article>`).join("")}</div>`:'<div class="workspace-empty">No bookings yet. Book an available freelancer to get started.</div>'}<h2 class="workspace-section-title">Available digital skills</h2><div class="workspace-grid three">${platformSkills.map((skill)=>`<article class="workspace-card"><h2>${escapeHTML(skill)}</h2><p>Browse the current rotational schedule and request an available freelancer.</p><button class="workspace-compact-button" type="button" data-client-action="book-skill" data-skill="${escapeHTML(skill)}">Explore available slots →</button></article>`).join("")}</div>`;
+      return `${workspaceHeading(`Good day, ${marketplaceClient.name.split(" ")[0]}!`,"Your bookings and projects at a glance.",'<button class="button" type="button" data-client-page="book">＋ Request a Freelancer</button>')}${prototypeDataNotice()}<p class="workspace-muted">Your bookings are saved in Supabase and assigned to an individual freelancer account. Payment and some dashboard details are sample-only.</p><div class="workspace-grid three"><button class="workspace-card client-booking-metric" type="button" data-client-page="bookings" aria-label="Open order tracker for ${bookings.length} bookings"><span class="workspace-muted">TOTAL BOOKINGS</span><span class="workspace-metric">${bookings.length}</span><span class="client-booking-metric-hint">View order tracker →</span></button><article class="workspace-card"><span class="workspace-muted">ACTIVE PROJECTS</span><div class="workspace-metric">${active}</div></article><article class="workspace-card"><span class="workspace-muted">COMPLETED PROJECTS</span><div class="workspace-metric">${bookings.filter((booking)=>booking.projectStatus==="Completed").length}</div></article></div><h2 class="workspace-section-title">Recommended freelancers</h2><p class="workspace-muted">Choose a freelancer to send a project request. They can accept or decline before work begins.</p>${recommendations.length?`<div class="workspace-grid">${recommendations.map(renderRecommendedFreelancer).join("")}</div>`:'<div class="workspace-empty">No freelancers have an available slot in the next two weeks.</div>'}<h2 class="workspace-section-title">Recent bookings <button class="workspace-compact-button" type="button" data-client-page="bookings">View all →</button></h2>${bookings.length?`<div class="workspace-grid">${bookings.slice(0,3).map((booking)=>`<article class="workspace-card"><div class="workspace-section-title"><h2>${escapeHTML(booking.title)}</h2>${workspaceStatus(booking.status)}</div><p>${escapeHTML(booking.skill)} · ${escapeHTML(booking.freelancerName)}</p><span class="workspace-muted">${escapeHTML(booking.date)} · ${money(booking.budget)} sample estimate</span></article>`).join("")}</div>`:'<div class="workspace-empty">No bookings yet. Book an available freelancer to get started.</div>'}<h2 class="workspace-section-title">Available digital skills</h2><div class="workspace-grid three">${platformSkills.map((skill)=>`<article class="workspace-card"><h2>${escapeHTML(skill)}</h2><p>Browse the current rotational schedule and request an available freelancer.</p><button class="workspace-compact-button" type="button" data-client-action="book-skill" data-skill="${escapeHTML(skill)}">Explore available slots →</button></article>`).join("")}</div>`;
     }
     function renderClientAnnouncements() {
       const visible=marketplaceState.announcements.filter((item)=>item.audience==="Everyone"||item.audience==="Clients");
@@ -2652,7 +2976,7 @@
       const container=document.getElementById("client-page-content");
       if(!container) return;
       const renderers={
-        overview:renderClientOverview,book:renderClientBookingForm,bookings:renderClientBookings,announcements:renderClientAnnouncements,
+        overview:renderClientOverview,book:renderClientBookingForm,bookings:renderClientBookings,messages:renderClientMessagePage,announcements:renderClientAnnouncements,
         "browse-freelancers":renderClientBrowseFreelancers,
         complaints:()=>`${workspaceHeading("Report an issue","Send a demo report for the admin team to review.")}<article class="workspace-card"><form class="workspace-form" data-client-complaint-form><div class="field wide"><label for="client-complaint-subject">Subject</label><input id="client-complaint-subject" name="subject" maxlength="100" required></div><div class="field wide"><label for="client-complaint-details">Details</label><textarea id="client-complaint-details" name="details" maxlength="600" required></textarea></div><div class="field wide"><button class="button" type="submit">Submit demo report</button></div></form></article>`
       };
@@ -2779,6 +3103,8 @@
     function handleAdminClick(event) {
       const page=event.target.closest("[data-admin-page]");
       if(page) { activeAdminPage=page.dataset.adminPage; renderAdminPage(); return; }
+      const reviewConversation=event.target.closest("[data-company-review-booking-id]");
+      if(reviewConversation) {activeAdminReviewBookingId=reviewConversation.dataset.companyReviewBookingId;renderAdminPage();return;}
       const action=event.target.closest("[data-admin-action]");
       if(!action) return;
       const id=action.dataset.id;
@@ -2844,14 +3170,52 @@
         showFreelancerToast(`Cancellation failed: ${error.message}`,true);
       }
     }
+    async function fundPrototypeBookingEscrow(id) {
+      try {
+        const {data,error}=await supabaseClient.rpc("fund_prototype_booking_escrow",{p_booking_id:id});
+        if(error) throw error;
+        if(!data) throw new Error("This booking cannot be funded in its current state.");
+        await refreshPrototypeMarketplaceData();
+        renderClientPage();
+        showFreelancerToast("Test escrow funded. No real payment was charged or transferred.");
+      } catch(error) {
+        console.error("Could not fund the test escrow.",error);
+        showFreelancerToast(`Test payment failed: ${error.message}`,true);
+      }
+    }
+    async function releasePrototypeBookingPayment(id) {
+      const booking=marketplaceState.bookings.find((item)=>item.id===id&&item.clientId===marketplaceClient.id);
+      if(!booking||booking.projectStatus!=="Submitted"||booking.paymentStatus!=="Held (Test)") return;
+      if(!window.confirm(`Approve "${booking.title}" and release its test payment of ${money(booking.budget)}? No real funds will move.`)) return;
+      try {
+        const {data,error}=await supabaseClient.rpc("approve_prototype_booking_delivery",{p_booking_id:id});
+        if(error) throw error;
+        if(!data) throw new Error("The delivery is not ready for approval or the test escrow is not funded.");
+        await refreshPrototypeMarketplaceData();
+        renderClientPage();
+        showFreelancerToast("Project successful. Test payment released and portfolio updated.");
+      } catch(error) {
+        console.error("Could not approve the project delivery.",error);
+        showFreelancerToast(`Approval failed: ${error.message}`,true);
+      }
+    }
     function handleClientClick(event) {
       const page=event.target.closest("[data-client-page]");
       if(page) {activeClientPage=page.dataset.clientPage;renderClientPage();return;}
+      const conversation=event.target.closest("[data-booking-conversation-id]");
+      if(conversation) {activeBookingConversationId=conversation.dataset.bookingConversationId;renderClientPage();return;}
       const action=event.target.closest("[data-client-action]");
       if(!action) return;
       if(action.dataset.clientAction==="book-skill") {clientBookingSkill=action.dataset.skill;clientBookingFreelancerId="";activeClientPage="book";renderClientPage();return;}
       if(action.dataset.clientAction==="book-freelancer") {startClientBooking(getRosterProfile(action.dataset.id),action.dataset.date);return;}
       if(action.dataset.clientAction==="view-freelancer") {openFreelancerProfile(getRosterProfile(action.dataset.id));return;}
+      if(action.dataset.clientAction==="open-messages") {activeBookingConversationId=action.dataset.id;activeClientPage="messages";renderClientPage();return;}
+      if(action.dataset.clientAction==="fund-test-escrow") {
+        const booking=marketplaceState.bookings.find((item)=>item.id===action.dataset.id&&item.clientId===marketplaceClient.id);
+        if(booking?.status==="Confirmed"&&booking.paymentStatus==="Unpaid"&&window.confirm(`Place ${money(booking.budget)} in test escrow for "${booking.title}"? This is a simulation; no real payment will be charged.`)) void fundPrototypeBookingEscrow(booking.id);
+        return;
+      }
+      if(action.dataset.clientAction==="release-test-payment") {void releasePrototypeBookingPayment(action.dataset.id);return;}
       if(action.dataset.clientAction==="cancel-booking") {
         const booking=marketplaceState.bookings.find((item)=>item.id===action.dataset.id&&item.clientId===marketplaceClient.id);
         if(booking?.status==="Pending"&&window.confirm("Cancel this pending prototype booking request?")) void cancelPrototypeBooking(booking.id);
@@ -2911,6 +3275,11 @@
     }
     async function handleClientSubmit(event) {
       const form=event.target;
+      if(form.matches("[data-booking-message-form]")) {
+        event.preventDefault();
+        await sendBookingMessage(form);
+        return;
+      }
       if(form.matches("[data-client-booking-form]")) {
         event.preventDefault();
         const data=new FormData(form);
@@ -3050,6 +3419,31 @@
         if(window.location.hash.startsWith("#/dashboard/freelancer")) renderFreelancerPage();
       });
     });
+    window.setInterval(async()=>{
+      if(document.hidden||!currentAuthProfile||!supabaseClient) return;
+      const route=window.location.hash;
+      const isClient=route.startsWith("#/dashboard/client");
+      const isFreelancer=route.startsWith("#/dashboard/freelancer");
+      const isAdmin=route.startsWith("#/dashboard/admin");
+      if(!isClient&&!isFreelancer&&!isAdmin) return;
+      try {
+        await refreshPrototypeMarketplaceData();
+        if(isClient) renderClientPage();
+        else if(isFreelancer) renderFreelancerPage();
+        else renderAdminPage();
+      } catch(error) {
+        console.error("Could not refresh shared bookings.",error);
+        showFreelancerToast(`Booking updates could not be refreshed: ${error.message}`,true);
+      }
+    },15000);
+    window.setInterval(()=>{
+      if(document.hidden||!currentAuthProfile||!supabaseClient) return;
+      const isClient=window.location.hash.startsWith("#/dashboard/client")&&activeClientPage==="messages";
+      const isFreelancer=window.location.hash.startsWith("#/dashboard/freelancer")&&activeFreelancerPage==="messages";
+      if((isClient||isFreelancer)&&activeBookingConversationId) void loadBookingMessages(activeBookingConversationId,true);
+      if(isFreelancer&&activeFreelancerMessageChannel==="company-review"&&activeFreelancerReviewBookingId) void loadCompanyReviewMessages(activeFreelancerReviewBookingId,true);
+      if(window.location.hash.startsWith("#/dashboard/admin")&&activeAdminPage==="review-inbox"&&activeAdminReviewBookingId) void loadCompanyReviewMessages(activeAdminReviewBookingId,true);
+    },5000);
 
     document.getElementById("admin-page-content").addEventListener("click",(event)=>{
       const action=event.target.closest("[data-account-action]");
