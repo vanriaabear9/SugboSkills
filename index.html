@@ -1044,6 +1044,7 @@
         section.classList.toggle("active", section.id === screenId);
       });
       document.body.classList.toggle("dashboard-view", resolvedRoute !== "/");
+      document.getElementById("main-navigation").hidden = ["/login", "/set-password"].includes(resolvedRoute);
       const activeNavRole = resolvedRoute === "/dashboard/freelancer" || resolvedRoute === "/freelancers"
         ? "freelancer"
         : resolvedRoute === "/dashboard/client" || resolvedRoute === "/dashboard/client/book" || resolvedRoute === "/booking" || resolvedRoute === "/tracker"
